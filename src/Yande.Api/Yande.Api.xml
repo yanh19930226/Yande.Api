@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Yande.Api</name>
+    </assembly>
+    <members>
+        <member name="F:Yande.Api.Program.serilogDebug">
+            <summary>
+            Serilog日志模板
+            </summary>
+        </member>
+    </members>
+</doc>

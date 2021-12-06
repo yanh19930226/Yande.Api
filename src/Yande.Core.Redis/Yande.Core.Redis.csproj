@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Yande.Core.AppSettings\Yande.Core.AppSettings.csproj" />
+    <ProjectReference Include="..\Yande.Core.Package\Yande.Core.Package.csproj" />
+  </ItemGroup>
+
+</Project>

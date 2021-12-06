@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B9CE8818-A349-4678-BD94-20FABDC3AA3C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7E600273-89CB-4B48-9DCD-F7F95BB867C7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yande.Api", "src\Yande.Api\Yande.Api.csproj", "{1A98C5AD-C3E0-4914-9EF3-B1242C3E40FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yande.Core.Filter", "src\Yande.Core.Filter\Yande.Core.Filter.csproj", "{D2F274FB-D5F3-42EE-8F4F-82888D09D14D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yande.Core.Package", "src\Yande.Core.Package\Yande.Core.Package.csproj", "{3C47F391-2FB8-4483-AAAA-53D389EB9777}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yande.Core.Service", "src\Yande.Core.Service\Yande.Core.Service.csproj", "{97CF9AF0-E211-4D39-909F-357B675DD956}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yande.Core.AppSettings", "src\Yande.Core.AppSettings\Yande.Core.AppSettings.csproj", "{D21F457C-BA03-48F4-AEC1-252971533D4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yande.Core.Entity", "src\Yande.Core.Entity\Yande.Core.Entity.csproj", "{21C327E6-CC87-43A3-8AA0-F16A56660D95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yande.Core.Redis", "src\Yande.Core.Redis\Yande.Core.Redis.csproj", "{E6F78A6C-9744-4EED-B761-52458F1141C1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A98C5AD-C3E0-4914-9EF3-B1242C3E40FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A98C5AD-C3E0-4914-9EF3-B1242C3E40FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A98C5AD-C3E0-4914-9EF3-B1242C3E40FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A98C5AD-C3E0-4914-9EF3-B1242C3E40FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2F274FB-D5F3-42EE-8F4F-82888D09D14D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2F274FB-D5F3-42EE-8F4F-82888D09D14D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2F274FB-D5F3-42EE-8F4F-82888D09D14D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2F274FB-D5F3-42EE-8F4F-82888D09D14D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C47F391-2FB8-4483-AAAA-53D389EB9777}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C47F391-2FB8-4483-AAAA-53D389EB9777}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C47F391-2FB8-4483-AAAA-53D389EB9777}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C47F391-2FB8-4483-AAAA-53D389EB9777}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97CF9AF0-E211-4D39-909F-357B675DD956}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97CF9AF0-E211-4D39-909F-357B675DD956}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97CF9AF0-E211-4D39-909F-357B675DD956}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97CF9AF0-E211-4D39-909F-357B675DD956}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D21F457C-BA03-48F4-AEC1-252971533D4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D21F457C-BA03-48F4-AEC1-252971533D4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D21F457C-BA03-48F4-AEC1-252971533D4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D21F457C-BA03-48F4-AEC1-252971533D4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21C327E6-CC87-43A3-8AA0-F16A56660D95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21C327E6-CC87-43A3-8AA0-F16A56660D95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21C327E6-CC87-43A3-8AA0-F16A56660D95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21C327E6-CC87-43A3-8AA0-F16A56660D95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6F78A6C-9744-4EED-B761-52458F1141C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6F78A6C-9744-4EED-B761-52458F1141C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6F78A6C-9744-4EED-B761-52458F1141C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6F78A6C-9744-4EED-B761-52458F1141C1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1A98C5AD-C3E0-4914-9EF3-B1242C3E40FE} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
+		{D2F274FB-D5F3-42EE-8F4F-82888D09D14D} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
+		{3C47F391-2FB8-4483-AAAA-53D389EB9777} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
+		{97CF9AF0-E211-4D39-909F-357B675DD956} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
+		{D21F457C-BA03-48F4-AEC1-252971533D4A} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
+		{21C327E6-CC87-43A3-8AA0-F16A56660D95} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
+		{E6F78A6C-9744-4EED-B761-52458F1141C1} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A1602B0-CE22-461A-9C0C-312AEFB20E2D}
+	EndGlobalSection
+EndGlobal
