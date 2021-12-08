@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Yande.Core.AppSettings\Yande.Core.AppSettings.csproj" />
+    <ProjectReference Include="..\Yande.Core.Entity\Yande.Core.Entity.csproj" />
     <ProjectReference Include="..\Yande.Core.Package\Yande.Core.Package.csproj" />
   </ItemGroup>
 

@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Yande.Api.Common;
+using Yande.Core.AppSettings;
+using Yande.Core.Redis;
 
 namespace Yande.Api
 {
@@ -26,6 +28,10 @@ namespace Yande.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddSingleton(new AppHelper(Configuration));
+
+            services.AddSingleton<IRedisManager, RedisManager>();
 
             services.AddControllers();
 

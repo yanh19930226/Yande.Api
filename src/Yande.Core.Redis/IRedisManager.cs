@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Yande.Core.Redis
 {
-    public interface IRedisManage
+    public interface IRedisManager
     {
         /// <summary>
         /// 设置一个 键值对

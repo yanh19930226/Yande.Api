@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Yande.Core.Filter\Yande.Core.Filter.csproj" />
     <ProjectReference Include="..\Yande.Core.Package\Yande.Core.Package.csproj" />
+    <ProjectReference Include="..\Yande.Core.Redis\Yande.Core.Redis.csproj" />
     <ProjectReference Include="..\Yande.Core.Service\Yande.Core.Service.csproj" />
   </ItemGroup>
 

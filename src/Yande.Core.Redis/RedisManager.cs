@@ -10,13 +10,13 @@ using Yande.Core.Entity;
 
 namespace Yande.Core.Redis
 {
-    public class RedisManage : IRedisManage
+    public class RedisManager : IRedisManager
     {
         public volatile ConnectionMultiplexer _redisConnection;
         private readonly object _redisConnectionLock = new object();
         private readonly ConfigurationOptions _configOptions;
-        private readonly ILogger<RedisManage> _logger;
-        public RedisManage(ILogger<RedisManage> logger)
+        private readonly ILogger<RedisManager> _logger;
+        public RedisManager(ILogger<RedisManager> logger)
         {
             _logger = logger;
             ConfigurationOptions options = ReadRedisSetting();
