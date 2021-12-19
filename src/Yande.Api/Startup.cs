@@ -47,6 +47,18 @@ namespace Yande.Api
                 };
             });
             #endregion
+
+
+            #region ÉèÖÃ¿çÓò
+            services.AddCors(options => options.AddPolicy("CorsPolicy",
+             builder =>
+             {
+                 builder.AllowAnyMethod()
+                     .AllowAnyHeader()
+                     .SetIsOriginAllowed(_ => true) // =AllowAnyOrigin()
+                     .AllowCredentials();
+             }));
+            #endregion
         }
 
         #region Autofac
@@ -72,6 +84,9 @@ namespace Yande.Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            //ÔÊÐí¿çÓòÇëÇó
+            app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {
