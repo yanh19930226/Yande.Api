@@ -16,7 +16,8 @@ namespace Yande.Api
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var s=CreateHostBuilder(args).Build();
+            s.Run();
         }
 
         /// <summary>
@@ -36,6 +37,13 @@ namespace Yande.Api
             .UseServiceProviderFactory(new AutofacServiceProviderFactory()) //<--NOTE THIS
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    //var c = webBuilder.Build();
+                    // 从配置文件读取Nacos相关配置
+                    // 默认会使用JSON解析器来解析存在Nacos Server的配置
+                    //webBuilder.AddNacosV2Configuration()
+                    // 也可以按需使用ini或yaml的解析器
+                    // builder.AddNacosV2Configuration(c.GetSection("NacosConfig"), Nacos.IniParser.IniConfigurationStringParser.Instance);
+                    // builder.AddNacosV2Configuration(c.GetSection("NacosConfig"), Nacos.YamlParser.YamlConfigurationStringParser.Instance);
                     webBuilder.UseStartup<Startup>()
                     .UseSerilog((context, logger) =>//注册Serilog
                     {
