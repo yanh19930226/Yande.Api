@@ -4,83 +4,11 @@
         <name>Yande.Api</name>
     </assembly>
     <members>
-        <member name="M:Yande.Api.Controllers.YandeController.FileUp">
+        <member name="M:Yande.Api.Controllers.YandeController.GetValue">
             <summary>
-            文件上传
+            基于ASP.NET Core api 的服务器事件发送
             </summary>
             <returns></returns>
-        </member>
-        <member name="M:Yande.Api.Controllers.YandeController.FileSave">
-            <summary>
-            上传文件
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Yande.Api.Controllers.YandeController.FileMerge">
-            <summary>
-            合并请求
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:Yande.Api.Controllers.OutPut">
-            <summary>
-            返回输出类
-            </summary>
-        </member>
-        <member name="P:Yande.Api.Controllers.OutPut.Code">
-            <summary>
-            状态码
-            </summary>
-        </member>
-        <member name="P:Yande.Api.Controllers.OutPut.Msg">
-            <summary>
-            消息
-            </summary>
-        </member>
-        <member name="P:Yande.Api.Controllers.OutPut.Success">
-            <summary>
-            是否成功
-            </summary>
-        </member>
-        <member name="P:Yande.Api.Controllers.OutPut.Data">
-            <summary>
-            返回数据
-            </summary>
-        </member>
-        <member name="T:Yande.Api.Controllers.ImagesDto">
-            <summary>
-            接收参数Dto
-            </summary>
-        </member>
-        <member name="P:Yande.Api.Controllers.ImagesDto.ID">
-            <summary>
-            ID
-            </summary>
-        </member>
-        <member name="P:Yande.Api.Controllers.ImagesDto.Name">
-            <summary>
-            名称
-            </summary>
-        </member>
-        <member name="P:Yande.Api.Controllers.ImagesDto.Url">
-            <summary>
-            地址
-            </summary>
-        </member>
-        <member name="P:Yande.Api.Controllers.ImagesDto.Remark">
-            <summary>
-            备注
-            </summary>
-        </member>
-        <member name="P:Yande.Api.Controllers.ImagesDto.RelationId">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Yande.Api.Controllers.ImagesDto.Type">
-            <summary>
-            类型
-            </summary>
         </member>
         <member name="F:Yande.Api.Program.serilogDebug">
             <summary>
