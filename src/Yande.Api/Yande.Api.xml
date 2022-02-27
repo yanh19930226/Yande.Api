@@ -4,6 +4,17 @@
         <name>Yande.Api</name>
     </assembly>
     <members>
+        <member name="T:Yande.Api.Controllers.UploadController">
+            <summary>
+            UploadController
+            </summary>
+        </member>
+        <member name="M:Yande.Api.Controllers.UploadController.UploadFile">
+            <summary>
+            文件上传分片上传
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Yande.Api.Controllers.YandeController.GetValue">
             <summary>
             基于ASP.NET Core api 的服务器事件发送
