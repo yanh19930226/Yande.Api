@@ -35,15 +35,18 @@ namespace Yande.Api
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
             .UseServiceProviderFactory(new AutofacServiceProviderFactory()) //<--NOTE THIS
-                .ConfigureWebHostDefaults(webBuilder =>
+            .ConfigureAppConfiguration((context, builder) =>
+            {
+                var c = builder.Build();
+                // read configuration from config files
+                // it will use default json parser to parse the configuration store in nacos server.
+                builder.AddNacosV2Configuration(c.GetSection("NacosConfig"));
+                // you also can specify ini or yaml parser as well.
+                // builder.AddNacosV2Configuration(c.GetSection("NacosConfig"), Nacos.IniParser.IniConfigurationStringParser.Instance);
+                // builder.AddNacosV2Configuration(c.GetSection("NacosConfig"), Nacos.YamlParser.YamlConfigurationStringParser.Instance);
+            }).ConfigureWebHostDefaults(webBuilder =>
                 {
-                    //var c = webBuilder.Build();
-                    // 从配置文件读取Nacos相关配置
-                    // 默认会使用JSON解析器来解析存在Nacos Server的配置
-                    //webBuilder.AddNacosV2Configuration()
-                    // 也可以按需使用ini或yaml的解析器
-                    // builder.AddNacosV2Configuration(c.GetSection("NacosConfig"), Nacos.IniParser.IniConfigurationStringParser.Instance);
-                    // builder.AddNacosV2Configuration(c.GetSection("NacosConfig"), Nacos.YamlParser.YamlConfigurationStringParser.Instance);
+                 
                     webBuilder.UseStartup<Startup>()
                     .UseSerilog((context, logger) =>//注册Serilog
                     {

@@ -1,4 +1,5 @@
 using Autofac;
+using DotXxlJob.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -12,8 +13,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Yande.Api.Common;
+using Yande.Api.Jobs;
 using Yande.Core.AppSettings;
 using Yande.Core.Redis;
+using Yande.Middleware;
 
 namespace Yande.Api
 {
@@ -29,16 +32,20 @@ namespace Yande.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            
             services.AddSingleton(new AppHelper(Configuration));
 
             services.AddSingleton<IRedisManager, RedisManager>();
 
-            services.AddNacosAspNet(Configuration, "nacos");
-
-
             services.AddControllers();
+
+            #region xxljob
+            //services.AddDefaultXxlJobHandlers();
+            //services.AddXxlJobExecutor(Configuration);
+            //services.AddSingleton<IJobHandler, DemoJobHandler>(); // 添加自定义的jobHandler
+            //services.AddAutoRegistry(); // 自动注册 
+            #endregion
+
+            services.AddNacosAspNet(Configuration, "nacos");
 
             #region Swagger
             services.AddOpenApiDocument(settings =>
@@ -52,7 +59,6 @@ namespace Yande.Api
                 };
             });
             #endregion
-
 
             #region 设置跨域
             services.AddCors(options => options.AddPolicy("CorsPolicy",
@@ -80,6 +86,11 @@ namespace Yande.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            #region xxljob
+            //// 注册执行器中间件
+            //app.UseXxlJobExecutor(); 
+            #endregion
 
             #region Swagger
             app.UseOpenApi(); //添加swagger生成api文档（默认路由文档 /swagger/v1/swagger.json）
