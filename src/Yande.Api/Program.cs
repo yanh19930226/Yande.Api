@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Nacos.YamlParser;
 using Serilog;
 using Serilog.Events;
 using System;
@@ -40,13 +41,15 @@ namespace Yande.Api
                 var c = builder.Build();
                 // read configuration from config files
                 // it will use default json parser to parse the configuration store in nacos server.
-                builder.AddNacosV2Configuration(c.GetSection("NacosConfig"));
+
+                //builder.AddNacosV2Configuration(c.GetSection("NacosConfig"));
                 // you also can specify ini or yaml parser as well.
                 // builder.AddNacosV2Configuration(c.GetSection("NacosConfig"), Nacos.IniParser.IniConfigurationStringParser.Instance);
-                // builder.AddNacosV2Configuration(c.GetSection("NacosConfig"), Nacos.YamlParser.YamlConfigurationStringParser.Instance);
+                builder.AddNacosV2Configuration(c.GetSection("NacosConfig"), YamlConfigurationStringParser.Instance);
+
             }).ConfigureWebHostDefaults(webBuilder =>
                 {
-                 
+                   
                     webBuilder.UseStartup<Startup>()
                     .UseSerilog((context, logger) =>//×¢²áSerilog
                     {
