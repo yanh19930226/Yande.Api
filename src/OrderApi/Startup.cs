@@ -42,6 +42,12 @@ namespace OrderApi
             #endregion
 
             services.AddNacosAspNet(Configuration, "nacos");
+
+            services.AddScoped<NacosDiscoveryDelegatingHandler>();
+            services.AddHttpClient(ServiceName.ProductService, client => {
+                //ServiceName是我为了方便定义的常量类用于承载我们可以使用到的服务名称这里即productservice
+                client.BaseAddress = new Uri($"http://{ServiceName.ProductService}");
+            }).AddHttpMessageHandler<NacosDiscoveryDelegatingHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

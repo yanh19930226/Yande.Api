@@ -8,10 +8,10 @@ namespace OrderApi
 {
     public class NacosDiscoveryDelegatingHandler : DelegatingHandler
     {
-        private readonly INacosServerManager _serverManager;
+        private readonly Nacos.V2.INacosNamingService _serverManager;
         private readonly ILogger<NacosDiscoveryDelegatingHandler> _logger;
 
-        public NacosDiscoveryDelegatingHandler(INacosServerManager serverManager, ILogger<NacosDiscoveryDelegatingHandler> logger)
+        public NacosDiscoveryDelegatingHandler(Nacos.V2.INacosNamingService serverManager, ILogger<NacosDiscoveryDelegatingHandler> logger)
         {
             _serverManager = serverManager;
         }
