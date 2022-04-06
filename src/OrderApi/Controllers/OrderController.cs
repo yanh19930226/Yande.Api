@@ -13,14 +13,16 @@ namespace OrderApi.Controllers
     {
         private List<OrderDto> orderDtos = new List<OrderDto>();
         private readonly IHttpClientFactory _clientFactory;
+        private readonly Nacos.V2.INacosNamingService _serverManager;
 
-        public OrderController(IHttpClientFactory clientFactory)
+        public OrderController(IHttpClientFactory clientFactory, Nacos.V2.INacosNamingService serverManager)
         {
             orderDtos.Add(new OrderDto { Id = 1, TotalMoney = 222, Address = "北京市",  From = "淘宝", SendAddress = "武汉" });
             orderDtos.Add(new OrderDto { Id = 2, TotalMoney = 111, Address = "北京市", From = "京东", SendAddress = "北京" });
             orderDtos.Add(new OrderDto { Id = 3, TotalMoney = 333, Address = "北京市",  From = "天猫", SendAddress = "杭州" });
 
             _clientFactory = clientFactory;
+            _serverManager= serverManager;
         }
 
         [HttpGet("get/{id}")]
@@ -45,12 +47,24 @@ namespace OrderApi.Controllers
                 };
 
                 //内部调用ProductApi,配合自定义的NacosDiscoveryDelegatingHandler可以更优雅的使用注册中心方式
-                var client = _clientFactory.CreateClient(ServiceName.ProductService);
-                var response = await client.GetAsync($"/productapi/product/getall");
-                var result = await response.Content.ReadAsStringAsync();
+                //var client = _clientFactory.CreateClient(ServiceName.ProductService);
+                //var response = await client.GetAsync($"/productapi/product/getall");
+                //var result = await response.Content.ReadAsStringAsync();
 
-                orderDetailDto.Products = JsonConvert.DeserializeObject<List<OrderProductDto>>(result);
-                return orderDetailDto;
+                var instance = await _serverManager.SelectOneHealthyInstance("productservice", "DEFAULT_GROUP");
+                var host = $"{instance.Ip}:{instance.Port}";
+
+                var baseUrl = instance.Metadata.TryGetValue("secure", out _)
+                    ? $"https://{host}"
+                    : $"http://{host}";
+                var url = $"{baseUrl}/productapi/product/getall";
+
+                using (HttpClient client = new HttpClient())
+                {
+                    var result = await client.GetAsync(url);
+                     var res=await result.Content.ReadAsStringAsync();
+                    orderDetailDto.Products = JsonConvert.DeserializeObject<List<OrderProductDto>>(res);
+                }
             }
             return orderDto;
         }
