@@ -25,12 +25,9 @@ namespace OrderApi
             var current = request.RequestUri;
             try
             {
-                var instance = await _serverManager.SelectOneHealthyInstance("App2", "DEFAULT_GROUP");
+                var instance = await _serverManager.SelectOneHealthyInstance(current.Host);
                 var host = $"{instance.Ip}:{instance.Port}";
-                var baseUrl = instance.Metadata.TryGetValue("secure", out _)
-                    ? $"https://{host}"
-                    : $"http://{host}";
-
+                var baseUrl = instance.Metadata.TryGetValue("secure", out _)? $"https://{host}": $"http://{host}";
                 request.RequestUri = new Uri($"{baseUrl}{current.PathAndQuery}");
                 return await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
             }

@@ -1,32 +1,29 @@
-﻿
-
-
-<html>
+﻿<html>
 
 <div>
-   
+
 </div>
 <script>
     //javascript 构造一个EventSource实例，代表一个服务器推送长连接。
     var source = new EventSource("http://localhost:8880/api/yande/getvalue"); //传入支持推送模式的api url。随后展示。
 
     //当普通消息被传递时触发。
-    source.onmessage = function(event) {
+    source.onmessage = function (event) {
         console.log('onmessage: ' + event.data);
     };
 
     //当连接打开时触发。
-    source.onopen = function(event) {
+    source.onopen = function (event) {
         console.log('onopen');
     };
 
     //当出错时候触发
-    source.onerror = function(event) {
+    source.onerror = function (event) {
         console.log('onerror');
     }
 
     //使用自定义时间时候触发。ping为自定义事件，你可以根据实际需求定义自己的事件名称。如果事件名称匹配，则该方法会被调用
-    source.addEventListener("ping", function(event) {
+    source.addEventListener("ping", function (event) {
         console.log('onping' + event.data);
     });
 </script>

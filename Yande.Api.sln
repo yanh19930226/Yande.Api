@@ -29,9 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yande.Core.QuartzNet", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yande.Middleware", "src\Yande.Middleware\Yande.Middleware.csproj", "{66B956DE-37F3-4F2A-863E-5AFF869183B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderApi", "src\OrderApi\OrderApi.csproj", "{5C0266FC-4288-402B-89FB-B95CF00ED892}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderApi", "src\OrderApi\OrderApi.csproj", "{5C0266FC-4288-402B-89FB-B95CF00ED892}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductApi", "src\ProductApi\ProductApi.csproj", "{A0C17F50-659A-4AAE-8883-FC6CF502167B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductApi", "src\ProductApi\ProductApi.csproj", "{A0C17F50-659A-4AAE-8883-FC6CF502167B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartApi", "src\CartApi\CartApi.csproj", "{9E4F941A-5EC9-45B1-AE70-E3438FD2E4FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +93,10 @@ Global
 		{A0C17F50-659A-4AAE-8883-FC6CF502167B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0C17F50-659A-4AAE-8883-FC6CF502167B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0C17F50-659A-4AAE-8883-FC6CF502167B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E4F941A-5EC9-45B1-AE70-E3438FD2E4FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E4F941A-5EC9-45B1-AE70-E3438FD2E4FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E4F941A-5EC9-45B1-AE70-E3438FD2E4FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E4F941A-5EC9-45B1-AE70-E3438FD2E4FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,6 +115,7 @@ Global
 		{66B956DE-37F3-4F2A-863E-5AFF869183B7} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 		{5C0266FC-4288-402B-89FB-B95CF00ED892} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 		{A0C17F50-659A-4AAE-8883-FC6CF502167B} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
+		{9E4F941A-5EC9-45B1-AE70-E3438FD2E4FF} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A1602B0-CE22-461A-9C0C-312AEFB20E2D}

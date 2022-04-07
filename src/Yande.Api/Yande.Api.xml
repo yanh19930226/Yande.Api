@@ -6,24 +6,24 @@
     <members>
         <member name="T:Yande.Api.Controllers.UploadController">
             <summary>
-            UploadController
+                UploadController
             </summary>
         </member>
         <member name="M:Yande.Api.Controllers.UploadController.UploadFile">
             <summary>
-            文件上传分片上传
+                文件上传分片上传
             </summary>
             <returns></returns>
         </member>
         <member name="M:Yande.Api.Controllers.YandeController.GetValue">
             <summary>
-            基于ASP.NET Core api 的服务器事件发送
+                基于ASP.NET Core api 的服务器事件发送
             </summary>
             <returns></returns>
         </member>
         <member name="F:Yande.Api.Program.serilogDebug">
             <summary>
-            Serilog日志模板
+                Serilog日志模板
             </summary>
         </member>
     </members>

@@ -33,6 +33,10 @@ namespace Yande.Api.Controllers
             return userInfo1;
         }
 
+        /// <summary>
+        /// GetConfigBinding
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("GetConfigBinding")]
         public UserInfo GetConfigBinding()
         {
@@ -40,6 +44,9 @@ namespace Yande.Api.Controllers
             return userInfo1;
         }
 
+        /// <summary>
+        /// GetYaml
+        /// </summary>
         [HttpGet("GetYaml")]
         public void GetYaml()
         {
