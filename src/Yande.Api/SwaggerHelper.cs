@@ -40,15 +40,13 @@ namespace Yande.Api
 
                 foreach (var item2 in item)
                 {
-                    model.summary = item2.SelectToken("post.['summary']").Value<string>();
+                    //model.summary = item2.SelectToken("post.['summary']").Value<string>();
                     interfaceMethods.Add(model);
-
                     //请求实体名称
                     var requestModelName = RequestModelName(item2);
                     //请求字段集合
                     requestFields.AddRange(SbRequestData(schemas, requestModelName, model.name, ParamTypeEnum.入参));
                     requestFieldList.Clear();
-
                     //返回实体及字段
                     var responseModelName = ResponseModelName(item2);
                     //请求字段集合
