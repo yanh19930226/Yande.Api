@@ -52,6 +52,20 @@ namespace Yande.Api.Controllers
             return Ok($"{a} ***** {b}");
         }
 
+        /// <summary>
+        /// SwaggerHelper
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public IActionResult SwaggerHelper(string path)
+        {
+            SwaggerHelper swaggerHelper = new SwaggerHelper();
+
+            swaggerHelper.Run(path);
+
+            return Ok();
+        }
+
         #region 基于ASP.NET Core api 的服务器事件发送
         /// <summary>
         /// 基于ASP.NET Core api 的服务器事件发送
