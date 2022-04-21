@@ -1,0 +1,3141 @@
+{
+  "x-generator": "NSwag v13.15.3.0 (NJsonSchema v10.6.4.0 (Newtonsoft.Json v12.0.0.0))",
+  "openapi": "3.0.0",
+  "info": {
+    "title": "In66.WpsOrder.Api",
+    "description": "In66.WpsOrder.Api",
+    "termsOfService": "None",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000"
+    }
+  ],
+  "paths": {
+    "/api/Files/PreviewOrderDefaultSet/{custOrderDelId}": {
+      "get": {
+        "tags": [
+          "文件接口"
+        ],
+        "summary": "订单预览默认设置",
+        "operationId": "Files_PreviewOrderDefaultSet",
+        "parameters": [
+          {
+            "name": "custOrderDelId",
+            "in": "path",
+            "required": true,
+            "description": "custOrderDelId",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfDictionaryOfStringAndString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Files/Upload": {
+      "post": {
+        "tags": [
+          "文件接口"
+        ],
+        "summary": "文件上传创建带生成订单",
+        "operationId": "Files_Upload",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfBoolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Files/UploadStr": {
+      "post": {
+        "tags": [
+          "文件接口"
+        ],
+        "summary": "自动加载生成订单",
+        "operationId": "Files_UploadStr",
+        "requestBody": {
+          "x-name": "UploadStrDto",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadStrDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfBoolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Files/UploadChunk": {
+      "post": {
+        "tags": [
+          "文件接口"
+        ],
+        "summary": "文件上传分片上传",
+        "operationId": "Files_UploadChunk",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Files/UploadCover": {
+      "post": {
+        "tags": [
+          "文件接口"
+        ],
+        "summary": "上传封面",
+        "operationId": "Files_UploadCover",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfBoolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Files/UploadFileStr": {
+      "post": {
+        "tags": [
+          "文件接口"
+        ],
+        "summary": "旧版自动加载生成订单",
+        "operationId": "Files_UploadFileStr",
+        "requestBody": {
+          "x-name": "UploadFileStrDto",
+          "description": "UploadFileStrDto",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadFileStrDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfUploadeResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Login/CreateToken": {
+      "post": {
+        "tags": [
+          "登入接口"
+        ],
+        "summary": "创建Token",
+        "operationId": "Login_CreateToken",
+        "requestBody": {
+          "x-name": "createTokenDto",
+          "description": "createTokenDto",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WpsCreateTokenDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfTokenModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/PrintSet/GetPriceTable": {
+      "get": {
+        "tags": [
+          "打印设置接口"
+        ],
+        "summary": "获取价目表",
+        "operationId": "PrintSet_GetPriceTable",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/PrintSet/GetDeliverMode": {
+      "get": {
+        "tags": [
+          "打印设置接口"
+        ],
+        "summary": "获取配送模式",
+        "operationId": "PrintSet_GetDeliverMode",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfListOfDeliverMode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/PrintSet/GetSelectPrintAttributeItemIds/{OrderId}": {
+      "get": {
+        "tags": [
+          "打印设置接口"
+        ],
+        "summary": "获取订单选中打印设置项",
+        "operationId": "PrintSet_GetSelectPrintAttributeItemIds",
+        "parameters": [
+          {
+            "name": "OrderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfSelectPrintViewModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/PrintSet/PrintSetPriceCalculate": {
+      "post": {
+        "tags": [
+          "打印设置接口"
+        ],
+        "summary": "计算选中打印设置价格",
+        "operationId": "PrintSet_PrintSetPriceCalculate",
+        "requestBody": {
+          "x-name": "printSetPriceCalculateDto",
+          "description": "打印计算价格参数",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrintSetPriceCalculateDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfListOfCalcuResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/PrintSet/SavePrice": {
+      "post": {
+        "tags": [
+          "打印设置接口"
+        ],
+        "summary": "单项设置批量设置保存价格",
+        "operationId": "PrintSet_SavePrice",
+        "requestBody": {
+          "x-name": "savePriceItem",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SavePriceItem"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfBoolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/PrintSet/CalculateDeliverModePrice": {
+      "post": {
+        "tags": [
+          "打印设置接口"
+        ],
+        "summary": "配送模式切换重新计算价格",
+        "operationId": "PrintSet_CalculateDeliverModePrice",
+        "requestBody": {
+          "x-name": "deliverModeCalculateDto",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeliverModeCalculateDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfBoolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/PrintSet/ChangeNumberOfCopies": {
+      "post": {
+        "tags": [
+          "打印设置接口"
+        ],
+        "summary": "更改文档份数",
+        "operationId": "PrintSet_ChangeNumberOfCopies",
+        "requestBody": {
+          "x-name": "changeNumberOfCopiesDto",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeNumberOfCopiesDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfChangeNumberOfCopiesViewModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/PrintSet/SetIndexCover/{OrderId}": {
+      "get": {
+        "tags": [
+          "打印设置接口"
+        ],
+        "summary": "首页设为封面",
+        "operationId": "PrintSet_SetIndexCover",
+        "parameters": [
+          {
+            "name": "OrderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfBoolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/PrintSet/GetAllPrintSetAttributeWithChildren": {
+      "get": {
+        "tags": [
+          "打印设置接口"
+        ],
+        "summary": "获取所有打印设置项",
+        "operationId": "PrintSet_GetAllPrintSetAttributeWithChildren",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfAllPrintViewModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/PrintSet/GetPrintSetAttributeWithconfigJson": {
+      "get": {
+        "tags": [
+          "打印设置接口"
+        ],
+        "summary": "获取配置信息",
+        "operationId": "PrintSet_GetPrintSetAttributeWithconfigJson",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfListOfPrintSetModeConfigJsonViewModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ReceivingAddress/GetAreaList": {
+      "get": {
+        "tags": [
+          "地址接口"
+        ],
+        "summary": "获取全国省市地址信息",
+        "operationId": "ReceivingAddress_GetAreaList",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ReceivingAddress/GetAddressList": {
+      "get": {
+        "tags": [
+          "地址接口"
+        ],
+        "summary": "获取用户地址列表",
+        "operationId": "ReceivingAddress_GetAddressList",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfListOfReceivingAddressDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ReceivingAddress/GetAddressById/{addressId}": {
+      "get": {
+        "tags": [
+          "地址接口"
+        ],
+        "summary": "Id获取用户地址信息",
+        "operationId": "ReceivingAddress_GetAddressById",
+        "parameters": [
+          {
+            "name": "addressId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfReceivingAddressDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ReceivingAddress/AddAddress": {
+      "post": {
+        "tags": [
+          "地址接口"
+        ],
+        "summary": "添加用户地址",
+        "operationId": "ReceivingAddress_AddAddress",
+        "requestBody": {
+          "x-name": "dto",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddAddressDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfBoolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ReceivingAddress/UpdateAddress": {
+      "post": {
+        "tags": [
+          "地址接口"
+        ],
+        "summary": "更新用户地址",
+        "operationId": "ReceivingAddress_UpdateAddress",
+        "requestBody": {
+          "x-name": "updateAddressDto",
+          "description": "updateAddressDto",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAddressDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfBoolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ReceivingAddress/DeleteAddress/{addressId}": {
+      "get": {
+        "tags": [
+          "地址接口"
+        ],
+        "summary": "删除用户地址",
+        "operationId": "ReceivingAddress_DeleteAddress",
+        "parameters": [
+          {
+            "name": "addressId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ReceivingAddress/SetDefaultAddress": {
+      "post": {
+        "tags": [
+          "地址接口"
+        ],
+        "summary": "设置用户默认地址",
+        "operationId": "ReceivingAddress_SetDefaultAddress",
+        "requestBody": {
+          "x-name": "SetDefaultAddressDto",
+          "description": "SetDefaultAddressDto",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetDefaultAddressDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfBoolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ReceivingAddress/DeliveryMethod/{ReceivingAddressId}": {
+      "get": {
+        "tags": [
+          "地址接口"
+        ],
+        "summary": "Wps判断订单配送模式",
+        "operationId": "ReceivingAddress_DeliveryMethod",
+        "parameters": [
+          {
+            "name": "ReceivingAddressId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ReceivingAddress/UserReceivingAddressModeConfig": {
+      "post": {
+        "tags": [
+          "地址接口"
+        ],
+        "summary": "用户地址配送模式申请",
+        "operationId": "ReceivingAddress_UserReceivingAddressModeConfig",
+        "requestBody": {
+          "x-name": "dto",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserReceivingAddressModeConfigDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Tool/AddConfigJson": {
+      "post": {
+        "tags": [
+          "Tool"
+        ],
+        "summary": "添加配置",
+        "operationId": "Tool_AddConfigJson",
+        "requestBody": {
+          "x-name": "addConfigJsonModel",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddConfigJsonModel"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Tool/GetPrintSetAttribute": {
+      "get": {
+        "tags": [
+          "Tool"
+        ],
+        "summary": "GetPrintSetAttribute",
+        "operationId": "Tool_GetPrintSetAttribute",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Tool/GetPrintSetAttributeItem": {
+      "get": {
+        "tags": [
+          "Tool"
+        ],
+        "summary": "GetPrintSetAttributeItem",
+        "operationId": "Tool_GetPrintSetAttributeItem",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Tool/GetById": {
+      "get": {
+        "tags": [
+          "Tool"
+        ],
+        "summary": "GetById",
+        "operationId": "Tool_GetById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Tool/GetWordNumber": {
+      "get": {
+        "tags": [
+          "Tool"
+        ],
+        "summary": "获取Word页数",
+        "operationId": "Tool_GetWordNumber",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Tool/GetExcelNumber": {
+      "get": {
+        "tags": [
+          "Tool"
+        ],
+        "summary": "获取Excel页数",
+        "operationId": "Tool_GetExcelNumber",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Tool/GetPPTNumber": {
+      "get": {
+        "tags": [
+          "Tool"
+        ],
+        "summary": "获取PPT页数",
+        "operationId": "Tool_GetPPTNumber",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/WpsOrder/CreateGenerateOrder": {
+      "post": {
+        "tags": [
+          "订单接口"
+        ],
+        "summary": "创建待生成订单",
+        "operationId": "WpsOrder_CreateGenerateOrder",
+        "requestBody": {
+          "x-name": "request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateGenerateOrderDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/WpsOrder/UpdateGenerateOrder": {
+      "post": {
+        "tags": [
+          "订单接口"
+        ],
+        "summary": "更新待生成订单详细为待付款并创建待付款主订单",
+        "operationId": "WpsOrder_UpdateGenerateOrder",
+        "requestBody": {
+          "x-name": "request",
+          "description": "request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateGenerateOrderDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/WpsOrder/GetGenerateOrderListByUserId": {
+      "get": {
+        "tags": [
+          "订单接口"
+        ],
+        "summary": "获取用户待生成订单列表",
+        "operationId": "WpsOrder_GetGenerateOrderListByUserId",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfListOfCustOrderDelDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/WpsOrder/DeleteGenerateOrderById/{custOrderDelId}": {
+      "get": {
+        "tags": [
+          "订单接口"
+        ],
+        "summary": "删除用户待生成订单",
+        "operationId": "WpsOrder_DeleteGenerateOrderById",
+        "parameters": [
+          {
+            "name": "custOrderDelId",
+            "in": "path",
+            "required": true,
+            "description": "custOrderDelId",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfBoolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/WpsOrder/DeleteAllGenerateOrder": {
+      "post": {
+        "tags": [
+          "订单接口"
+        ],
+        "summary": "删除用户所有待生成订单",
+        "operationId": "WpsOrder_DeleteAllGenerateOrder",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfBoolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/WpsOrder/GetAllOrderListByUserId": {
+      "post": {
+        "tags": [
+          "订单接口"
+        ],
+        "summary": "获取用户所有订单列表",
+        "operationId": "WpsOrder_GetAllOrderListByUserId",
+        "requestBody": {
+          "x-name": "entity",
+          "description": "entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAllOrderDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageCallBackResultOfIPageListOfOrderResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/WpsOrder/GetTabOrderCount": {
+      "get": {
+        "tags": [
+          "订单接口"
+        ],
+        "summary": "获取Tab订单条数",
+        "operationId": "WpsOrder_GetTabOrderCount",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfTabOrderCount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/WpsOrder/PayOrder": {
+      "post": {
+        "tags": [
+          "订单接口"
+        ],
+        "summary": "订单支付",
+        "operationId": "WpsOrder_PayOrder",
+        "requestBody": {
+          "x-name": "createPayDto",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePayDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfResPay"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/WpsOrder/CancelOrder/{orderId}": {
+      "get": {
+        "tags": [
+          "订单接口"
+        ],
+        "summary": "订单取消",
+        "operationId": "WpsOrder_CancelOrder",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "description": "订单Id",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfBoolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/WpsOrder/ConfirmOrder/{orderId}": {
+      "get": {
+        "tags": [
+          "订单接口"
+        ],
+        "summary": "确认收货",
+        "operationId": "WpsOrder_ConfirmOrder",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "description": "订单Id",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfBoolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/WpsOrder/QueryTrackInfo/{OrderId}": {
+      "get": {
+        "tags": [
+          "订单接口"
+        ],
+        "summary": "查询物流",
+        "operationId": "WpsOrder_QueryTrackInfo",
+        "parameters": [
+          {
+            "name": "OrderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallBackResultOfListOfQueryTrackInfoItem"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CallBackResultOfDictionaryOfStringAndString": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CallBackResult"
+          },
+          {
+            "type": "object",
+            "description": "响应实体",
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "type": "object",
+                "description": "返回结果",
+                "nullable": true,
+                "additionalProperties": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "CallBackResult": {
+        "type": "object",
+        "description": "响应实体",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "description": "响应码",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CallBackResultCode"
+              }
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "响应信息",
+            "nullable": true
+          },
+          "isSuccess": {
+            "type": "boolean",
+            "description": "成功"
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "时间戳(毫秒)",
+            "format": "int64"
+          }
+        }
+      },
+      "CallBackResultCode": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Succeed",
+          "Failed"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "CallBackResultOfBoolean": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CallBackResult"
+          },
+          {
+            "type": "object",
+            "description": "响应实体",
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "type": "boolean",
+                "description": "返回结果"
+              }
+            }
+          }
+        ]
+      },
+      "UploadStrDto": {
+        "type": "object",
+        "description": "自动加载上传参数",
+        "additionalProperties": false,
+        "properties": {
+          "fileStr": {
+            "type": "array",
+            "description": "Base64字符串数组",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "fileName": {
+            "type": "string",
+            "description": "文档名称",
+            "nullable": true
+          },
+          "deliverModeId": {
+            "type": "integer",
+            "description": "配送模式",
+            "format": "int32"
+          }
+        }
+      },
+      "CallBackResultOfUploadeResult": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CallBackResult"
+          },
+          {
+            "type": "object",
+            "description": "响应实体",
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "description": "返回结果",
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/UploadeResult"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "UploadeResult": {
+        "type": "object",
+        "description": "上传结果",
+        "additionalProperties": false,
+        "properties": {
+          "result": {
+            "type": "boolean",
+            "description": "Result"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "description": "文档页数",
+            "format": "int32"
+          }
+        }
+      },
+      "UploadFileStrDto": {
+        "type": "object",
+        "description": "旧版UploadFileStrDto",
+        "additionalProperties": false,
+        "properties": {
+          "fileStr": {
+            "type": "string",
+            "description": "FileStr",
+            "nullable": true
+          },
+          "fileName": {
+            "type": "string",
+            "description": "FileName",
+            "nullable": true
+          },
+          "sysUserId": {
+            "type": "string",
+            "description": "SysUserId",
+            "nullable": true
+          }
+        }
+      },
+      "CallBackResultOfTokenModel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CallBackResult"
+          },
+          {
+            "type": "object",
+            "description": "响应实体",
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "description": "返回结果",
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/TokenModel"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "TokenModel": {
+        "type": "object",
+        "description": "WpsApi返回Token",
+        "additionalProperties": false,
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "token内容",
+            "nullable": true
+          },
+          "expires": {
+            "type": "integer",
+            "description": "过期时间",
+            "format": "int64"
+          }
+        }
+      },
+      "WpsCreateTokenDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "nickname",
+          "code"
+        ],
+        "properties": {
+          "nickname": {
+            "type": "string",
+            "description": "姓名",
+            "minLength": 1
+          },
+          "picUrl": {
+            "type": "string",
+            "description": "头像",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "description": "code",
+            "minLength": 1
+          }
+        }
+      },
+      "CallBackResultOfListOfDeliverMode": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CallBackResult"
+          },
+          {
+            "type": "object",
+            "description": "响应实体",
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "type": "array",
+                "description": "返回结果",
+                "nullable": true,
+                "items": {
+                  "$ref": "#/components/schemas/DeliverMode"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "DeliverMode": {
+        "type": "object",
+        "description": "配送模式",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "主键",
+            "format": "int32"
+          },
+          "deliverModeName": {
+            "type": "string",
+            "description": "配送模式名称\n ",
+            "nullable": true
+          },
+          "eName": {
+            "type": "string",
+            "description": "英文名称",
+            "nullable": true
+          },
+          "sort": {
+            "type": "integer",
+            "description": "排序",
+            "format": "int32"
+          },
+          "deliverModeFee": {
+            "type": "number",
+            "description": "配送模式配送费\n ",
+            "format": "decimal"
+          },
+          "isDel": {
+            "type": "boolean",
+            "description": "是否删除"
+          },
+          "isDefault": {
+            "type": "boolean",
+            "description": "是否默认"
+          },
+          "createDate": {
+            "type": "string",
+            "description": "创建时间",
+            "format": "date-time"
+          }
+        }
+      },
+      "CallBackResultOfSelectPrintViewModel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CallBackResult"
+          },
+          {
+            "type": "object",
+            "description": "响应实体",
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "description": "返回结果",
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/SelectPrintViewModel"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "SelectPrintViewModel": {
+        "type": "object",
+        "description": "打印设置",
+        "additionalProperties": false,
+        "properties": {
+          "printSetId": {
+            "type": "integer",
+            "description": "打印模式\n ",
+            "format": "int32"
+          },
+          "printModeId": {
+            "type": "integer",
+            "description": "打印预设\n ",
+            "format": "int32"
+          },
+          "printSetViewModels": {
+            "type": "array",
+            "description": "打印选项值选中Id集合\n ",
+            "nullable": true,
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      },
+      "CallBackResultOfListOfCalcuResult": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CallBackResult"
+          },
+          {
+            "type": "object",
+            "description": "响应实体",
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "type": "array",
+                "description": "返回结果",
+                "nullable": true,
+                "items": {
+                  "$ref": "#/components/schemas/CalcuResult"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "CalcuResult": {
+        "type": "object",
+        "description": "订单计算结果",
+        "additionalProperties": false,
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "description": "订单Id",
+            "nullable": true
+          },
+          "unitPrice": {
+            "type": "number",
+            "description": "单价",
+            "format": "decimal"
+          }
+        }
+      },
+      "PrintSetPriceCalculateDto": {
+        "type": "object",
+        "description": "打印设置计算价格",
+        "additionalProperties": false,
+        "required": [
+          "printModeId",
+          "printSetId",
+          "deliverModeId",
+          "printSetAttributeItemIds"
+        ],
+        "properties": {
+          "printModeId": {
+            "type": "integer",
+            "description": "打印模式Id",
+            "format": "int32"
+          },
+          "printSetId": {
+            "type": "integer",
+            "description": "打印预设Id",
+            "format": "int32"
+          },
+          "deliverModeId": {
+            "type": "integer",
+            "description": "配送模式Id",
+            "format": "int32"
+          },
+          "printSetAttributeItemIds": {
+            "type": "array",
+            "description": "打印设置选项值集合",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "custOrderItems": {
+            "type": "array",
+            "description": "订单Id集合",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CalcuCustOrder"
+            }
+          }
+        }
+      },
+      "CalcuCustOrder": {
+        "type": "object",
+        "description": "订单项",
+        "additionalProperties": false,
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "description": "订单Id",
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "description": "页数",
+            "format": "int32"
+          }
+        }
+      },
+      "SavePriceItem": {
+        "type": "object",
+        "description": "批量价格保存",
+        "additionalProperties": false,
+        "required": [
+          "printModeId",
+          "printSetId",
+          "deliverModeId"
+        ],
+        "properties": {
+          "printSetAttributeItemIds": {
+            "type": "array",
+            "description": "选中属性项集合",
+            "nullable": true,
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "calcuResult": {
+            "type": "array",
+            "description": "订单计算结果集合",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CalcuResult"
+            }
+          },
+          "printModeId": {
+            "type": "integer",
+            "description": "打印模式Id",
+            "format": "int32"
+          },
+          "printSetId": {
+            "type": "integer",
+            "description": "打印预设Id",
+            "format": "int32"
+          },
+          "deliverModeId": {
+            "type": "integer",
+            "description": "配送模式Id",
+            "format": "int32"
+          }
+        }
+      },
+      "DeliverModeCalculateDto": {
+        "type": "object",
+        "description": "配送模式切换",
+        "additionalProperties": false,
+        "properties": {
+          "calcuCustOrder": {
+            "type": "array",
+            "description": "订单Id 集合",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CalcuCustOrder"
+            }
+          },
+          "deliverModeId": {
+            "type": "integer",
+            "description": "配送模式Id",
+            "format": "int32"
+          }
+        }
+      },
+      "CallBackResultOfChangeNumberOfCopiesViewModel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CallBackResult"
+          },
+          {
+            "type": "object",
+            "description": "响应实体",
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "description": "返回结果",
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/ChangeNumberOfCopiesViewModel"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "ChangeNumberOfCopiesViewModel": {
+        "type": "object",
+        "description": "修改份数",
+        "additionalProperties": false,
+        "properties": {
+          "unitPrice": {
+            "type": "number",
+            "description": "单价",
+            "format": "decimal"
+          },
+          "isDisscuss": {
+            "type": "boolean",
+            "description": "是否商议"
+          },
+          "msg": {
+            "type": "string",
+            "description": "消息",
+            "nullable": true
+          }
+        }
+      },
+      "ChangeNumberOfCopiesDto": {
+        "type": "object",
+        "description": "更改文档份数",
+        "additionalProperties": false,
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "description": "订单Id",
+            "nullable": true
+          },
+          "numberOfCopies": {
+            "type": "integer",
+            "description": "文档份数",
+            "format": "int32"
+          }
+        }
+      },
+      "CallBackResultOfAllPrintViewModel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CallBackResult"
+          },
+          {
+            "type": "object",
+            "description": "响应实体",
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "description": "返回结果",
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/AllPrintViewModel"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "AllPrintViewModel": {
+        "type": "object",
+        "description": "打印设置",
+        "additionalProperties": false,
+        "properties": {
+          "printModeViewModels": {
+            "type": "array",
+            "description": "打印模式\n ",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/PrintMode"
+            }
+          },
+          "printPreSetViewModels": {
+            "type": "array",
+            "description": "打印预设\n ",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/PrintSetDefaultModel"
+            }
+          },
+          "printSetViewModels": {
+            "type": "array",
+            "description": "打印选项设置\n ",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/PrintSetViewModel"
+            }
+          }
+        }
+      },
+      "PrintMode": {
+        "type": "object",
+        "description": "打印模式",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "主键\n            ",
+            "format": "int32"
+          },
+          "printModeName": {
+            "type": "string",
+            "description": "打印模式名称\n ",
+            "nullable": true
+          },
+          "isDel": {
+            "type": "boolean",
+            "description": "是否删除"
+          },
+          "sort": {
+            "type": "integer",
+            "description": "排序",
+            "format": "int32"
+          },
+          "createDate": {
+            "type": "string",
+            "description": "创建时间",
+            "format": "date-time"
+          }
+        }
+      },
+      "PrintSetDefaultModel": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "printSetName": {
+            "type": "string",
+            "nullable": true
+          },
+          "eName": {
+            "type": "string",
+            "nullable": true
+          },
+          "sort": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isDel": {
+            "type": "boolean"
+          },
+          "isDisplay": {
+            "type": "boolean"
+          },
+          "defaultConfig": {
+            "type": "array",
+            "description": "必选项",
+            "nullable": true,
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "unDisplay": {
+            "type": "array",
+            "description": "不显示项",
+            "nullable": true,
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "PrintSetViewModel": {
+        "type": "object",
+        "description": "打印选项设置",
+        "additionalProperties": false,
+        "properties": {
+          "printSetAttribute": {
+            "description": "选项",
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PrintSetAttribute"
+              }
+            ]
+          },
+          "printSetAttributeItemList": {
+            "type": "array",
+            "description": "选项值列表",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/PrintSetAttributeItem"
+            }
+          }
+        }
+      },
+      "PrintSetAttribute": {
+        "type": "object",
+        "description": "打印设置选项",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "主键",
+            "format": "int32"
+          },
+          "printSetAttributeName": {
+            "type": "string",
+            "description": "打印设置选项名称",
+            "nullable": true
+          },
+          "isDel": {
+            "type": "boolean",
+            "description": "是否删除"
+          },
+          "isCancel": {
+            "type": "boolean",
+            "description": "是否取消"
+          },
+          "isCover": {
+            "type": "boolean",
+            "description": "是否取消"
+          },
+          "sort": {
+            "type": "integer",
+            "description": "排序",
+            "format": "int32"
+          },
+          "createDate": {
+            "type": "string",
+            "description": "创建时间",
+            "format": "date-time"
+          }
+        }
+      },
+      "PrintSetAttributeItem": {
+        "type": "object",
+        "description": "打印设置选项值表",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "主键",
+            "format": "int32"
+          },
+          "printSetAttributeId": {
+            "type": "integer",
+            "description": "打印设置选项Id",
+            "format": "int32"
+          },
+          "printSetAttributeItemName": {
+            "type": "string",
+            "description": "打印设置选项值名称",
+            "nullable": true
+          },
+          "isDel": {
+            "type": "boolean",
+            "description": "是否删除"
+          },
+          "isCover": {
+            "type": "boolean",
+            "description": "是否封面"
+          },
+          "isMarkup": {
+            "type": "boolean",
+            "description": "是否组合"
+          },
+          "isMulti": {
+            "type": "boolean",
+            "description": "是否相乘"
+          },
+          "isDiscuss": {
+            "type": "boolean",
+            "description": "是否商议"
+          },
+          "discussNumber": {
+            "type": "integer",
+            "description": "商议数量",
+            "format": "int32"
+          },
+          "isInfluenceNumber": {
+            "type": "boolean",
+            "description": "是否影响张数"
+          },
+          "influenceNumber": {
+            "type": "integer",
+            "description": "影响张数",
+            "format": "int32"
+          },
+          "createDate": {
+            "type": "string",
+            "description": "创建时间",
+            "format": "date-time"
+          },
+          "sort": {
+            "type": "integer",
+            "description": "排序",
+            "format": "int32"
+          }
+        }
+      },
+      "CallBackResultOfListOfPrintSetModeConfigJsonViewModel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CallBackResult"
+          },
+          {
+            "type": "object",
+            "description": "响应实体",
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "type": "array",
+                "description": "返回结果",
+                "nullable": true,
+                "items": {
+                  "$ref": "#/components/schemas/PrintSetModeConfigJsonViewModel"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "PrintSetModeConfigJsonViewModel": {
+        "type": "object",
+        "description": "配置模型",
+        "additionalProperties": false,
+        "properties": {
+          "printMode": {
+            "description": "打印模式",
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PrintMode"
+              }
+            ]
+          },
+          "printSetConfigJson": {
+            "type": "array",
+            "description": "配置规则",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/PrintSetAttributeItemConfigJson"
+            }
+          }
+        }
+      },
+      "PrintSetAttributeItemConfigJson": {
+        "type": "object",
+        "description": "PrintSetAttributeItemConfigJson",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "array",
+            "description": "属性小项Id",
+            "nullable": true,
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "influence": {
+            "type": "array",
+            "description": "被影响小项Id集合",
+            "nullable": true,
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      },
+      "CallBackResultOfListOfReceivingAddressDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CallBackResult"
+          },
+          {
+            "type": "object",
+            "description": "响应实体",
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "type": "array",
+                "description": "返回结果",
+                "nullable": true,
+                "items": {
+                  "$ref": "#/components/schemas/ReceivingAddressDto"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "ReceivingAddressDto": {
+        "type": "object",
+        "description": "地址信息",
+        "additionalProperties": false,
+        "properties": {
+          "receivingAddressId": {
+            "type": "string",
+            "description": "主键",
+            "nullable": true
+          },
+          "sysUserId": {
+            "type": "string",
+            "description": "用户",
+            "nullable": true
+          },
+          "consigneeInfo": {
+            "type": "string",
+            "description": "收货信息",
+            "nullable": true
+          },
+          "regionInfo": {
+            "type": "string",
+            "description": "收货信息",
+            "nullable": true
+          },
+          "receivingAddress": {
+            "type": "string",
+            "description": "ReceivingAddress",
+            "nullable": true
+          },
+          "telephone": {
+            "type": "string",
+            "description": "电话",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "description": "邮编",
+            "nullable": true
+          },
+          "isSetAsDefault": {
+            "type": "boolean",
+            "description": "是否默认"
+          },
+          "latitudeInfo": {
+            "type": "number",
+            "description": "LatitudeInfo",
+            "format": "decimal"
+          },
+          "longitude": {
+            "type": "number",
+            "description": "Longitude",
+            "format": "decimal"
+          },
+          "provinceId": {
+            "type": "string",
+            "description": "省",
+            "nullable": true
+          },
+          "cityId": {
+            "type": "string",
+            "description": "市",
+            "nullable": true
+          },
+          "areaId": {
+            "type": "string",
+            "description": "区",
+            "nullable": true
+          }
+        }
+      },
+      "CallBackResultOfReceivingAddressDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CallBackResult"
+          },
+          {
+            "type": "object",
+            "description": "响应实体",
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "description": "返回结果",
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/ReceivingAddressDto"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "AddAddressDto": {
+        "type": "object",
+        "description": "用户添加地址信息",
+        "additionalProperties": false,
+        "required": [
+          "regionInfo",
+          "receivingAddress",
+          "telephone",
+          "latitudeInfo",
+          "longitude",
+          "consigneeInfo",
+          "provinceId",
+          "cityId",
+          "areaId"
+        ],
+        "properties": {
+          "regionInfo": {
+            "type": "string",
+            "description": "省市区信息",
+            "minLength": 1
+          },
+          "receivingAddress": {
+            "type": "string",
+            "description": "详细地址",
+            "minLength": 1
+          },
+          "telephone": {
+            "type": "string",
+            "description": "电话",
+            "minLength": 1
+          },
+          "latitudeInfo": {
+            "type": "string",
+            "description": "经度",
+            "minLength": 1
+          },
+          "longitude": {
+            "type": "string",
+            "description": "纬度",
+            "minLength": 1
+          },
+          "consigneeInfo": {
+            "type": "string",
+            "description": "收货人信息",
+            "minLength": 1
+          },
+          "provinceId": {
+            "type": "string",
+            "description": "省",
+            "minLength": 1
+          },
+          "cityId": {
+            "type": "string",
+            "description": "市",
+            "minLength": 1
+          },
+          "areaId": {
+            "type": "string",
+            "description": "区",
+            "minLength": 1
+          },
+          "isSetAsDefault": {
+            "type": "boolean",
+            "description": "是否设为默认地址"
+          }
+        }
+      },
+      "UpdateAddressDto": {
+        "type": "object",
+        "description": "修改地址信息",
+        "additionalProperties": false,
+        "required": [
+          "sysUserId",
+          "receivingAddressId",
+          "regionInfo",
+          "receivingAddress",
+          "telephone",
+          "latitudeInfo",
+          "longitude",
+          "consigneeInfo",
+          "provinceId",
+          "cityId",
+          "areaId"
+        ],
+        "properties": {
+          "sysUserId": {
+            "type": "string",
+            "description": "SysUserId",
+            "minLength": 1
+          },
+          "receivingAddressId": {
+            "type": "string",
+            "description": "ReceivingAddressId",
+            "minLength": 1
+          },
+          "regionInfo": {
+            "type": "string",
+            "description": "省市区信息",
+            "minLength": 1
+          },
+          "receivingAddress": {
+            "type": "string",
+            "description": "详细地址",
+            "minLength": 1
+          },
+          "telephone": {
+            "type": "string",
+            "description": "电话",
+            "minLength": 1
+          },
+          "latitudeInfo": {
+            "type": "string",
+            "description": "经度",
+            "minLength": 1
+          },
+          "longitude": {
+            "type": "string",
+            "description": "纬度",
+            "minLength": 1
+          },
+          "consigneeInfo": {
+            "type": "string",
+            "description": "收货人信息",
+            "minLength": 1
+          },
+          "provinceId": {
+            "type": "string",
+            "description": "省",
+            "minLength": 1
+          },
+          "cityId": {
+            "type": "string",
+            "description": "市",
+            "minLength": 1
+          },
+          "areaId": {
+            "type": "string",
+            "description": "区",
+            "minLength": 1
+          },
+          "isSetAsDefault": {
+            "type": "boolean",
+            "description": "是否设为默认地址"
+          }
+        }
+      },
+      "SetDefaultAddressDto": {
+        "type": "object",
+        "description": "设置用户默认地址",
+        "additionalProperties": false,
+        "required": [
+          "addressId"
+        ],
+        "properties": {
+          "addressId": {
+            "type": "string",
+            "description": "用户地址Id",
+            "minLength": 1
+          }
+        }
+      },
+      "UserReceivingAddressModeConfigDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "receivingAddressId"
+        ],
+        "properties": {
+          "receivingAddressId": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "AddConfigJsonModel": {
+        "type": "object",
+        "description": "添加配置模型",
+        "additionalProperties": false,
+        "properties": {
+          "printModeId": {
+            "type": "integer",
+            "description": "打印模式Id",
+            "format": "int32"
+          },
+          "printSetAttributeItemId": {
+            "type": "array",
+            "description": "PrintSetAttributeItemId",
+            "nullable": true,
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "influence": {
+            "type": "array",
+            "description": "被影响参数",
+            "nullable": true,
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      },
+      "CreateGenerateOrderDto": {
+        "type": "object",
+        "description": "创建待生成订单",
+        "additionalProperties": false,
+        "properties": {
+          "fileName": {
+            "type": "string",
+            "description": "文件名称",
+            "nullable": true
+          },
+          "money": {
+            "type": "string",
+            "description": "金额",
+            "nullable": true
+          },
+          "printSort": {
+            "type": "string",
+            "description": "PrintSort",
+            "nullable": true
+          },
+          "md5Info": {
+            "type": "string",
+            "description": "Md5Info",
+            "nullable": true
+          }
+        }
+      },
+      "CallBackResultOfString": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CallBackResult"
+          },
+          {
+            "type": "object",
+            "description": "响应实体",
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "type": "string",
+                "description": "返回结果",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "UpdateGenerateOrderDto": {
+        "type": "object",
+        "description": "更新待生成订单Dto",
+        "additionalProperties": false,
+        "properties": {
+          "orderList": {
+            "type": "array",
+            "description": "待生成订单id集合",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "pages": {
+            "type": "array",
+            "description": "文档页数数组",
+            "nullable": true,
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "remark": {
+            "type": "string",
+            "description": "订单备注",
+            "maxLength": 200,
+            "minLength": 0,
+            "nullable": true
+          },
+          "totalMoney": {
+            "type": "number",
+            "description": "订单总价",
+            "format": "decimal"
+          },
+          "deliverModeInfo": {
+            "description": "配送模式信息",
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DeliverModeInfo"
+              }
+            ]
+          },
+          "addresInfo": {
+            "description": "配送地址信息",
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/AddresInfo"
+              }
+            ]
+          }
+        }
+      },
+      "DeliverModeInfo": {
+        "type": "object",
+        "description": "配送模式信息",
+        "additionalProperties": false,
+        "properties": {
+          "deliverModeId": {
+            "description": "配送模式Id【配送模式:dc_low=1,dc_quick=2,dc_free=3】",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DeliverModeEnum"
+              }
+            ]
+          },
+          "deliverModeFee": {
+            "type": "number",
+            "description": "配送模式费用",
+            "format": "decimal"
+          }
+        }
+      },
+      "DeliverModeEnum": {
+        "type": "integer",
+        "description": "配送模式:dc_low=1,dc_quick=2,dc_free=3",
+        "x-enumNames": [
+          "DcLow",
+          "DcQuick",
+          "DcFree"
+        ],
+        "enum": [
+          1,
+          2,
+          3
+        ]
+      },
+      "AddresInfo": {
+        "type": "object",
+        "description": "地址信息",
+        "additionalProperties": false,
+        "properties": {
+          "consigneeInfo": {
+            "type": "string",
+            "description": "收货人",
+            "nullable": true
+          },
+          "regionCode": {
+            "type": "string",
+            "description": "地址编码",
+            "nullable": true
+          },
+          "telephone": {
+            "type": "string",
+            "description": "电话",
+            "nullable": true
+          },
+          "receivingAddress": {
+            "type": "string",
+            "description": "拼接地址",
+            "nullable": true
+          }
+        }
+      },
+      "CallBackResultOfListOfCustOrderDelDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CallBackResult"
+          },
+          {
+            "type": "object",
+            "description": "响应实体",
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "type": "array",
+                "description": "返回结果",
+                "nullable": true,
+                "items": {
+                  "$ref": "#/components/schemas/CustOrderDelDto"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "CustOrderDelDto": {
+        "type": "object",
+        "description": "订单详细",
+        "additionalProperties": false,
+        "properties": {
+          "custOrderDelId": {
+            "type": "string",
+            "description": "订单详情id",
+            "nullable": true
+          },
+          "deliverModeId": {
+            "type": "integer",
+            "description": "配送模式Id",
+            "format": "int32"
+          },
+          "unitPrice": {
+            "type": "number",
+            "description": "单价",
+            "format": "decimal",
+            "nullable": true
+          },
+          "numberOfCopies": {
+            "type": "string",
+            "description": "份数",
+            "nullable": true
+          },
+          "filePageNumber": {
+            "type": "number",
+            "description": "页数",
+            "format": "decimal"
+          },
+          "sysUserId": {
+            "type": "string",
+            "description": "SysUserId",
+            "nullable": true
+          },
+          "totalMoney": {
+            "type": "number",
+            "description": "总金额",
+            "format": "decimal",
+            "nullable": true
+          },
+          "fileName": {
+            "type": "string",
+            "description": "文件名称",
+            "nullable": true
+          },
+          "orderTime": {
+            "type": "string",
+            "description": "下单时间",
+            "format": "date-time",
+            "nullable": true
+          },
+          "md5Info": {
+            "type": "string",
+            "description": "文件MD5\n ",
+            "nullable": true
+          }
+        }
+      },
+      "PageCallBackResultOfIPageListOfOrderResponseDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CallBackResult"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "count": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "data": {
+                "type": "array",
+                "description": "返回结果",
+                "nullable": true,
+                "items": {
+                  "$ref": "#/components/schemas/OrderResponseDto"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "OrderResponseDto": {
+        "type": "object",
+        "description": "订单信息",
+        "additionalProperties": false,
+        "properties": {
+          "orderNo": {
+            "type": "string",
+            "description": "订单编号",
+            "nullable": true
+          },
+          "distributeFee": {
+            "type": "string",
+            "description": "配送费",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "订单状态",
+            "nullable": true
+          },
+          "orderMoney": {
+            "type": "string",
+            "description": "订单金额",
+            "nullable": true
+          },
+          "orderDate": {
+            "type": "string",
+            "description": "下单日期",
+            "nullable": true
+          },
+          "orderDetailList": {
+            "type": "array",
+            "description": "订单详细",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/OrderDetailResponseDto"
+            }
+          }
+        }
+      },
+      "OrderDetailResponseDto": {
+        "type": "object",
+        "description": "订单详细",
+        "additionalProperties": false,
+        "properties": {
+          "orderDelId": {
+            "type": "string",
+            "description": "订单详细Id",
+            "nullable": true
+          },
+          "fileName": {
+            "type": "string",
+            "description": "文件名称",
+            "nullable": true
+          },
+          "orderSort": {
+            "type": "string",
+            "description": "文档属性",
+            "nullable": true
+          },
+          "unitPrice": {
+            "type": "string",
+            "description": "单价",
+            "nullable": true
+          },
+          "totalMoney": {
+            "type": "string",
+            "description": "总价",
+            "nullable": true
+          },
+          "number": {
+            "type": "string",
+            "description": "数量",
+            "nullable": true
+          }
+        }
+      },
+      "GetAllOrderDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/FMPage"
+          },
+          {
+            "type": "object",
+            "description": "获取用户订单",
+            "additionalProperties": false,
+            "required": [
+              "orderStatus"
+            ],
+            "properties": {
+              "orderStatus": {
+                "description": "订单状态",
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/OrderStatusEnum"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "OrderStatusEnum": {
+        "type": "integer",
+        "description": "主订单状态:全部=0,待付款=2,已付款=3,已指派=4,制作中=5,待收货=6,已完成=7,已退款=8,取消=9,订单失败=10,已收货=11",
+        "x-enumNames": [
+          "All",
+          "UnPay",
+          "Payed",
+          "Appointed",
+          "Makeup",
+          "UnRecieve",
+          "Complete",
+          "Refund",
+          "Cancel",
+          "Failed",
+          "Confirm"
+        ],
+        "enum": [
+          0,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "FMPage": {
+        "type": "object",
+        "description": "根据where查询条件和order排序获取列表\n            ",
+        "additionalProperties": false,
+        "properties": {
+          "page": {
+            "type": "integer",
+            "description": "当前页码\n            ",
+            "format": "int32"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "每页数据量\n            ",
+            "format": "int32"
+          }
+        }
+      },
+      "CallBackResultOfTabOrderCount": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CallBackResult"
+          },
+          {
+            "type": "object",
+            "description": "响应实体",
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "description": "返回结果",
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/TabOrderCount"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "TabOrderCount": {
+        "type": "object",
+        "description": "Tab选项卡数据",
+        "additionalProperties": false,
+        "properties": {
+          "all": {
+            "type": "integer",
+            "description": "全部",
+            "format": "int32"
+          },
+          "unPay": {
+            "type": "integer",
+            "description": "代付款",
+            "format": "int32"
+          },
+          "unRecieve": {
+            "type": "integer",
+            "description": "待收货",
+            "format": "int32"
+          },
+          "complete": {
+            "type": "integer",
+            "description": "已完成",
+            "format": "int32"
+          }
+        }
+      },
+      "CallBackResultOfResPay": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CallBackResult"
+          },
+          {
+            "type": "object",
+            "description": "响应实体",
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "description": "返回结果",
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/ResPay"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "ResPay": {
+        "type": "object",
+        "description": "支付结果",
+        "additionalProperties": false,
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "支付二维码图片地址",
+            "nullable": true
+          },
+          "billno": {
+            "type": "string",
+            "description": "billno",
+            "nullable": true
+          },
+          "order_num": {
+            "type": "string",
+            "description": "数量",
+            "nullable": true
+          },
+          "total_fee": {
+            "type": "string",
+            "description": "总价",
+            "nullable": true
+          }
+        }
+      },
+      "CreatePayDto": {
+        "type": "object",
+        "description": "创建支付订单",
+        "additionalProperties": false,
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "description": "订单Id",
+            "nullable": true
+          },
+          "position": {
+            "type": "string",
+            "description": "position",
+            "nullable": true
+          },
+          "totalFee": {
+            "type": "string",
+            "description": "总金额",
+            "nullable": true
+          }
+        }
+      },
+      "CallBackResultOfListOfQueryTrackInfoItem": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CallBackResult"
+          },
+          {
+            "type": "object",
+            "description": "响应实体",
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "type": "array",
+                "description": "返回结果",
+                "nullable": true,
+                "items": {
+                  "$ref": "#/components/schemas/QueryTrackInfoItem"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "QueryTrackInfoItem": {
+        "type": "object",
+        "description": "QueryTrackInfoItem",
+        "additionalProperties": false,
+        "properties": {
+          "time": {
+            "type": "string",
+            "description": "物流公司缩写",
+            "nullable": true
+          },
+          "ftime": {
+            "type": "string",
+            "description": "手机号",
+            "nullable": true
+          },
+          "context": {
+            "type": "string",
+            "description": "物流编号",
+            "nullable": true
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "身份认证Token": {
+        "type": "apiKey",
+        "description": "JWT授权(数据将在请求头中进行传输) 直接在下框中输入Bearer {token}（注意两者之间是一个空格）",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "身份认证Token": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Tool",
+      "description": "ToolController"
+    },
+    {
+      "name": "文件接口",
+      "description": "文件接口"
+    },
+    {
+      "name": "登入接口",
+      "description": "登入接口"
+    },
+    {
+      "name": "打印设置接口",
+      "description": "打印设置接口"
+    },
+    {
+      "name": "地址接口",
+      "description": "地址接口"
+    },
+    {
+      "name": "订单接口",
+      "description": "订单接口"
+    }
+  ]
+}

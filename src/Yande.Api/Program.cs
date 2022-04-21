@@ -41,7 +41,7 @@ namespace Yande.Api
                 var c = builder.Build();
                 //builder.AddNacosV2Configuration(c.GetSection("NacosConfig"));
                 // builder.AddNacosV2Configuration(c.GetSection("NacosConfig"), Nacos.IniParser.IniConfigurationStringParser.Instance);
-                builder.AddNacosV2Configuration(c.GetSection("NacosConfig"), YamlConfigurationStringParser.Instance);
+                //builder.AddNacosV2Configuration(c.GetSection("NacosConfig"), YamlConfigurationStringParser.Instance);
 
             }).ConfigureWebHostDefaults(webBuilder =>
                 {

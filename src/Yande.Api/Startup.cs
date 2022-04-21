@@ -50,7 +50,7 @@ namespace Yande.Api
             //services.AddAutoRegistry(); // ×Ô¶¯×¢²á 
             #endregion
 
-            services.AddNacosAspNet(Configuration, "nacos");
+            //services.AddNacosAspNet(Configuration, "nacos");
 
             #region Swagger
             services.AddOpenApiDocument(settings =>

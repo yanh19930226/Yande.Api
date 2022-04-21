@@ -61,6 +61,8 @@ namespace Yande.Api.Controllers
         {
             SwaggerHelper swaggerHelper = new SwaggerHelper();
 
+
+            path = "D:\\MyPlayground\\Yande.Api\\wps.json";
             swaggerHelper.Run(path);
 
             return Ok();
