@@ -40,7 +40,7 @@ namespace Yande.Api
 
                 foreach (var item2 in item)
                 {
-                    //model.summary = item2.SelectToken("post.['summary']").Value<string>();
+                    model.summary = item2.SelectToken("post.['summary']").Value<string>();
                     interfaceMethods.Add(model);
                     //请求实体名称
                     var requestModelName = RequestModelName(item2);
@@ -129,7 +129,6 @@ namespace Yande.Api
             List<string> names = responseModelName.Split('/').ToList();
             return names[names.Count - 1];
         }
-
 
         /// <summary>
         /// 获取实体必填参数
