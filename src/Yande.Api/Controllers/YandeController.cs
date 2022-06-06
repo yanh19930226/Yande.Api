@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using BeetleX.BNR;
+using BeetleX.Redis;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Spire.Barcode;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,6 +34,9 @@ namespace Yande.Api.Controllers
             _env = env;
             //_redisManager = redisManager;
         }
+
+        
+
         [HttpPost]
         [HelloFilter]
         public IActionResult Hellow(string str)
@@ -99,7 +106,58 @@ namespace Yande.Api.Controllers
 
             //数据发送完毕后关闭连接。
             Response.Body.Close();
-        } 
+        }
         #endregion
+
+        /// <summary>
+        /// 生成条形码二维码
+        /// </summary>
+        /// https://mp.weixin.qq.com/s/rO2-a7GdMKxfrq4mqvYrxg
+        /// <returns></returns>
+        public IActionResult BarCode()
+        {
+            //创建 BarcodeSettings对象
+            BarcodeSettings settings = new BarcodeSettings();
+            //设置条形类型为EAN-13
+            settings.Type = BarCodeType.EAN13;
+            //设置条形码数据
+            settings.Data = "58465157484";
+            //使用校检
+            settings.UseChecksum = CheckSumMode.ForceEnable;
+            //在底部显示条形码数据
+            settings.ShowTextOnBottom = true;
+            //设置宽度
+            settings.X = 1f;
+            //初始化 BarcodeSetting对象,传入以上设置
+            BarCodeGenerator generator = new BarCodeGenerator(settings);
+            //创建条形码图片并保存为png格式
+            Image image = generator.GenerateImage();
+            image.Save("111.png", System.Drawing.Imaging.ImageFormat.Png);
+            return Ok();
+        }
+
+        /// <summary>
+        /// 根据规则生成订单号
+        /// </summary>
+        /// https://mp.weixin.qq.com/s/v1WVywxT8b2-JMBilarEOA
+        /// <returns></returns>
+        public async Task<IActionResult> RandomCode()
+        {
+            DefaultRedis.Instance.Host.AddWriteHost("116.62.214.239");
+            BNRFactory.Default.Register("redis", new RedisSequenceParameter(DefaultRedis.Instance));
+            string[] citys = new string[] { "广州", "深圳", "上海", "北京" };
+            foreach (var item in citys)
+            {
+                Console.WriteLine(await BNRFactory.Default.Create($"[CN:{item}][N:[CN:{item}]/0000000]"));
+            }
+
+            foreach (var item in citys)
+            {
+                Console.WriteLine(await BNRFactory.Default.Create($"[CN:{item}][redis:city/0000000]"));
+            }
+            Console.Read();
+
+            return Ok();
+        }
     }
 }

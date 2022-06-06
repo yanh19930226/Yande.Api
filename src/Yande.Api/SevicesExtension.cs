@@ -20,17 +20,17 @@ namespace Yande.Api
             var mysqlConfig = Configuration.GetMysqlSection().Get<MysqlConfig>();
             var mongoConfig = Configuration.GetMongoDbSection().Get<MongoConfig>();
             var redisConfig = Configuration.GetRedisSection().Get<RedisConfig>();
-            services.AddHealthChecks()
-                         .AddMySql(mysqlConfig.ConnectionString)
-                         .AddMongoDb(mongoConfig.ConnectionString)
-                         //.AddRabbitMQ(x =>
-                         //{
-                         //    return
-                         //    Adnc.Infra.EventBus.RabbitMq.RabbitMqConnection.GetInstance(x.GetService<IOptionsMonitor<RabbitMqConfig>>()
-                         //        , x.GetService<ILogger<dynamic>>()
-                         //    ).Connection;
-                         //})
-                        .AddRedis(redisConfig.dbconfig.ConnectionString);
+            //services.AddHealthChecks()
+            //             .AddMySql(mysqlConfig.ConnectionString)
+            //             .AddMongoDb(mongoConfig.ConnectionString)
+            //             //.AddRabbitMQ(x =>
+            //             //{
+            //             //    return
+            //             //    Adnc.Infra.EventBus.RabbitMq.RabbitMqConnection.GetInstance(x.GetService<IOptionsMonitor<RabbitMqConfig>>()
+            //             //        , x.GetService<ILogger<dynamic>>()
+            //             //    ).Connection;
+            //             //})
+            //            .AddRedis(redisConfig.dbconfig.ConnectionString);
             return services;
         }
     }
