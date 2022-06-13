@@ -8,9 +8,11 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+
+
+
+
 using Microsoft.Extensions.Options;
 using SignApi.Commons;
 
@@ -31,16 +33,14 @@ namespace SignApi.SecurityAuthorization.RsaChecker
             try
             {
                 string authorization = Request.Headers["AuthSecurity-Authorization"];
-                // If no authorization header found, nothing to process further
                 if (string.IsNullOrWhiteSpace(authorization))
                     return AuthenticateResult.NoResult();
 
                 var authorizationSplit = authorization.Split('.');
                 if (authorizationSplit.Length != 4)
                     return await AuthenticateResultFailAsync("签名参数不正确");
+
                 var reg = new Regex(@"[0-9a-zA-Z]{1,40}");
-
-
                 var requestId = authorizationSplit[0];
                 if (string.IsNullOrWhiteSpace(requestId) || !reg.IsMatch(requestId))
                     return await AuthenticateResultFailAsync("请求Id不正确");
@@ -50,23 +50,26 @@ namespace SignApi.SecurityAuthorization.RsaChecker
                 if (string.IsNullOrWhiteSpace(appid) || !reg.IsMatch(appid))
                     return await AuthenticateResultFailAsync("应用Id不正确");
 
-
+                //如果不能转成long
                 var timeStamp = authorizationSplit[2];
                 if (string.IsNullOrWhiteSpace(timeStamp) || !long.TryParse(timeStamp, out var timestamp))
                     return await AuthenticateResultFailAsync("请求时间不正确");
+
+
                 //请求时间大于30分钟的就抛弃
                 if (Math.Abs(UtcTime.CurrentTimeMillis() - timestamp) > 30 * 60 * 1000)
                     return await AuthenticateResultFailAsync("请求已过期");
 
-
+                //sign是空签名参数不正确
                 var sign = authorizationSplit[3];
                 if (string.IsNullOrWhiteSpace(sign))
                     return await AuthenticateResultFailAsync("签名参数不正确");
+
                 //数据库获取
-                //Request.HttpContext.RequestServices.GetService<DbContext>()
                 var app = AppCallerStorage.ApiCallers.FirstOrDefault(o => o.Id == appid);
                 if (app == null)
                     return AuthenticateResult.Fail("未找到对应的应用信息");
+
                 //获取请求体
                 var body = await Request.RequestBodyAsync();
 
@@ -80,15 +83,18 @@ namespace SignApi.SecurityAuthorization.RsaChecker
                     return await AuthenticateResultFailAsync("请勿重复提交");
                 }
 
+                #region 所有验证成功登入成功
 
                 //给Identity赋值
-                var identity = new ClaimsIdentity(AuthSecurityRsaDefaults.AuthenticationScheme);
+                var identity = new ClaimsIdentity(AuthSecurityScheme.AuthenticationSchemeSecurityRsaAuth);
                 identity.AddClaim(new Claim("appid", appid));
                 identity.AddClaim(new Claim("appname", app.Name));
                 identity.AddClaim(new Claim("role", "app"));
 
                 var principal = new ClaimsPrincipal(identity);
                 return HandleRequestResult.Success(new AuthenticationTicket(principal, new AuthenticationProperties(), Scheme.Name));
+
+                #endregion
             }
             catch (Exception ex)
             {

@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SignApi.Filters;
+using SignApi.SecurityAuthorization.RsaChecker;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,8 +26,21 @@ namespace SignApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers(options =>
+            {
+                options.Filters.Add<HttpGlobalExceptionFilter>();
+                options.Filters.Add<ValidateModelStateFilter>();
+            });
 
-            services.AddControllers();
+            services.AddAuthentication().AddAuthSecurityRsa();
+
+            services.AddSingleton(sp =>
+            {
+                return new RsaOptions()
+                {
+                    PrivateKey = Configuration.GetSection("RsaConfig")["PrivateKey"],
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,7 +51,12 @@ namespace SignApi
                 app.UseDeveloperExceptionPage();
             }
 
+            //SafeResponseMiddleware
+            app.UseMiddleware<SafeResponseMiddleware>();
+
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
