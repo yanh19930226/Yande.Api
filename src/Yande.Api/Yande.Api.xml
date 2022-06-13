@@ -4,26 +4,330 @@
         <name>Yande.Api</name>
     </assembly>
     <members>
+        <member name="T:Yande.Api.ConfigurationExtensions">
+            <summary>
+            配置扩展类
+            </summary>
+        </member>
+        <member name="M:Yande.Api.ConfigurationExtensions.GetRabbitMqSection(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            获取Rabitmq配置
+            </summary>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.ConfigurationExtensions.GetRedisSection(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            获取Redis配置
+            </summary>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.ConfigurationExtensions.GetMysqlSection(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            获取Mysql配置
+            </summary>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.ConfigurationExtensions.GetMongoDbSection(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            获取Monogo配置
+            </summary>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.ConfigurationExtensions.IsSSOAuthentication(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            获取SSOAuthentication是否开启
+            </summary>
+            <param name="serviceInfo"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.ConfigurationExtensions.GetAllowCorsHosts(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            获取跨域配置
+            </summary>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.ConfigurationExtensions.GetConsulSection(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            获取Consul配置
+            </summary>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.ConfigurationExtensions.GetJWTSection(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            获取JWT配置
+            </summary>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.ConfigurationExtensions.GetThreadPoolSettingsSection(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            获取线程池配置
+            </summary>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.ConfigurationExtensions.GetHangfireSection(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            获取Hangfire配置
+            </summary>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.Controllers.NacosController.GetConfigBinding">
+            <summary>
+            GetConfigBinding
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.Controllers.NacosController.GetYaml">
+            <summary>
+            GetYaml
+            </summary>
+        </member>
         <member name="T:Yande.Api.Controllers.UploadController">
             <summary>
-                UploadController
+            UploadController
             </summary>
         </member>
         <member name="M:Yande.Api.Controllers.UploadController.UploadFile">
             <summary>
-                文件上传分片上传
+            文件上传分片上传
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.Controllers.YandeController.SwaggerHelper(System.String)">
+            <summary>
+            SwaggerHelper
+            </summary>
+            <param name="path"></param>
             <returns></returns>
         </member>
         <member name="M:Yande.Api.Controllers.YandeController.GetValue">
             <summary>
-                基于ASP.NET Core api 的服务器事件发送
+            基于ASP.NET Core api 的服务器事件发送
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Yande.Api.Controllers.YandeController.BarCode">
+            <summary>
+            生成条形码二维码
+            </summary>
+            https://mp.weixin.qq.com/s/rO2-a7GdMKxfrq4mqvYrxg
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.Controllers.YandeController.RandomCode">
+            <summary>
+            根据规则生成订单号
+            </summary>
+            https://mp.weixin.qq.com/s/v1WVywxT8b2-JMBilarEOA
+            <returns></returns>
+        </member>
+        <member name="T:Yande.Api.Models.Configs.MongoConfig">
+            <summary>
+            JWT配置
+            </summary>
+        </member>
+        <member name="P:Yande.Api.Models.Configs.MongoConfig.ConnectionString">
+            <summary>
+            Gets or sets the MongoDB connection string.
+            </summary>
+        </member>
+        <member name="P:Yande.Api.Models.Configs.MongoConfig.CollectionNamingConvention">
+            <summary>
+            Gets or sets the collection naming convention.
+            Defaults to <see cref="!:NamingConvention.Snake"/>.
+            </summary>
+        </member>
+        <member name="P:Yande.Api.Models.Configs.MongoConfig.PluralizeCollectionNames">
+            <summary>
+            Gets or sets a value indicating whether to pluralize collection names.
+            Defaults to <c>true</c>.
+            </summary>
+        </member>
+        <member name="F:Yande.Api.Models.Configs.MongoNamingConvention.LowerCase">
+            <summary>
+            Convert names to "lowercase" without word separators.
+            </summary>
+        </member>
+        <member name="F:Yande.Api.Models.Configs.MongoNamingConvention.UpperCase">
+            <summary>
+            Convert names to "UPPERCASE" without word separators.
+            </summary>
+        </member>
+        <member name="F:Yande.Api.Models.Configs.MongoNamingConvention.Pascal">
+            <summary>
+            Convert names to "UpperCamelCase".
+            </summary>
+        </member>
+        <member name="F:Yande.Api.Models.Configs.MongoNamingConvention.Camel">
+            <summary>
+            Convert names to "camelCase".
+            </summary>
+        </member>
+        <member name="F:Yande.Api.Models.Configs.MongoNamingConvention.Snake">
+            <summary>
+            Convert names to "snake_case".
+            </summary>
+        </member>
+        <member name="T:Yande.Api.Models.Configs.MysqlConfig">
+            <summary>
+            MysqlConfig配置
+            </summary>
+        </member>
+        <member name="T:Yande.Api.Models.Configs.RedisConfig">
+            <summary>
+            RedisConfig配置
+            </summary>
+        </member>
         <member name="F:Yande.Api.Program.serilogDebug">
             <summary>
-                Serilog日志模板
+            Serilog日志模板
+            </summary>
+        </member>
+        <member name="T:Yande.Api.SevicesExtension">
+            <summary>
+            SevicesExtension
+            </summary>
+        </member>
+        <member name="M:Yande.Api.SevicesExtension.AddHealthChecks(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            注册健康检查组件
+            </summary>
+            <param name="services"></param>
+            <param name="Configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.SwaggerHelper.SbRequestData(Newtonsoft.Json.Linq.JToken,System.String,System.String,Yande.Api.ParamTypeEnum)">
+            <summary>
+            无限套娃 递归
+            </summary>
+            <param name="schemas">实体类集合</param>
+            <param name="modelName">实体类名称</param>
+            <param name="methodName">方法名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.SwaggerHelper.RequestModelName(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+            通过方法 找请求实体名称
+            </summary>
+            <param name="json">paths</param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.SwaggerHelper.RequestModelName2(Newtonsoft.Json.Linq.JToken,System.String)">
+            <summary>
+            集合中包含集合 继续找下一个集合
+            </summary>
+            <param name="json"></param>
+            <param name="name">字段名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.SwaggerHelper.ResponseModelName(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+            返回实体名称
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.SwaggerHelper.MustList(Newtonsoft.Json.Linq.JToken,System.String)">
+            <summary>
+            获取实体必填参数
+            </summary>
+            <param name="json"></param>
+            <param name="name">方法实体类名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.SwaggerHelper.RouteName(System.String)">
+            <summary>
+            路由方法名称
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Yande.Api.InterfaceMethod.route">
+            <summary>
+            路由
+            </summary>
+        </member>
+        <member name="P:Yande.Api.InterfaceMethod.type">
+            <summary>
+            请求方式
+            </summary>
+        </member>
+        <member name="P:Yande.Api.InterfaceMethod.name">
+            <summary>
+            controller 名称
+            </summary>
+        </member>
+        <member name="P:Yande.Api.InterfaceMethod.summary">
+            <summary>
+            接口说明
+            </summary>
+        </member>
+        <member name="P:Yande.Api.InterfaceMethod.requesyBody">
+            <summary>
+            请求集合
+            </summary>
+        </member>
+        <member name="P:Yande.Api.InterfaceMethod.responses">
+            <summary>
+            返回实体
+            </summary>
+        </member>
+        <member name="P:Yande.Api.InterfaceRequestField.code">
+            <summary>
+            字段
+            </summary>
+        </member>
+        <member name="P:Yande.Api.InterfaceRequestField.type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:Yande.Api.InterfaceRequestField.description">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Yande.Api.InterfaceRequestField.isMust">
+            <summary>
+            是否必填
+            </summary>
+        </member>
+        <member name="P:Yande.Api.InterfaceRequestField.MethodType">
+            <summary>
+            方法类型
+            </summary>
+        </member>
+        <member name="P:Yande.Api.InterfaceRequestField.maxLength">
+            <summary>
+            字段长度
+            </summary>
+        </member>
+        <member name="P:Yande.Api.InterfaceRequestField.paramType">
+            <summary>
+            1.入参 2.出参
+            </summary>
+        </member>
+        <member name="P:Yande.Api.FieldDescription.maxLength">
+            <summary>
+            字段长度
+            </summary>
+        </member>
+        <member name="M:Yande.Api.WordHelper.IsNullable(System.Type)">
+            <summary>
+            Determine of specified type is nullable
+            </summary>
+        </member>
+        <member name="M:Yande.Api.WordHelper.GetCoreType(System.Type)">
+            <summary>
+            Return underlying type if type is Nullable otherwise return the type
             </summary>
         </member>
     </members>

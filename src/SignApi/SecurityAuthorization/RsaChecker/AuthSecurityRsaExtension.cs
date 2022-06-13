@@ -3,6 +3,7 @@ using System;
 
 namespace SignApi.SecurityAuthorization.RsaChecker
 {
+    //注册使用自定义AuthenticationSchemeSecurityRsaAuth
     public static class AuthSecurityRsaExtension
     {
         public static AuthenticationBuilder AddAuthSecurityRsa(this AuthenticationBuilder builder)
