@@ -1,15 +1,42 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace YandeSignApi.Applications.Commons
 {
-    public class RsaFunc
+    public class SecurityFunc
     {
-        private RsaFunc()
+        private SecurityFunc()
         {
         }
+
+        #region SecurityCommon
+        public static byte[] ComputeSha256Hash(string rawData)
+        {
+            // Create a SHA256   
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                // ComputeHash - returns byte array  
+                return sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+            }
+        }
+
+        public static string ToHex(byte[] data)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                sb.Append(data[i].ToString("x2", CultureInfo.InvariantCulture));
+            }
+
+            return sb.ToString();
+        } 
+        #endregion
+
+        #region Rsa
         /// <summary>
         /// RSA的加密函数  string
         /// </summary>
@@ -136,6 +163,7 @@ namespace YandeSignApi.Applications.Commons
                     return rsaDeformatter.VerifySignature(hashData, deformatterData);
                 }
             }
-        }
+        } 
+        #endregion
     }
 }

@@ -3,14 +3,16 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Yande.Core.Redis;
 using YandeSignApi.Applications.Commons;
 using YandeSignApi.Applications.Extensions;
+using YandeSignApi.Applications.Redis;
 using YandeSignApi.Services;
 
 namespace YandeSignApi.Applications.SecurityAuthorization.RsaChecker
@@ -19,7 +21,7 @@ namespace YandeSignApi.Applications.SecurityAuthorization.RsaChecker
     {
 
         #region Private
-        private readonly IRedisManager _redisManager;
+        private readonly IRedisOperationRepository _redisManager;
 
         private async Task<AuthenticateResult> AuthenticateResultFailAsync(string message)
         {
@@ -30,7 +32,7 @@ namespace YandeSignApi.Applications.SecurityAuthorization.RsaChecker
         #endregion
 
         public AuthSecurityRsaAuthenticationHandler(
-            IRedisManager redisManager,
+            IRedisOperationRepository redisManager,
             IOptionsMonitor<AuthSecurityRsaOptions> options,
             ILoggerFactory logger, UrlEncoder encoder,
             ISystemClock clock
@@ -55,7 +57,7 @@ namespace YandeSignApi.Applications.SecurityAuthorization.RsaChecker
 
                 #region timestamp参数校验
                 //如果不能转成long
-                var timeStamp = Request.Headers["timeStamp"];
+                var timeStamp = Request.Headers["timestamp"];
                 if (string.IsNullOrWhiteSpace(timeStamp) || !long.TryParse(timeStamp, out var timestamp))
                     return await AuthenticateResultFailAsync("请求时间不正确");
                 //请求时间大于5分钟的就抛弃
@@ -79,27 +81,27 @@ namespace YandeSignApi.Applications.SecurityAuthorization.RsaChecker
                 //但是，服务器记录的nonce会随着请求次数的增多而增多，客户端生成重复的nonce的概率也会增高，一些正常的请求可能会被误判为重发攻击。此时有必要为nonce设置一个有效期，比如60秒，超过60秒就删除。但是，问题又来了，因为服务器只保留60秒内的nonce，则一个已发送的请求在60秒后又可以重发了。因此还需要加入一个时间戳timestamp参数用于表示请求时间，同样需要加入到签名中以保证timestamp不被篡改，服务器判断请求时间如果在60秒以前，则认为这是一个过时的请求，抛出异常。
                 //因此，服务器只需要记录60秒以内的nonce并拒绝60秒以前的请求就可以确保没有请求被重发了
 
-                var requestId = Request.Headers["requestId"];
-                if (string.IsNullOrWhiteSpace(requestId) || !reg.IsMatch(requestId))
+                var nonce = Request.Headers["nonce"];
+                if (string.IsNullOrWhiteSpace(nonce) || !reg.IsMatch(nonce))
                     return await AuthenticateResultFailAsync("请求Id不正确");
 
-                var redisKey = $"AuthSecurityRequestDistinct:{timestamp}:{appid}:{requestId}";
+                var redisKey = $"AuthSecurityRequestDistinct:{timestamp}:{appid}:{nonce}";
 
-                if (!string.IsNullOrEmpty(_redisManager.GetValue(redisKey)))
+                if (!string.IsNullOrEmpty(_redisManager.Get(redisKey).Result))
                 {
                     return await AuthenticateResultFailAsync("请勿重复提交");
                 }
                 else
                 {
-                    _redisManager.Set(redisKey, requestId, TimeSpan.FromMinutes(5));
+                    _redisManager.Set(redisKey, nonce, TimeSpan.FromMinutes(5));
                 }
 
                 #endregion
 
                 #region sign参数校验
                 //sign是空签名参数不正确
-                var sign = Request.Headers["sign"];
-                if (string.IsNullOrWhiteSpace(sign))
+                var signature = Request.Headers["signature"];
+                if (string.IsNullOrWhiteSpace(signature))
                     return await AuthenticateResultFailAsync("签名参数不正确");
                 #endregion
 
@@ -110,9 +112,17 @@ namespace YandeSignApi.Applications.SecurityAuthorization.RsaChecker
                     return AuthenticateResult.Fail("未找到对应的应用信息");
                 #endregion
 
-                #region sign验证
-                var body = await Request.RequestBodyAsync();
-                if (!RsaFunc.ValidateSignature(app.PublickKey, $"{requestId}{appid}{timeStamp}{body}", sign))
+                #region signature验证
+
+                var bodyString = await Request.RequestBodyAsync();
+
+                var uri = Request.Path;
+
+                var method = Request.Method;
+
+                string signBodyString = $"{method}\n{uri}\n{timestamp}\n{nonce}\n{bodyString}\n";
+
+                if (!SecurityFunc.ValidateSignature(app.PublickKey, $"{signBodyString}", signature))
                     return await AuthenticateResultFailAsync("签名失败");
                 #endregion
 

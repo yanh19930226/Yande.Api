@@ -2,19 +2,23 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <BaseIntermediateOutputPath></BaseIntermediateOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="Applications\Middlewares\" />
+    <Folder Include="Data\Impl\" />
     <Folder Include="Models\Dtos\Reps\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.16.1" />
     <PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Yande.Core.Redis\Yande.Core.Redis.csproj" />
+    <PackageReference Include="SqlSugarCore" Version="5.0.8.9" />
+    <PackageReference Include="StackExchange.Redis" Version="2.2.88" />
   </ItemGroup>
 
 </Project>

@@ -18,12 +18,14 @@ namespace YandeSignApi.Controllers
         }
 
         [HttpPost]
+        [Route("/test/test2")]
         public IActionResult Test2([FromBody]TestReq request)
         {
             return Ok(JsonConvert.SerializeObject(request));
         }
 
         [HttpPost]
+        [Route("/test/test3")]
         public IActionResult Test3([FromBody] TestReq request)
         {
             

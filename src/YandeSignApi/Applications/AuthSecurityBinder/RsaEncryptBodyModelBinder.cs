@@ -29,7 +29,7 @@ namespace YandeSignApi.Applications.AuthSecurityBinder
                     //将请求体解密绑定到模型上
                     var rsaOptions = httpContext.RequestServices.GetService<RsaOptions>();
 
-                    var body = RsaFunc.Decrypt(rsaOptions.PrivateKey, encryptBody);
+                    var body = SecurityFunc.Decrypt(rsaOptions.PrivateKey, encryptBody);
 
                     var request = JsonConvert.DeserializeObject(body, bindingContext.ModelType);
                     if (request == null)
