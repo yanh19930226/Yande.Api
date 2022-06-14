@@ -7,7 +7,6 @@
   <ItemGroup>
     <Folder Include="Applications\Middlewares\" />
     <Folder Include="Models\Dtos\Reps\" />
-    <Folder Include="Models\Configs\" />
   </ItemGroup>
 
   <ItemGroup>
