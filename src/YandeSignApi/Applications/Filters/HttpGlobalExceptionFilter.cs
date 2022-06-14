@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 using System.Net;
 
-namespace SignApi.Filters
+namespace YandeSignApi.Applications.Filters
 {
     public class HttpGlobalExceptionFilter : IExceptionFilter
     {

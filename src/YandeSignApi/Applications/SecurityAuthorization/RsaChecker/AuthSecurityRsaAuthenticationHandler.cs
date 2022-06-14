@@ -1,26 +1,24 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using SignApi.Commons;
 using Yande.Core.Redis;
+using YandeSignApi.Applications.Commons;
+using YandeSignApi.Applications.Extensions;
+using YandeSignApi.Services;
 
-namespace SignApi.SecurityAuthorization.RsaChecker
+namespace YandeSignApi.Applications.SecurityAuthorization.RsaChecker
 {
     public class AuthSecurityRsaAuthenticationHandler : AuthenticationHandler<AuthSecurityRsaOptions>
     {
 
         #region Private
-        private readonly ConcurrentDictionary<string, object> _repeatRequestMap =
-           new ConcurrentDictionary<string, object>();
         private readonly IRedisManager _redisManager;
 
         private async Task<AuthenticateResult> AuthenticateResultFailAsync(string message)
@@ -28,13 +26,13 @@ namespace SignApi.SecurityAuthorization.RsaChecker
             Response.StatusCode = 401;
             await Response.WriteAsync(message);
             return AuthenticateResult.Fail(message);
-        } 
+        }
         #endregion
 
         public AuthSecurityRsaAuthenticationHandler(
             IRedisManager redisManager,
-            IOptionsMonitor<AuthSecurityRsaOptions> options, 
-            ILoggerFactory logger, UrlEncoder encoder, 
+            IOptionsMonitor<AuthSecurityRsaOptions> options,
+            ILoggerFactory logger, UrlEncoder encoder,
             ISystemClock clock
             ) : base(options, logger, encoder, clock)
         {
@@ -45,27 +43,19 @@ namespace SignApi.SecurityAuthorization.RsaChecker
         {
             try
             {
-                string authorization = Request.Headers["AuthSecurity-Authorization"];
-                if (string.IsNullOrWhiteSpace(authorization))
-                    return AuthenticateResult.NoResult();
-
-                var authorizationSplit = authorization.Split('.');
-                if (authorizationSplit.Length != 4)
-                    return await AuthenticateResultFailAsync("签名参数不正确");
-
                 //0-9数字,大小写英文字母1到40位正则校验规则
                 var reg = new Regex(@"[0-9a-zA-Z]{1,40}");
 
                 #region appId参数校验
                 //appId参数校验
-                var appid = authorizationSplit[1];
+                var appid = Request.Headers["appid"];
                 if (string.IsNullOrWhiteSpace(appid) || !reg.IsMatch(appid))
                     return await AuthenticateResultFailAsync("应用Id不正确");
                 #endregion
 
                 #region timestamp参数校验
                 //如果不能转成long
-                var timeStamp = authorizationSplit[2];
+                var timeStamp = Request.Headers["timeStamp"];
                 if (string.IsNullOrWhiteSpace(timeStamp) || !long.TryParse(timeStamp, out var timestamp))
                     return await AuthenticateResultFailAsync("请求时间不正确");
                 //请求时间大于5分钟的就抛弃
@@ -89,7 +79,7 @@ namespace SignApi.SecurityAuthorization.RsaChecker
                 //但是，服务器记录的nonce会随着请求次数的增多而增多，客户端生成重复的nonce的概率也会增高，一些正常的请求可能会被误判为重发攻击。此时有必要为nonce设置一个有效期，比如60秒，超过60秒就删除。但是，问题又来了，因为服务器只保留60秒内的nonce，则一个已发送的请求在60秒后又可以重发了。因此还需要加入一个时间戳timestamp参数用于表示请求时间，同样需要加入到签名中以保证timestamp不被篡改，服务器判断请求时间如果在60秒以前，则认为这是一个过时的请求，抛出异常。
                 //因此，服务器只需要记录60秒以内的nonce并拒绝60秒以前的请求就可以确保没有请求被重发了
 
-                var requestId = authorizationSplit[0];
+                var requestId = Request.Headers["requestId"];
                 if (string.IsNullOrWhiteSpace(requestId) || !reg.IsMatch(requestId))
                     return await AuthenticateResultFailAsync("请求Id不正确");
 
@@ -103,17 +93,17 @@ namespace SignApi.SecurityAuthorization.RsaChecker
                 {
                     _redisManager.Set(redisKey, requestId, TimeSpan.FromMinutes(5));
                 }
-               
+
                 #endregion
 
                 #region sign参数校验
                 //sign是空签名参数不正确
-                var sign = authorizationSplit[3];
+                var sign = Request.Headers["sign"];
                 if (string.IsNullOrWhiteSpace(sign))
                     return await AuthenticateResultFailAsync("签名参数不正确");
                 #endregion
 
-                #region 应用信息交易
+                #region 应用信息校验
                 //数据库获取
                 var app = AppCallerStorage.ApiCallers.FirstOrDefault(o => o.Id == appid);
                 if (app == null)

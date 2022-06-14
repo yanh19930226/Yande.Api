@@ -4,17 +4,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using Spire.Barcode;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Yande.Core.AppSettings;
 using Yande.Core.Filter;
-using Yande.Core.Redis;
 using Yande.Core.Service;
 
 namespace Yande.Api.Controllers

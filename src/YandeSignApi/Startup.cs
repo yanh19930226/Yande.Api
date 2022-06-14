@@ -5,15 +5,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using SignApi.Filters;
-using SignApi.SecurityAuthorization.RsaChecker;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Yande.Core.Redis;
+using YandeSignApi.Applications.Filters;
+using YandeSignApi.Applications.SecurityAuthorization.RsaChecker;
 
-namespace SignApi
+namespace YandeSignApi
 {
     public class Startup
     {
@@ -27,6 +27,7 @@ namespace SignApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddSingleton<IRedisManager, RedisManager>();
 
             services.AddControllers(options =>
@@ -37,13 +38,13 @@ namespace SignApi
 
             services.AddAuthentication().AddAuthSecurityRsa();
 
-            services.AddSingleton(sp =>
-            {
-                return new RsaOptions()
-                {
-                    PrivateKey = Configuration.GetSection("RsaConfig")["PrivateKey"],
-                };
-            });
+            //services.AddSingleton(sp =>
+            //{
+            //    return new RsaOptions()
+            //    {
+            //        PrivateKey = Configuration.GetSection("RsaConfig")["PrivateKey"],
+            //    };
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,9 +54,6 @@ namespace SignApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            //SafeResponseMiddleware
-            app.UseMiddleware<SafeResponseMiddleware>();
 
             app.UseRouting();
 

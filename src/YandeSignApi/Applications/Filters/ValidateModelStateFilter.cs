@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using System.Linq;
 using System.Net;
 
-namespace SignApi.Filters
+namespace YandeSignApi.Applications.Filters
 {
     public class ValidateModelStateFilter : ActionFilterAttribute
     {
