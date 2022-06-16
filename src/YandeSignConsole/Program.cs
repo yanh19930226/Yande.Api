@@ -58,7 +58,32 @@ namespace YandeSignConsole
 
     internal class Program
     {
-        private const string AppPrivateKey = "<RSAKeyValue><Modulus>vKQbdjZ4b4foZOq4RkUfQ4COkJ6htxW+S1fTZvTC8HbaaicTYWi9WICzeTd5PuAaDBwztk0HsS3r6ds1HSy//Wb7JsBE8ynrALaVPApNn54yQsTqEPmuGiTMYEBFIdyNwKzgdxFz6MWO7An2yWsenC0IEpSdntL918eVixt4aKOl39mtftSK2vVBhL+tljLzTkk6KZvjFGmGxf4dZFeSlU7H8BQ+zQKfkyViDeKgewFqrRsc2JGCCKChr1paVampBE/lpb6hzUPLUUQbpFHKBlIwtmut7m+Ly0fylbO0lSO06Q3CoEPLYfc81dTnPvMKRO6SEgFPpQBepqhLzedRTw==</Modulus><Exponent>AQAB</Exponent><P>7zl5GNpKU89rcew0fnQUp/uMdPsb3+MAYkQgzXYxqV6FSLKuxIoU1E7UMXswGESHaVO10KO2LqubgjIJvmosFvFSeB2IvUnUax6/K6fMR+mddzAiOFPhH3DHGVHyJ9NVOLSSZxnXGEqZMLPxWxO0cfmW5yJPJxIUKnZpgy+IaKk=</P><Q>yd6RC+nJYq+0fKET12eaYQZNb/8uxywDIL5RFGS09coJfCsN+U4iM/RHFxghmVeAAdFxvF0uERdXfxnD8MyHHvQAEnjyXqKRJIKRVHHQ8VZ5Rq9nr3xGhZeIYk780J6fRS2VyJmgXYplPxbkCgW1P4rN/tBalS9hhny2gAvuTTc=</Q><DP>hOLjLvgLc9TztXvliR0IYGvukQjwagTaMLvxkNCIM7JKzaBcTtb5TRpg6v+oLsLaiZqzk6ttRy2Sm9cZ7Ilj5na1Pf4B+Ewr0DlrLl/urT/LderqB2oo0uM95gXMQ200mORNszH6dwbxY8mBV/txMCLaPZikaWq0gwX2BKaB2sk=</DP><DQ>HS6hhTlctXl0+/dFKQR/GruQgjo/hudj5F3e1rXgOw/j4yFOOdYDt8L+a+Y/JS2zAZBHgtVtjWb0bRlKbAsFFYJsaD83ulqB5OdDHxP9AoZfrco5kPLENxe6zYthnL7xg0ydtIwQ1LTnAgHLIW/FzdPBB68TCTH6RTjOISCYaG0=</DQ><InverseQ>1C8H6ll3tpSdjm2TrK7nYDVgMT6ckT2Sm0y/mN4kHW8j+4YkEv9pDbyUVypjBGMGD5FO/MuK/Pg+1MZaKkb2ExHnmCIzjmTRqKb+jz9WKFEMvUpOJ9zvlAsU0k6ElIlLoFO1aP8ULFBNDXqMbdENNIsGDCrkwGWHJcvxangy6Ew=</InverseQ><D>OlGt38UFRM3KjfB22dqiyLak3Jb+PeDt/NMBG1JONhM4gRrlhfbgmsznL3Fz/XlA9D9/yTtVRnSA+8J2UDe2fzvoJ1nHtzldWtIXnwE8cD1zImtIRck7BwAbYyJbfRV3iXqoxobRw8PX5KdL8Yc5ZmURmtTxSdnG+n/Mfr4WYpq03i0OA1Z8EIwJ41G1AIep1smQl1lQ6gZY4YqoGVyfFR7jlDcTOhr7A5aru9W006CMXFZzQOVimLIN5NjnSmI8wvbmwPhKGnP6FfKFQsOCApb8cOxJ2LC36czw0clEtMfzBiHRY33kcPm2QlEtxjcJBjVJzkK/4UVNYDSg4w0HMQ==</D></RSAKeyValue>";
+        private const string AppPrivateKey = @"MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDLGrLQk3StP6WV
+Gn4wpY2nHUjfuKvIAq2szkRIb+vvjrOnkUTr+lPryavKkkKeH0Uu23++MfUZ7f+S
+X8nusaXV3TDUr12st3cCcHG5piKFj8Yy2f9XNbPW4cTP8+HYXREwRMcy1t/H8SQA
+PJcIoKtgdyImVl0lXe0kA8U8QqOr9xwaGjYHgdAMUZ3K+6BCpwt+eMqX0Fhmkxa0
+3SQInbZYrXU30ZHTIHYsYTEQ0YLQMaGHvDMMEhh8sPcr2b7ldharaKuN5I9FbI5J
+TmvIsXqUcoKEGFWbF6BXr9hcsTlq/9MsAv4r1YEMdNGTGUrx85Wa+HqXJuGqgBPd
+XiSuyhRxAgMBAAECggEAFE+1Njqo3nKRAppFqGPGCMJa+VSkiToLWE7AcWYP+EMT
+IFzcwaSlI91lOrrpwppp9seovMKOOmuctWyy6xYE+aBHM93dxloKosnP9brxlN3N
++mPmrzgFpiWp4woGufaEs4kNSr5GXt50tTlZ+VjoCpufZKoaYpREFOfzn5UifR3p
+qpJkoZmIeWvnf6uO6jaQRxbOVDXdqBQwInLukhxGilHa89757rzcxiTOBMb2dyyc
+BzDyZvl74Oe1/Avc0frTlb7zPiz/PvKjD9fyfn0CN15H7QGsSW4uL58hMPMv9xKz
+oYkCEFvgdojTff6+IrzlIdTU8jayHLTeEEhaDQG4AQKBgQDnpyJXCzMSMJq9JS1F
+5KyIHzLQ3giTbBsl52PCOE/NN/zkuPhhy8Z7u3O629NEZ/oYUTByiLKBaYGjSEym
+dIjdYLbXCVfpYpnnfMxrlqtwrmrSuEEbD3spJJ5GdiMX2aN38dxO8AOkw/dr4lSZ
+fO70XRRS4HP3bysuYyAECM2UMQKBgQDgc29FFsivNmWstt+EP5wz7/zgsAH5ZjPP
+u57/B2yWJAiOZZ5K6cp9kNEtBlEory+tT/ma3L9VDFOKbSB5ePyhZ1gICHwv7Tep
+H6qcLzsOBjI2MN2pgtfuGzDJSOTPEAu1cl9qWzn2b/fjgpcQ3LizulaSJpS/cfo/
+MVcc7HW0QQKBgDoFm81PidAximB70lYiS7Cgl9rG8kDyn+4jgdIgxqQxNM+ZIOVl
+4+YT8o3IB6enn3W9yDO313Yglg7uyfwbTjicw88ikPls7/2SPaVpDLHhjfIPoocD
+nqaUfGxLpMiRg6dEVhkTduYrC2rjOqtjJnrgYXnMrF86YgdxXpCEH/HRAoGAHHeH
+jUOugEpt6tHm12cZ8JxnfjfUiEUmHRq2t7HBW+mGDElnIik0vWg4n3VFpdtSOLED
+/1gwDCFcFxpwG/f0UqRAzgQFfC6h+JlDkjuLSeQPSkA4XN9zc4ePUHgmTPzD/2da
+IqsfVtosnnZZopHb+y+O+0pZY06ZZppjag+zfgECgYBm8qhcrecW42SJkCXDm+n1
+E3/ojQOMYGbW6v2Qy5RJE3PJb5kgpDtb7o3SS10TS0noenw50ClFt+eaqnLZhrNy
+XO6sXOvN+Z9aexXFqvzhZYodSKtYfAodSVn3ASxGghd7CjWnYQfPNrkaAO4Tx6iq
++bCSpBMKRP3BpOYoa82WUQ==";
         private const string AppId = "1";
 
         static void Main(string[] args)
@@ -87,7 +112,8 @@ namespace YandeSignConsole
             string signBodyString = $"{method}\n{uri}\n{timestamp}\n{nonce}\n{requestBodyString}\n";
 
             //使用app的秘钥进行加签
-            var signature = SecurityFunc.CreateSignature(AppPrivateKey, signBodyString.ToString());
+            String prikey = RsaKeyConvert.RSAPrivateKeyJava2DotNet(AppPrivateKey);
+            var signature = SecurityFunc.RSASignCSharp(signBodyString.ToString(), prikey);
 
             //设置请求头
             requestMessage.Headers.Add("signtype", "yande-rsa");
@@ -99,63 +125,6 @@ namespace YandeSignConsole
             requestMessage.Content = new StringContent(JsonConvert.SerializeObject(testReq), Encoding.UTF8, "application/json");
             var response = httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
 
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
-            {
-                Console.WriteLine(response.Content.ReadAsStringAsync().GetAwaiter().GetResult());
-            }
-            else
-            {
-                Console.WriteLine("错了");
-            }
-        }
-
-        static void Test3(HttpClient httpClient)
-        {
-            var requestMessage = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5000/api/test/test3");
-            var timestamp = UtcTime.CurrentTimeMillis();
-            var requestId = Guid.NewGuid().ToString("n");
-
-            TestReq testReq = new TestReq();
-            testReq.Id = "123";
-            var requestBody = JsonConvert.SerializeObject(testReq);
-
-            var encryptBodyString = SecurityFunc.ToHex(SecurityFunc.ComputeSha256Hash(requestBody));
-
-            #region 按规则构造加签字符串
-
-            //第一步：构造字典
-            IDictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("appid", AppId);
-            dic.Add("timestamp", timestamp.ToString());
-            dic.Add("requestId", requestId);
-            dic.Add("body", encryptBodyString);
-
-            // 第二步：把字典按Key的字母顺序排序
-            IDictionary<string, string> sortedParams = new SortedDictionary<string, string>(dic);
-            IEnumerator<KeyValuePair<string, string>> dem = sortedParams.GetEnumerator();
-            // 第三步：把所有参数名和参数值串在一起
-            StringBuilder signBodyString = new StringBuilder();
-            while (dem.MoveNext())
-            {
-                string key = dem.Current.Key;
-                string value = dem.Current.Value;
-                if (!string.IsNullOrEmpty(key))
-                {
-                    signBodyString.Append(key).Append("=").Append(value).Append("&");
-                }
-            }
-
-            #endregion
-
-            var signature = SecurityFunc.CreateSignature(AppPrivateKey, signBodyString.ToString());
-
-            requestMessage.Headers.Add("appid", AppId);
-            requestMessage.Headers.Add("requestid", requestId);
-            requestMessage.Headers.Add("timestamp", timestamp.ToString());
-            requestMessage.Headers.Add("signature", signature);
-            requestMessage.Content = new StringContent(JsonConvert.SerializeObject(testReq), Encoding.UTF8, "application/json");
-
-            var response = httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 Console.WriteLine(response.Content.ReadAsStringAsync().GetAwaiter().GetResult());

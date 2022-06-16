@@ -122,7 +122,10 @@ namespace YandeSignApi.Applications.SecurityAuthorization.RsaChecker
 
                 string signBodyString = $"{method}\n{uri}\n{timestamp}\n{nonce}\n{bodyString}\n";
 
-                if (!SecurityFunc.ValidateSignature(app.PublickKey, $"{signBodyString}", signature))
+                var PublickKey = RsaKeyConvert.RSAPublicKeyJava2DotNet(app.PublickKey);
+                var signResult = SecurityFunc.VerifyCSharp($"{signBodyString}", PublickKey, signature);
+
+                if (!signResult)
                     return await AuthenticateResultFailAsync("签名失败");
                 #endregion
 

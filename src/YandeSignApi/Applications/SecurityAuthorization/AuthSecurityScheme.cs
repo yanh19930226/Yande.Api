@@ -15,5 +15,10 @@
         /// Md5
         /// </summary>
         public const string AuthenticationSchemeSecurityMd5Auth = "AuthenticationSchemeSecurityMd5Auth";
+
+        /// <summary>
+        /// Sm
+        /// </summary>
+        public const string AuthenticationSchemeSecuritySmAuth = "AuthenticationSchemeSecuritySmAuth";
     }
 }

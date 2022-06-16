@@ -163,7 +163,46 @@ namespace YandeSignApi.Applications.Commons
                     return rsaDeformatter.VerifySignature(hashData, deformatterData);
                 }
             }
-        } 
+        }
         #endregion
+
+        /// <summary>
+        /// C#使用私钥加签
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="privateKeyCSharp"></param>
+        /// <param name="hashAlgorithm"></param>
+        /// <param name="encoding"></param>
+        /// <returns></returns>
+        public static String RSASignCSharp(String data, String privateKeyCSharp, String hashAlgorithm = "SHA256", String encoding = "UTF-8")
+        {
+            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+            rsa.FromXmlString(privateKeyCSharp); //加载私钥   
+            var dataBytes = Encoding.GetEncoding(encoding).GetBytes(data);
+            var HashbyteSignature = rsa.SignData(dataBytes, hashAlgorithm);
+            return Convert.ToBase64String(HashbyteSignature);
+        }
+        /// <summary>
+        /// C#使用公钥验签
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="publicKeyCSharp"></param>
+        /// <param name="signature"></param>
+        /// <param name="hashAlgorithm"></param>
+        /// <param name="encoding"></param>
+        /// <returns></returns>
+        public static bool VerifyCSharp(String data, String publicKeyCSharp, String signature, String hashAlgorithm = "SHA256", String encoding = "UTF-8")
+        {
+            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+            //导入公钥，准备验证签名
+            rsa.FromXmlString(publicKeyCSharp);
+            //返回数据验证结果
+            Byte[] Data = Encoding.GetEncoding(encoding).GetBytes(data);
+            Byte[] rgbSignature = Convert.FromBase64String(signature);
+
+            return rsa.VerifyData(Data, hashAlgorithm, rgbSignature);
+        }
+
+
     }
 }

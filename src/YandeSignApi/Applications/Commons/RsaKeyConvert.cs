@@ -16,6 +16,40 @@ namespace YandeSignApi.Applications.Commons
         {
 
         }
+
+        /// <summary>
+        /// JAVARSA私钥转C#格式
+        /// </summary>
+        /// <param name="privateKey"></param>
+        /// <returns></returns>
+        public static string RSAPrivateKeyJava2DotNet(string privateKey)
+        {
+            RsaPrivateCrtKeyParameters privateKeyParam = (RsaPrivateCrtKeyParameters)PrivateKeyFactory.CreateKey(Convert.FromBase64String(privateKey));
+
+            return string.Format("<RSAKeyValue><Modulus>{0}</Modulus><Exponent>{1}</Exponent><P>{2}</P><Q>{3}</Q><DP>{4}</DP><DQ>{5}</DQ><InverseQ>{6}</InverseQ><D>{7}</D></RSAKeyValue>",
+                Convert.ToBase64String(privateKeyParam.Modulus.ToByteArrayUnsigned()),
+                Convert.ToBase64String(privateKeyParam.PublicExponent.ToByteArrayUnsigned()),
+                Convert.ToBase64String(privateKeyParam.P.ToByteArrayUnsigned()),
+                Convert.ToBase64String(privateKeyParam.Q.ToByteArrayUnsigned()),
+                Convert.ToBase64String(privateKeyParam.DP.ToByteArrayUnsigned()),
+                Convert.ToBase64String(privateKeyParam.DQ.ToByteArrayUnsigned()),
+                Convert.ToBase64String(privateKeyParam.QInv.ToByteArrayUnsigned()),
+                Convert.ToBase64String(privateKeyParam.Exponent.ToByteArrayUnsigned()));
+        }
+        /// <summary>
+        /// JAVARSA公钥转C#格式
+        /// </summary>
+        /// <param name="publicKey"></param>
+        /// <returns></returns>
+        public static string RSAPublicKeyJava2DotNet(string publicKey)
+        {
+            RsaKeyParameters publicKeyParam = (RsaKeyParameters)PublicKeyFactory.CreateKey(Convert.FromBase64String(publicKey));
+            return string.Format("<RSAKeyValue><Modulus>{0}</Modulus><Exponent>{1}</Exponent></RSAKeyValue>",
+                Convert.ToBase64String(publicKeyParam.Modulus.ToByteArrayUnsigned()),
+                Convert.ToBase64String(publicKeyParam.Exponent.ToByteArrayUnsigned()));
+
+        }
+
         public static string RsaPrivateKeyJava2DotNet(string privateKey)
         {
             RsaPrivateCrtKeyParameters privateKeyParam = (RsaPrivateCrtKeyParameters)PrivateKeyFactory.CreateKey(Convert.FromBase64String(TrimPrivatePrefixSuffix(privateKey)));

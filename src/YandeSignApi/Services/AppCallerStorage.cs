@@ -16,7 +16,13 @@ namespace YandeSignApi.Services
             {
                 Id = "1",
                 Name = "我是1",
-                PublickKey = "<RSAKeyValue><Modulus>vKQbdjZ4b4foZOq4RkUfQ4COkJ6htxW+S1fTZvTC8HbaaicTYWi9WICzeTd5PuAaDBwztk0HsS3r6ds1HSy//Wb7JsBE8ynrALaVPApNn54yQsTqEPmuGiTMYEBFIdyNwKzgdxFz6MWO7An2yWsenC0IEpSdntL918eVixt4aKOl39mtftSK2vVBhL+tljLzTkk6KZvjFGmGxf4dZFeSlU7H8BQ+zQKfkyViDeKgewFqrRsc2JGCCKChr1paVampBE/lpb6hzUPLUUQbpFHKBlIwtmut7m+Ly0fylbO0lSO06Q3CoEPLYfc81dTnPvMKRO6SEgFPpQBepqhLzedRTw==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>"
+                PublickKey = @"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyxqy0JN0rT+llRp+MKWN
+px1I37iryAKtrM5ESG/r746zp5FE6/pT68mrypJCnh9FLtt/vjH1Ge3/kl/J7rGl
+1d0w1K9drLd3AnBxuaYihY/GMtn/VzWz1uHEz/Ph2F0RMETHMtbfx/EkADyXCKCr
+YHciJlZdJV3tJAPFPEKjq/ccGho2B4HQDFGdyvugQqcLfnjKl9BYZpMWtN0kCJ22
+WK11N9GR0yB2LGExENGC0DGhh7wzDBIYfLD3K9m+5XYWq2irjeSPRWyOSU5ryLF6
+lHKChBhVmxegV6/YXLE5av/TLAL+K9WBDHTRkxlK8fOVmvh6lybhqoAT3V4krsoU
+cQIDAQAB"
             }
         };
     }

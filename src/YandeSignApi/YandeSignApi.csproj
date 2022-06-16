@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Folder Include="Applications\Middlewares\" />
+    <Folder Include="Applications\SecurityAuthorization\SmChecker\" />
     <Folder Include="Data\Impl\" />
     <Folder Include="Models\Dtos\Reps\" />
   </ItemGroup>

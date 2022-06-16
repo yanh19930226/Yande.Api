@@ -23,13 +23,5 @@ namespace YandeSignApi.Controllers
         {
             return Ok(JsonConvert.SerializeObject(request));
         }
-
-        [HttpPost]
-        [Route("/test/test3")]
-        public IActionResult Test3([FromBody] TestReq request)
-        {
-            
-            return Ok("ok");
-        }
     }
 }
