@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace YandeSignSdk.Models
 {
-    internal class Base
+    internal class BaseReq
     {
     }
 }

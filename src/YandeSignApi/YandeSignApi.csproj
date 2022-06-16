@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Folder Include="Applications\Middlewares\" />
-    <Folder Include="Applications\SecurityAuthorization\SmChecker\" />
     <Folder Include="Data\Impl\" />
     <Folder Include="Models\Dtos\Reps\" />
   </ItemGroup>
