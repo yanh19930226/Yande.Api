@@ -6,5 +6,12 @@ using System.Threading.Tasks;
 
 namespace YandeSignSdk
 {
-
+    /// <summary>
+    /// 环境
+    /// </summary>
+    public enum EnvEnum
+    {
+        Dev,
+        Prod
+    }
 }

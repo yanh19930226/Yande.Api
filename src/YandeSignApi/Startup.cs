@@ -1,3 +1,4 @@
+using Dnc.Api.Throttle;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -38,10 +39,30 @@ namespace YandeSignApi
 
             services.AddSingleton(new AppSettingsHelper(Env.ContentRootPath));
 
+            //Api限流
+            services.AddApiThrottle(options => {
+                //配置redis
+                //如果Cache和Storage使用同一个redis，则可以按如下配置
+                options.UseRedisCacheAndStorage(opts => {
+                    opts.ConnectionString = "localhost,connectTimeout=5000,allowAdmin=false,defaultDatabase=0";
+                    //opts.KeyPrefix = "apithrottle"; //指定给所有key加上前缀，默认为apithrottle
+                });
+                //如果Cache和Storage使用不同redis库，可以按如下配置
+                options.UseRedisCache(opts =>
+                {
+                    opts.ConnectionString = "localhost,connectTimeout=5000,allowAdmin=false,defaultDatabase=0";
+                });
+                options.UseRedisStorage(opts =>
+                {
+                    opts.ConnectionString = "localhost,connectTimeout=5000,allowAdmin=false,defaultDatabase=1";
+                });
+            });
+
             services.AddControllers(options =>
             {
                 options.Filters.Add<HttpGlobalExceptionFilter>();
                 options.Filters.Add<ValidateModelStateFilter>();
+                options.Filters.Add(typeof(ApiThrottleActionFilter));
             });
 
             services.AddRedisSetup();
@@ -68,6 +89,9 @@ namespace YandeSignApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            //Api限流
+            app.UseApiThrottle();
 
             #region Swagger
             app.UseCoreSwagger();

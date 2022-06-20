@@ -41,11 +41,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignApi", "src\SignApi\Sign
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignClient", "src\SignClient\SignClient.csproj", "{3104DAA8-A272-4BC1-9739-9239162937F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YandeSignApi", "src\YandeSignApi\YandeSignApi.csproj", "{01D06CE4-1354-4A90-A9B6-43C0B86DCA52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YandeSignApi", "src\YandeSignApi\YandeSignApi.csproj", "{01D06CE4-1354-4A90-A9B6-43C0B86DCA52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YandeSignConsole", "src\YandeSignConsole\YandeSignConsole.csproj", "{2974983E-C01B-43F6-95D3-80CD94E27CCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YandeSignConsole", "src\YandeSignConsole\YandeSignConsole.csproj", "{2974983E-C01B-43F6-95D3-80CD94E27CCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YandeSignSdk", "src\YandeSignSdk\YandeSignSdk.csproj", "{38BCB5E3-0B2D-4038-A288-8F560D28ECFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YandeSignSdk", "src\YandeSignSdk\YandeSignSdk.csproj", "{38BCB5E3-0B2D-4038-A288-8F560D28ECFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "src\TestProject1\TestProject1.csproj", "{426C6F93-8013-421A-BE19-D866E4468DF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -133,6 +135,10 @@ Global
 		{38BCB5E3-0B2D-4038-A288-8F560D28ECFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38BCB5E3-0B2D-4038-A288-8F560D28ECFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38BCB5E3-0B2D-4038-A288-8F560D28ECFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{426C6F93-8013-421A-BE19-D866E4468DF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{426C6F93-8013-421A-BE19-D866E4468DF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{426C6F93-8013-421A-BE19-D866E4468DF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{426C6F93-8013-421A-BE19-D866E4468DF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -158,6 +164,7 @@ Global
 		{01D06CE4-1354-4A90-A9B6-43C0B86DCA52} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 		{2974983E-C01B-43F6-95D3-80CD94E27CCA} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 		{38BCB5E3-0B2D-4038-A288-8F560D28ECFC} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
+		{426C6F93-8013-421A-BE19-D866E4468DF4} = {7E600273-89CB-4B48-9DCD-F7F95BB867C7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A1602B0-CE22-461A-9C0C-312AEFB20E2D}

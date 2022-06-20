@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace YandeSignApi.Applications.Commons
+namespace YandeSignSdk.Commons
 {
     public class SecurityFunc
     {
@@ -33,7 +36,7 @@ namespace YandeSignApi.Applications.Commons
             }
 
             return sb.ToString();
-        } 
+        }
         #endregion
 
         #region Rsa
