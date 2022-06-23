@@ -40,7 +40,7 @@ namespace YandeSignConsole
     //6.按照前述规则，构造的请求签名串为:
     //    GET\n 
     //    /v3/certificates\n 
-    //   1554208460\n 
+    //    1554208460\n 
     //    593BEC0C930BF1AFEB40B4A08C8FB242\n 
     //    \n
     //计算签名值:Sign()

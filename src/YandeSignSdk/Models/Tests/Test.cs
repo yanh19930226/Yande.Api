@@ -22,6 +22,7 @@ namespace YandeSignSdk.Models.Tests
 
     public class TestRep
     {
-
+        public string Id { get; set; }
+        public string Name { get; set; }
     }
 }

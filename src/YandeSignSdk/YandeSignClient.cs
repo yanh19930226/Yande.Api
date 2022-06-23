@@ -37,11 +37,11 @@ namespace YandeSignSdk
             switch (_envEnum)
             {
                 case EnvEnum.Dev:
-                    return "http://121.40.183.223/apiTest";
+                    return "http://localhost:5000/";
                 case EnvEnum.Prod:
                     return "https://www.zhiguanyin.com.cn";
                 default:
-                    return "http://121.40.183.223/apiTest";
+                    return "http://localhost:5000/";
             }
         }
 

@@ -12,8 +12,6 @@ namespace YandeSignApi
 
         public static void AddApiThrottleSetup(this IServiceCollection services)
         {
-           
-
             services.AddMvc(opts =>
             {
                 //这里添加ApiThrottleActionFilter拦截器
