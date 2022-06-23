@@ -47,7 +47,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YandeSignConsole", "src\Yan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YandeSignSdk", "src\YandeSignSdk\YandeSignSdk.csproj", "{38BCB5E3-0B2D-4038-A288-8F560D28ECFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "src\TestProject1\TestProject1.csproj", "{426C6F93-8013-421A-BE19-D866E4468DF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject1", "src\TestProject1\TestProject1.csproj", "{426C6F93-8013-421A-BE19-D866E4468DF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeiShuSdk", "src\FeiShuSdk\FeiShuSdk.csproj", "{0D419DBA-D24A-4A74-A225-E64F70D2C440}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -139,6 +141,10 @@ Global
 		{426C6F93-8013-421A-BE19-D866E4468DF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{426C6F93-8013-421A-BE19-D866E4468DF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{426C6F93-8013-421A-BE19-D866E4468DF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D419DBA-D24A-4A74-A225-E64F70D2C440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D419DBA-D24A-4A74-A225-E64F70D2C440}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D419DBA-D24A-4A74-A225-E64F70D2C440}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D419DBA-D24A-4A74-A225-E64F70D2C440}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -165,6 +171,7 @@ Global
 		{2974983E-C01B-43F6-95D3-80CD94E27CCA} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 		{38BCB5E3-0B2D-4038-A288-8F560D28ECFC} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 		{426C6F93-8013-421A-BE19-D866E4468DF4} = {7E600273-89CB-4B48-9DCD-F7F95BB867C7}
+		{0D419DBA-D24A-4A74-A225-E64F70D2C440} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A1602B0-CE22-461A-9C0C-312AEFB20E2D}
