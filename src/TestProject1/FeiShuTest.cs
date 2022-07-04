@@ -16,34 +16,34 @@ namespace TestProject1
             Assert.Equal("", "");
         }
 
-        /// <summary>
-        /// 获取token
-        /// </summary>
-        [Fact]
-        public async Task<string> TestGetTenantAccessToken()
-        {
+        ///// <summary>
+        ///// 获取token
+        ///// </summary>
+        //[Fact]
+        //public async Task<string> TestGetTenantAccessToken()
+        //{
 
-            //if (!_memoryCache.TryGetValue("token", out string cacheValue))
-            //{
-            //    //测试获取token
-            //    var req = new GetTenantAccessTokenRequest();
-            //    req.AppId = AppSetting.FeiShuAppId;
-            //    req.AppSecret = AppSetting.FeiShuAppSecret;
+        //    //if (!_memoryCache.TryGetValue("token", out string cacheValue))
+        //    //{
+        //    //    //测试获取token
+        //    //    var req = new GetTenantAccessTokenRequest();
+        //    //    req.AppId = AppSetting.FeiShuAppId;
+        //    //    req.AppSecret = AppSetting.FeiShuAppSecret;
 
-            //    var getTenantAccessTokenResponse = await _feishuClient.ExcueAsync(req);
+        //    //    var getTenantAccessTokenResponse = await _feishuClient.ExcueAsync(req);
 
-            //    cacheValue = getTenantAccessTokenResponse.TenantAccessToken;
+        //    //    cacheValue = getTenantAccessTokenResponse.TenantAccessToken;
 
-            //    var cacheEntryOptions = new MemoryCacheEntryOptions()
-            //        .SetSlidingExpiration(TimeSpan.FromSeconds(getTenantAccessTokenResponse.Expire));
-            //    _memoryCache.Set("token", cacheValue, cacheEntryOptions);
+        //    //    var cacheEntryOptions = new MemoryCacheEntryOptions()
+        //    //        .SetSlidingExpiration(TimeSpan.FromSeconds(getTenantAccessTokenResponse.Expire));
+        //    //    _memoryCache.Set("token", cacheValue, cacheEntryOptions);
 
-            //    Assert.True(getTenantAccessTokenResponse.Code == 0);
+        //    //    Assert.True(getTenantAccessTokenResponse.Code == 0);
 
-            //}
+        //    //}
 
-            return cacheValue;
+        //    return cacheValue;
 
-        }
+        //}
     }
 }
