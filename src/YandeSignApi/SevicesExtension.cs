@@ -10,14 +10,14 @@ namespace YandeSignApi
     public static class SevicesExtension
     {
 
-        public static void AddApiThrottleSetup(this IServiceCollection services)
-        {
-            services.AddMvc(opts =>
-            {
-                //这里添加ApiThrottleActionFilter拦截器
+        //public static void AddApiThrottleSetup(this IServiceCollection services)
+        //{
+        //    services.AddMvc(opts =>
+        //    {
+        //        //这里添加ApiThrottleActionFilter拦截器
                 
-            });
-        }
+        //    });
+        //}
 
         public static void AddRedisSetup(this IServiceCollection services)
         {

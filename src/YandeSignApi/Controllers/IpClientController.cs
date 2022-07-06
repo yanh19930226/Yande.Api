@@ -2,6 +2,9 @@
 
 namespace YandeSignApi.Controllers
 {
+    /// <summary>
+    /// IpClientController
+    /// </summary>
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class IpClientController : Controller
@@ -11,7 +14,6 @@ namespace YandeSignApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("/ipclient/str")]
         public string Str()
         {
             return "test";
@@ -21,7 +23,6 @@ namespace YandeSignApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("/ipclient/str2")]
         public string Str2()
         {
             return "test2";
@@ -31,7 +32,6 @@ namespace YandeSignApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("/ipclient/str3")]
         public string Str3()
         {
             return "test3";
