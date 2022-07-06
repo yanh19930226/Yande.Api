@@ -1,3 +1,4 @@
+using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +12,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using YandeSignApi.Applications.Commons;
 using YandeSignApi.Applications.Filters;
+using YandeSignApi.Applications.Middlewares;
 using YandeSignApi.Applications.SecurityAuthorization.RsaChecker;
 
 namespace YandeSignApi
 {
+    /// <summary>
+    /// Startup
+    /// </summary>
     public class Startup
     {
         /// <summary>
@@ -27,41 +32,25 @@ namespace YandeSignApi
             Configuration = configuration;
             Env = env;
         }
+        /// <summary>
+        /// Configuration
+        /// </summary>
         public IConfiguration Configuration { get; }
         /// <summary>
         /// </summary>
         public IWebHostEnvironment Env { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// ConfigureServices
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
 
             services.AddSingleton(new AppSettingsHelper(Env.ContentRootPath));
-
-            ////Api限流
-            //services.AddApiThrottle(options => {
-            //    //配置redis
-            //    //如果Cache和Storage使用同一个redis，则可以按如下配置
-            //    options.UseRedisCacheAndStorage(opts => {
-            //        opts.ConnectionString = "localhost,connectTimeout=5000,allowAdmin=false,defaultDatabase=0";
-            //        //opts.KeyPrefix = "apithrottle"; //指定给所有key加上前缀，默认为apithrottle
-            //    });
-            //    //如果Cache和Storage使用不同redis库，可以按如下配置
-            //    options.UseRedisCache(opts =>
-            //    {
-            //        opts.ConnectionString = "localhost,connectTimeout=5000,allowAdmin=false,defaultDatabase=0";
-            //    });
-            //    options.UseRedisStorage(opts =>
-            //    {
-            //        opts.ConnectionString = "localhost,connectTimeout=5000,allowAdmin=false,defaultDatabase=1";
-            //    });
-            //});
-
             services.AddControllers(options =>
             {
                 options.Filters.Add<HttpGlobalExceptionFilter>();
                 options.Filters.Add<ValidateModelStateFilter>();
-                //options.Filters.Add(typeof(ApiThrottleActionFilter));
             });
 
             services.AddRedisSetup();
@@ -70,8 +59,8 @@ namespace YandeSignApi
             services.AddSwaggerSetup();
             #endregion
 
+            #region Rsa加密
             services.AddAuthentication().AddAuthSecurityRsa();
-
             //services.AddSingleton(sp =>
             //{
             //    return new RsaOptions()
@@ -79,9 +68,39 @@ namespace YandeSignApi
             //        PrivateKey = Configuration.GetSection("RsaConfig")["PrivateKey"],
             //    };
             //});
-        }
+            #endregion
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            #region 限流
+            //需要从加载配置文件appsettings.json
+            services.AddOptions();
+            //需要存储速率限制计算器和ip规则
+            services.AddMemoryCache();
+
+            //从appsettings.json中加载常规配置
+            services.Configure<IpRateLimitOptions>(Configuration.GetSection("IpRateLimiting"));
+
+            //从appsettings.json中加载Ip规则
+            services.Configure<IpRateLimitPolicies>(Configuration.GetSection("IpRateLimitPolicies"));
+
+            //注入计数器和规则存储
+            services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
+
+            //services.AddSingleton<IClientPolicyStore, MemoryCacheClientPolicyStore>();
+
+            services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+
+            //配置（解析器、计数器密钥生成器）
+            services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+
+
+            services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
+            #endregion
+        }
+        /// <summary>
+        /// Configure
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -89,8 +108,14 @@ namespace YandeSignApi
                 app.UseDeveloperExceptionPage();
             }
 
-            ////Api限流
-            //app.UseApiThrottle();
+            #region 中间件
+            // 异常处理中间件
+            app.UseExceptionHandlerMidd();
+            // 记录请求与返回数据 (注意开启权限，不然本地无法写入)
+            app.UseRequestResponseLog();
+            // 记录ip请求 (注意开启权限，不然本地无法写入)
+            app.UseIpLogMildd();
+            #endregion
 
             #region Swagger
             app.UseCoreSwagger();
@@ -101,6 +126,10 @@ namespace YandeSignApi
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseIpRateLimiting();
+
+            //app.UseClientRateLimiting();
 
             app.UseEndpoints(endpoints =>
             {

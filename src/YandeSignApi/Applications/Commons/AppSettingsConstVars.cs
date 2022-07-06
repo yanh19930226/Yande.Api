@@ -2,6 +2,9 @@
 
 namespace YandeSignApi.Applications.Commons
 {
+    /// <summary>
+    /// AppSettingsConstVars
+    /// </summary>
     public class AppSettingsConstVars
     {
         #region 数据库================================================================================
@@ -24,6 +27,22 @@ namespace YandeSignApi.Applications.Commons
         /// 获取redis连接字符串
         /// </summary>
         public static readonly string RedisConfigConnectionString = AppSettingsHelper.GetContent("RedisConfig", "ConnectionString");
+        #endregion
+
+        #region Middleware中间件================================================================================
+        /// <summary>
+        /// Ip限流
+        /// </summary>
+        public static readonly bool MiddlewareIpLogEnabled = AppSettingsHelper.GetContent("Middleware", "IPLog", "Enabled").ObjToBool();
+        /// <summary>
+        /// 记录请求与返回数据
+        /// </summary>
+        public static readonly bool MiddlewareRequestResponseLogEnabled = AppSettingsHelper.GetContent("Middleware", "RequestResponseLog", "Enabled").ObjToBool();
+        /// <summary>
+        /// 用户访问记录-过滤ip
+        /// </summary>
+        public static readonly string MiddlewareRequestResponseLogIgnoreApis = AppSettingsHelper.GetContent("Middleware", "RequestResponseLog", "IgnoreApis");
+
         #endregion
 
     }
