@@ -85,7 +85,7 @@ namespace YandeSignApi
             //注入计数器和规则存储
             services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
 
-            //services.AddSingleton<IClientPolicyStore, MemoryCacheClientPolicyStore>();
+            services.AddSingleton<IClientPolicyStore, MemoryCacheClientPolicyStore>();
 
             services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
 
@@ -129,7 +129,7 @@ namespace YandeSignApi
 
             app.UseIpRateLimiting();
 
-            //app.UseClientRateLimiting();
+            app.UseClientRateLimiting();
 
             app.UseEndpoints(endpoints =>
             {
