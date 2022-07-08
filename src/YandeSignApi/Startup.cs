@@ -1,9 +1,11 @@
 using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using YandeSignApi.Applications.Commons;
 using YandeSignApi.Applications.Filters;
+using YandeSignApi.Applications.HealthChecks;
 using YandeSignApi.Applications.Middlewares;
 using YandeSignApi.Applications.SecurityAuthorization.RsaChecker;
 
@@ -45,6 +48,10 @@ namespace YandeSignApi
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthChecks()
+            .AddCheck<DatabaseHealthCheck>("sql");
+            services.AddHealthChecksUI();
+
 
             services.AddSingleton(new AppSettingsHelper(Env.ContentRootPath));
             services.AddControllers(options =>
@@ -117,6 +124,8 @@ namespace YandeSignApi
             app.UseIpLogMildd();
             #endregion
 
+            app.UseHealthChecksUI();
+
             #region Swagger
             app.UseCoreSwagger();
             #endregion
@@ -130,9 +139,15 @@ namespace YandeSignApi
             app.UseIpRateLimiting();
 
             app.UseClientRateLimiting();
-
+           
             app.UseEndpoints(endpoints =>
             {
+                
+                //endpoints.MapHealthChecks("/health", new HealthCheckOptions
+                //{
+                //    ResultStatusCodes = new Dictionary<HealthStatus, int> { { HealthStatus.Unhealthy, 420 }, { HealthStatus.Healthy, 200 }, { HealthStatus.Degraded, 419 } }
+                //});
+                endpoints.MapHealthChecks("/health");
                 endpoints.MapControllers();
             });
         }
