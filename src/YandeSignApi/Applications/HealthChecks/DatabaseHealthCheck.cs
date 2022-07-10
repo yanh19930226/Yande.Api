@@ -10,6 +10,12 @@ namespace YandeSignApi.Applications.HealthChecks
     /// </summary>
     public class DatabaseHealthCheck : IHealthCheck
     {
+        /// <summary>
+        /// CheckHealthAsync
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken =
          default)
         {

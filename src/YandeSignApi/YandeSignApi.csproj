@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <BaseIntermediateOutputPath></BaseIntermediateOutputPath>
@@ -14,7 +14,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNetCore.HealthChecks.MySql" Version="3.2.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.Rabbitmq" Version="3.1.4" />
+    <PackageReference Include="AspNetCore.HealthChecks.Redis" Version="3.1.2" />
+    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="3.2.0" />
     <PackageReference Include="AspNetCore.HealthChecks.UI" Version="3.1.3" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="3.1.2" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="3.1.2" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.SqlServer.Storage" Version="3.1.2" />
     <PackageReference Include="AspNetCoreRateLimit" Version="4.0.2" />
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="3.1.26" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
