@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using StackExchange.Redis;
 using System;
 using YandeSignApi.Applications.Commons;
@@ -15,9 +17,37 @@ namespace YandeSignApi
         //    services.AddMvc(opts =>
         //    {
         //        //这里添加ApiThrottleActionFilter拦截器
-                
+
         //    });
         //}
+
+        /// <summary>
+        /// AddCustomHealthCheck
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddCustomHealthCheck(this IServiceCollection services, IConfiguration configuration)
+        {
+            var hcBuilder = services.AddHealthChecks();
+
+            hcBuilder.AddCheck("Jobs.MicrosoftBackgroundService-apiself", () => HealthCheckResult.Healthy());
+            hcBuilder.AddSqlServer(
+                    configuration["ConnectionString"],
+                    name: "Jobs.MicrosoftBackgroundService-sqlserver-check",
+                    tags: new string[] { "sqlserverdb" });
+            //hcBuilder.AddRabbitMQ(
+            //        $"amqp://{configuration["EventBusConnection"]}",
+            //        name: "Jobs.MicrosoftBackgroundService-rabbitmqbus-check",
+            //        tags: new string[] { "rabbitmqbus" });
+            hcBuilder.AddRedis(
+                configuration["RedisConnectionString"],
+                name: "Jobs.MicrosoftBackgroundService-redis-check",
+                tags: new string[] { "redisdb" });
+            //hcBuilder.AddUrlGroup(new Uri(configuration["testApiUrl"]), name: "testApiUrl-check", tags: new string[] { "testApiUrl" });
+
+            return services;
+        }
 
         public static void AddRedisSetup(this IServiceCollection services)
         {
