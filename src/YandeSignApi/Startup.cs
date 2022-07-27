@@ -49,14 +49,9 @@ namespace YandeSignApi
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-<<<<<<< HEAD
             //services.AddHealthChecks()
             //.AddCheck<DatabaseHealthCheck>("sql");
             //services.AddHealthChecksUI();
-
-
-=======
->>>>>>> ccc8456200150c7c0eaa6f0df8bd644d03f01b1a
             services.AddSingleton(new AppSettingsHelper(Env.ContentRootPath));
             services.AddControllers(options =>
             {
@@ -64,19 +59,19 @@ namespace YandeSignApi
                 options.Filters.Add<ValidateModelStateFilter>();
             });
 
-            services.AddCustomHealthCheck(this.Configuration);
-            services.AddHealthChecksUI(setupSettings =>
-            {
-                //检测站点，可以添加多条，UI中会把站点内的检测点分组显示（也可通过配置文件实现）
-                setupSettings.AddHealthCheckEndpoint(name: "localhost-5000", uri: "http://localhost:5000/health");
-                //当检测出异常结果时发送消息给api
-                setupSettings.AddWebhookNotification("messageWebhook",
-                    uri: "http://localhost:5008/WeatherForecast/message",
-                    payload: "{ \"message\": \"Webhook report for [[LIVENESS]]: [[FAILURE]] - Description: [[DESCRIPTIONS]]\"}",
-                    restorePayload: "{ \"message\": \"[[LIVENESS]] is back to life\"}");
-                setupSettings.SetMinimumSecondsBetweenFailureNotifications(60);
-                setupSettings.SetEvaluationTimeInSeconds(10);
-            }).AddSqlServerStorage(Configuration["HealthStorageConnectionString"]);//数据库持久化
+            //services.AddCustomHealthCheck(this.Configuration);
+            //services.AddHealthChecksUI(setupSettings =>
+            //{
+            //    //检测站点，可以添加多条，UI中会把站点内的检测点分组显示（也可通过配置文件实现）
+            //    setupSettings.AddHealthCheckEndpoint(name: "localhost-5000", uri: "http://localhost:5000/health");
+            //    //当检测出异常结果时发送消息给api
+            //    setupSettings.AddWebhookNotification("messageWebhook",
+            //        uri: "http://localhost:5008/WeatherForecast/message",
+            //        payload: "{ \"message\": \"Webhook report for [[LIVENESS]]: [[FAILURE]] - Description: [[DESCRIPTIONS]]\"}",
+            //        restorePayload: "{ \"message\": \"[[LIVENESS]] is back to life\"}");
+            //    setupSettings.SetMinimumSecondsBetweenFailureNotifications(60);
+            //    setupSettings.SetEvaluationTimeInSeconds(10);
+            //}).AddSqlServerStorage(Configuration["HealthStorageConnectionString"]);//数据库持久化
 
             services.AddRedisSetup();
 
@@ -141,11 +136,8 @@ namespace YandeSignApi
             app.UseIpLogMildd();
             #endregion
 
-<<<<<<< HEAD
             //app.UseHealthChecksUI();
 
-=======
->>>>>>> ccc8456200150c7c0eaa6f0df8bd644d03f01b1a
             #region Swagger
             app.UseCoreSwagger();
             #endregion
@@ -160,26 +152,22 @@ namespace YandeSignApi
 
             app.UseClientRateLimiting();
 
-            app.UseHealthChecksUI();
+            //app.UseHealthChecksUI();
 
             app.UseEndpoints(endpoints =>
             {
-<<<<<<< HEAD
                 
                 //endpoints.MapHealthChecks("/health", new HealthCheckOptions
                 //{
                 //    ResultStatusCodes = new Dictionary<HealthStatus, int> { { HealthStatus.Unhealthy, 420 }, { HealthStatus.Healthy, 200 }, { HealthStatus.Degraded, 419 } }
                 //});
                 //endpoints.MapHealthChecks("/health");
-=======
-                endpoints.MapHealthChecks("/health", new HealthCheckOptions()
-                {
-                    //Predicate = _ => true,
-                    //ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-                });
-                endpoints.MapHealthChecksUI();
-
->>>>>>> ccc8456200150c7c0eaa6f0df8bd644d03f01b1a
+                //endpoints.MapHealthChecks("/health", new HealthCheckOptions()
+                //{
+                //    //Predicate = _ => true,
+                //    //ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                //});
+                //endpoints.MapHealthChecksUI();
                 endpoints.MapControllers();
             });
         }
