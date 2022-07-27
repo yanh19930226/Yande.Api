@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <BaseIntermediateOutputPath></BaseIntermediateOutputPath>
@@ -35,7 +35,9 @@
     <PackageReference Include="NLog" Version="5.0.1" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="5.0.0" />
     <PackageReference Include="NSwag.AspNetCore" Version="13.16.1" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
     <PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
+    <PackageReference Include="ShardingCore" Version="6.4.3.4" />
     <PackageReference Include="SkyAPM.Agent.AspNetCore" Version="2.0.0" />
     <PackageReference Include="SqlSugarCore" Version="5.0.8.9" />
     <PackageReference Include="StackExchange.Redis" Version="2.2.88" />

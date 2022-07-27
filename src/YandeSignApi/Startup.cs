@@ -4,11 +4,15 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ShardingCore;
+using ShardingCore.Bootstrapers;
+using ShardingCore.TableExists;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +22,8 @@ using YandeSignApi.Applications.Filters;
 using YandeSignApi.Applications.HealthChecks;
 using YandeSignApi.Applications.Middlewares;
 using YandeSignApi.Applications.SecurityAuthorization.RsaChecker;
+using YandeSignApi.Data;
+using YandeSignApi.Models.ShardingCore;
 
 namespace YandeSignApi
 {
@@ -113,6 +119,37 @@ namespace YandeSignApi
             services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
             services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
             #endregion
+
+
+            ILoggerFactory efLogger = LoggerFactory.Create(builder =>
+            {
+                builder.AddFilter((category, level) => category == DbLoggerCategory.Database.Command.Name && level == LogLevel.Information).AddConsole();
+            });
+
+            services.AddShardingDbContext<DefaultDbContext>()
+                    .AddEntityConfig(o =>
+                    {
+                        o.ThrowIfQueryRouteNotMatch = false;
+                        o.CreateShardingTableOnStart = true;
+                        o.EnsureCreatedWithOutShardingTable = true;
+                        o.AddShardingTableRoute<OrderByHourRoute>();
+                    })
+                    .AddConfig(o =>
+                    {
+                        o.ConfigId = "c1";
+                        o.AddDefaultDataSource("ds0", "server=114.55.177.197;port=3306;database=shardingTest;userid=root;password=66^^66;");
+                        o.UseShardingQuery((conn, b) =>
+                        {
+                            b.UseMySql(conn, new MySqlServerVersion(new Version())).UseLoggerFactory(efLogger);
+                        });
+                        o.UseShardingTransaction((conn, b) =>
+                        {
+                            b.UseMySql(conn, new MySqlServerVersion(new Version())).UseLoggerFactory(efLogger);
+                        });
+                        o.ReplaceTableEnsureManager(sp => new MySqlTableEnsureManager<DefaultDbContext>());
+                    }).EnsureConfig();
+
+            
         }
 
         /// <summary>
@@ -126,6 +163,8 @@ namespace YandeSignApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.ApplicationServices.GetRequiredService<IShardingBootstrapper>().Start();
 
             #region 中间件
             // 异常处理中间件
@@ -156,7 +195,7 @@ namespace YandeSignApi
 
             app.UseEndpoints(endpoints =>
             {
-                
+
                 //endpoints.MapHealthChecks("/health", new HealthCheckOptions
                 //{
                 //    ResultStatusCodes = new Dictionary<HealthStatus, int> { { HealthStatus.Unhealthy, 420 }, { HealthStatus.Healthy, 200 }, { HealthStatus.Degraded, 419 } }
