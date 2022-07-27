@@ -48,9 +48,9 @@ namespace YandeSignApi
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHealthChecks()
-            .AddCheck<DatabaseHealthCheck>("sql");
-            services.AddHealthChecksUI();
+            //services.AddHealthChecks()
+            //.AddCheck<DatabaseHealthCheck>("sql");
+            //services.AddHealthChecksUI();
 
 
             services.AddSingleton(new AppSettingsHelper(Env.ContentRootPath));
@@ -124,7 +124,7 @@ namespace YandeSignApi
             app.UseIpLogMildd();
             #endregion
 
-            app.UseHealthChecksUI();
+            //app.UseHealthChecksUI();
 
             #region Swagger
             app.UseCoreSwagger();
@@ -147,7 +147,7 @@ namespace YandeSignApi
                 //{
                 //    ResultStatusCodes = new Dictionary<HealthStatus, int> { { HealthStatus.Unhealthy, 420 }, { HealthStatus.Healthy, 200 }, { HealthStatus.Degraded, 419 } }
                 //});
-                endpoints.MapHealthChecks("/health");
+                //endpoints.MapHealthChecks("/health");
                 endpoints.MapControllers();
             });
         }
