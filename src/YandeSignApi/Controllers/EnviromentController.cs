@@ -26,7 +26,7 @@ namespace YandeSignApi.Controllers
         [HttpGet]
         public ActionResult GetCustomConfig()
         {
-            return Content($@"读取CustomConfig配置为：{Configuration["CustomConfig"]}");
+            return Content($"读取CustomConfig配置为:{Configuration["CustomConfig"]};读取公共配置为:{Configuration["CommonConfig"]}");
         }
     }
 }
