@@ -7,6 +7,7 @@ using ShardingCore.Core.VirtualRoutes;
 using ShardingCore.Core.VirtualRoutes.TableRoutes.Abstractions;
 using ShardingCore.Exceptions;
 using ShardingCore.Extensions;
+using ShardingCore.Sharding.PaginationConfigurations;
 using ShardingCore.TableCreator;
 using System;
 using System.Collections.Concurrent;
@@ -42,6 +43,15 @@ namespace YandeSignApi.Models.ShardingCore
             _virtualDataSourceManager = virtualDataSourceManager;
             _virtualTableManager = virtualTableManager;
             _shardingTableCreator = shardingTableCreator;
+        }
+
+        /// <summary>
+        /// 返回null表示不开启
+        /// </summary>
+        /// <returns></returns>
+        public override IPaginationConfiguration<OrderByHour> CreatePaginationConfiguration()
+        {
+            return new OrderByHourPaginationConfiguration();
         }
 
         /// <summary>

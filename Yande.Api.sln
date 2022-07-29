@@ -51,7 +51,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject1", "src\TestPro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FeiShuSdk", "src\FeiShuSdk\FeiShuSdk.csproj", "{0D419DBA-D24A-4A74-A225-E64F70D2C440}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "src\WebApplication1\WebApplication1.csproj", "{7B05E654-6C0C-4972-8F20-0CCC2BC82D0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "src\WebApplication1\WebApplication1.csproj", "{7B05E654-6C0C-4972-8F20-0CCC2BC82D0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.BulkConsole", "src\Sample.BulkConsole\Sample.BulkConsole.csproj", "{2DD6AB66-F1CA-406F-8DA0-44C72112C5F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -151,6 +153,10 @@ Global
 		{7B05E654-6C0C-4972-8F20-0CCC2BC82D0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B05E654-6C0C-4972-8F20-0CCC2BC82D0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B05E654-6C0C-4972-8F20-0CCC2BC82D0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DD6AB66-F1CA-406F-8DA0-44C72112C5F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DD6AB66-F1CA-406F-8DA0-44C72112C5F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DD6AB66-F1CA-406F-8DA0-44C72112C5F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DD6AB66-F1CA-406F-8DA0-44C72112C5F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -179,6 +185,7 @@ Global
 		{426C6F93-8013-421A-BE19-D866E4468DF4} = {7E600273-89CB-4B48-9DCD-F7F95BB867C7}
 		{0D419DBA-D24A-4A74-A225-E64F70D2C440} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 		{7B05E654-6C0C-4972-8F20-0CCC2BC82D0B} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
+		{2DD6AB66-F1CA-406F-8DA0-44C72112C5F0} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A1602B0-CE22-461A-9C0C-312AEFB20E2D}

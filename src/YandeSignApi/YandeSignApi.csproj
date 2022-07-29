@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Impl\" />
     <Folder Include="Models\Dtos\Reps\" />
     <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Services\Impl\" />
