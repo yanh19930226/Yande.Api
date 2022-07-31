@@ -39,18 +39,34 @@ namespace Sample.BulkConsole
                 .AddConfig(op =>
                 {
 
-                    op.ConfigId = "c1";
 
-                    op.AddDefaultDataSource("ds0", "Server=localhost;uid=sa;pwd=sa123;Database=MyOrderSharding;MultipleActiveResultSets=true;");
-                    op.UseShardingQuery((conStr, builder) =>
+                    op.ConfigId = "c1";
+                    op.AddDefaultDataSource("ds0", "server=localhost;port=3306;database=shardingTest;userid=root;password=root;AllowLoadLocalInfile=true");
+                    op.UseShardingQuery((conn, b) =>
                     {
-                        builder.UseSqlServer(conStr).UseLoggerFactory(efLogger);
+                        b.UseMySql(conn, new MySqlServerVersion(new Version())).UseLoggerFactory(efLogger);
                     });
-                    op.UseShardingTransaction((connection, builder) =>
+                    op.UseShardingTransaction((conn, b) =>
                     {
-                        builder.UseSqlServer(connection).UseLoggerFactory(efLogger);
+                        b.UseMySql(conn, new MySqlServerVersion(new Version())).UseLoggerFactory(efLogger);
                     });
-                    op.ReplaceTableEnsureManager(sp => new SqlServerTableEnsureManager<MyShardingDbContext>());
+                    op.ReplaceTableEnsureManager(sp => new MySqlTableEnsureManager<MyShardingDbContext>());
+
+
+                    #region SqlServer
+                    //op.ConfigId = "c1";
+
+                    //op.AddDefaultDataSource("ds0", "Server=localhost;uid=sa;pwd=sa123;Database=MyOrderSharding;MultipleActiveResultSets=true;");
+                    //op.UseShardingQuery((conStr, builder) =>
+                    //{
+                    //    builder.UseSqlServer(conStr).UseLoggerFactory(efLogger);
+                    //});
+                    //op.UseShardingTransaction((connection, builder) =>
+                    //{
+                    //    builder.UseSqlServer(connection).UseLoggerFactory(efLogger);
+                    //});
+                    //op.ReplaceTableEnsureManager(sp => new SqlServerTableEnsureManager<MyShardingDbContext>()); 
+                    #endregion
 
                 }).EnsureConfig();
 
@@ -98,22 +114,55 @@ namespace Sample.BulkConsole
                 //    Console.WriteLine($"订单总数:{i}条,myShardingDbContext.BulkInsert(orders)用时:{startNew.ElapsedMilliseconds}毫秒");
 
                 //    Console.WriteLine("ok");
-                //} 
+                //}
                 #endregion
+
 
                 var b = DateTime.Now.Date.AddDays(-3);
                 var queryable = myShardingDbContext.Set<Order>().Select(o => new { Id = o.Id, OrderNo = o.OrderNo, CreateTime = o.CreateTime });//.Where(o => o.CreateTime >= b);
-
                 var startNew1 = Stopwatch.StartNew();
-                int skip = 0, take = 1000;
-                for (int i = 20; i < 30000; i++)
-                {
-                    skip = take * i;
-                    startNew1.Restart();
-                    var shardingPagedResult = queryable.ToShardingPage(i + 1, take);
-                    startNew1.Stop();
-                    Console.WriteLine($"流式分页skip:[{skip}],take:[{take}]耗时用时:{startNew1.ElapsedMilliseconds}毫秒");
-                }
+                startNew1.Restart();
+                var list2 = queryable.Take(1000).ToList();
+                startNew1.Stop();
+                Console.WriteLine($"获取1000条用时:{startNew1.ElapsedMilliseconds}毫秒");
+
+                startNew1.Restart();
+                var list = queryable.Take(10).ToList();
+                startNew1.Stop();
+                Console.WriteLine($"获取10条用时:{startNew1.ElapsedMilliseconds}毫秒");
+
+
+                startNew1.Restart();
+                var list1 = queryable.Take(100).ToList();
+                startNew1.Stop();
+                Console.WriteLine($"获取100条用时:{startNew1.ElapsedMilliseconds}毫秒");
+
+
+                startNew1.Restart();
+                var list3 = queryable.Take(10000).ToList();
+                startNew1.Stop();
+                Console.WriteLine($"获取100000条用时:{startNew1.ElapsedMilliseconds}毫秒");
+
+
+
+                startNew1.Restart();
+                var list4 = queryable.Take(20000).ToList();
+                startNew1.Stop();
+                Console.WriteLine($"获取20000条用时:{startNew1.ElapsedMilliseconds}毫秒");
+
+                //var b = DateTime.Now.Date.AddDays(-3);
+                //var queryable = myShardingDbContext.Set<Order>().Select(o => new { Id = o.Id, OrderNo = o.OrderNo, CreateTime = o.CreateTime });//.Where(o => o.CreateTime >= b);
+
+                //var startNew1 = Stopwatch.StartNew();
+                //int skip = 0, take = 1000;
+                //for (int i = 20; i < 30000; i++)
+                //{
+                //    skip = take * i;
+                //    startNew1.Restart();
+                //    var shardingPagedResult = queryable.ToShardingPage(i + 1, take);
+                //    startNew1.Stop();
+                //    Console.WriteLine($"流式分页skip:[{skip}],take:[{take}]耗时用时:{startNew1.ElapsedMilliseconds}毫秒");
+                //}
 
                 Console.WriteLine("ok");
 
