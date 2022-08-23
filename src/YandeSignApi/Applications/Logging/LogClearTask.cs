@@ -28,14 +28,16 @@ namespace Logger.LocalFile.Tasks
             {
                 try
                 {
-
-                    string basePath = Directory.GetCurrentDirectory().Replace("\\", "/") + "/Logs/";
+                    string basePath = Directory.GetCurrentDirectory().Replace("\\", "/") + "/App_Data/Logs/";
 
                     if (Directory.Exists(basePath))
                     {
                         List<string> logPaths = IOHelper.GetFolderAllFiles(basePath).ToList();
 
-                        var deleteTime = DateTime.UtcNow.AddDays(-1 * saveDays);
+                        //var deleteTime = DateTime.UtcNow.AddDays(-1 * saveDays)
+
+                         var deleteTime = DateTime.UtcNow.AddMinutes(1);
+
 
                         if (logPaths.Count != 0)
                         {

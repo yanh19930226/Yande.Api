@@ -2,6 +2,7 @@ using AspNetCoreRateLimit;
 using FileStorage.AliCloud;
 using FileStorage.TencentCloud;
 using HealthChecks.UI.Client;
+using Logger.LocalFile.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
@@ -84,6 +85,10 @@ namespace YandeSignApi
             //}).AddSqlServerStorage(Configuration["HealthStorageConnectionString"]);//数据库持久化
 
             services.AddRedisSetup();
+
+            #region 后台任务
+            services.AddHostedService<LogClearTask>(); 
+            #endregion
 
             #region 注册短信服务
 

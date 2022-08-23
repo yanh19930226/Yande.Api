@@ -44,11 +44,6 @@ namespace YandeSignApi
             Host.CreateDefaultBuilder(args)
             .ConfigureLogging(logging =>
             {
-                #region 自定义Log配置
-                //本地日志文件记录
-                //logging.AddLocalFileLogger(options => { options.SaveDays = 7; });
-                #endregion
-
                 #region Nlog配置
                 //移除已经注册的其他日志处理程序
                 logging.ClearProviders();

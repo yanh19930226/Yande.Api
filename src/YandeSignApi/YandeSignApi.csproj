@@ -47,7 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Logger.LocalFile\Logger.LocalFile.csproj" />
+    <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\Yande.Core.Redis\Yande.Core.Redis.csproj" />
   </ItemGroup>
 
