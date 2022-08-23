@@ -1,3 +1,4 @@
+using Logger.LocalFile;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -43,10 +44,17 @@ namespace YandeSignApi
             Host.CreateDefaultBuilder(args)
             .ConfigureLogging(logging =>
             {
-                //移除已经注册的其他日志处理程序
-                logging.ClearProviders();
-                //设置最小的日志级别
-                logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+                #region 自定义Log配置
+                //本地日志文件记录
+                logging.AddLocalFileLogger(options => { options.SaveDays = 7; });
+                #endregion
+
+                #region Nlog配置
+                ////移除已经注册的其他日志处理程序
+                //logging.ClearProviders();
+                ////设置最小的日志级别
+                //logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Error);
+                #endregion
             })
             .UseNLog()
             .ConfigureWebHostDefaults(webBuilder =>

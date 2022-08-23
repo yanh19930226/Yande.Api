@@ -55,7 +55,7 @@ namespace YandeSignApi.Applications.Logs
     public static class NLogUtil
     {
         //private static readonly Logger DbLogger = LogManager.GetLogger("logdb");
-        private static readonly Logger FileLogger = LogManager.GetLogger("logfile");
+        private static readonly ILogger FileLogger = LogManager.GetLogger("logfile");
         //private static readonly string ConnectionString = AppSettingsConstVars.DbSqlConnection;
         //private static readonly string DbTypeString = AppSettingsConstVars.DbDbType;
 

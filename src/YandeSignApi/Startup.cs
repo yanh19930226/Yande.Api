@@ -13,6 +13,8 @@ using Microsoft.Extensions.Logging;
 using ShardingCore;
 using ShardingCore.Bootstrapers;
 using ShardingCore.TableExists;
+using SMS.AliCloud;
+using SMS.TencentCloud;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -80,6 +82,26 @@ namespace YandeSignApi
             //}).AddSqlServerStorage(Configuration["HealthStorageConnectionString"]);//数据库持久化
 
             services.AddRedisSetup();
+
+            #region 注册短信服务
+
+            //services.AddTencentCloudSMS(options =>
+            //{
+            //    var settings = hostContext.Configuration.GetSection("TencentCloudSMS").Get<SMS.TencentCloud.Models.SMSSetting>();
+            //    options.AppId = settings.AppId;
+            //    options.SecretId = settings.SecretId;
+            //    options.SecretKey = settings.SecretKey;
+            //});
+
+            //services.AddAliCloudSMS(options =>
+            //{
+            //    var settings = hostContext.Configuration.GetSection("AliCloudSMS").Get<SMS.AliCloud.Models.SMSSetting>();
+            //    options.AccessKeyId = settings.AccessKeyId;
+            //    options.AccessKeySecret = settings.AccessKeySecret;
+            //});
+
+            #endregion
+
 
             #region Swagger
             services.AddSwaggerSetup();

@@ -20,6 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="aliyun-net-sdk-core" Version="1.5.11" />
+    <PackageReference Include="Aliyun.OSS.SDK.NetCore" Version="2.13.0" />
     <PackageReference Include="AspNetCore.HealthChecks.MySql" Version="3.2.0" />
     <PackageReference Include="AspNetCore.HealthChecks.Rabbitmq" Version="3.1.4" />
     <PackageReference Include="AspNetCore.HealthChecks.Redis" Version="3.1.2" />
@@ -40,6 +42,13 @@
     <PackageReference Include="SkyAPM.Agent.AspNetCore" Version="2.0.0" />
     <PackageReference Include="SqlSugarCore" Version="5.0.8.9" />
     <PackageReference Include="StackExchange.Redis" Version="2.2.88" />
+    <PackageReference Include="Tencent.QCloud.Cos.Sdk" Version="5.4.32" />
+    <PackageReference Include="TencentCloudSDK" Version="3.0.583" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Logger.LocalFile\Logger.LocalFile.csproj" />
+    <ProjectReference Include="..\Yande.Core.Redis\Yande.Core.Redis.csproj" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace YandeSignApi.Controllers
 {
@@ -9,6 +10,12 @@ namespace YandeSignApi.Controllers
     [ApiController]
     public class IpClientController : Controller
     {
+
+        private readonly ILogger<IpClientController> _logger;
+        public IpClientController(ILogger<IpClientController> logger)
+        {
+            _logger=logger;
+        }
         /// <summary>
         /// Str
         /// </summary>
@@ -16,6 +23,8 @@ namespace YandeSignApi.Controllers
         [HttpGet]
         public string Str()
         {
+            _logger.Log(LogLevel.Warning, "测试");
+            _logger.LogInformation("日志组件测试");
             return "test";
         }
         /// <summary>

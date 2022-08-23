@@ -22,7 +22,10 @@ namespace YandeSignApi.Controllers
         /// </summary>
         /// <param name="configuration"></param>
         /// <param name="defaultDbContext"></param>
-        public EnviromentController(IConfiguration configuration, DefaultDbContext defaultDbContext)
+        public EnviromentController(
+            IConfiguration configuration,
+            DefaultDbContext defaultDbContext
+            )
         {
             Configuration = configuration;
             _defaultDbContext=defaultDbContext;
@@ -65,5 +68,7 @@ namespace YandeSignApi.Controllers
             await _defaultDbContext.SaveChangesAsync();
             return Ok();
         }
+
+
     }
 }
