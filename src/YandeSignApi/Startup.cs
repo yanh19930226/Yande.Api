@@ -1,4 +1,6 @@
 using AspNetCoreRateLimit;
+using FileStorage.AliCloud;
+using FileStorage.TencentCloud;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -102,6 +104,28 @@ namespace YandeSignApi
 
             #endregion
 
+            #region 注册文件服务
+
+            //services.AddTencentCloudStorage(options =>
+            //{
+            //    var settings = hostContext.Configuration.GetSection("TencentCloudFileStorage").Get<FileStorage.TencentCloud.Models.FileStorageSetting>();
+            //    options.AppId = settings.AppId;
+            //    options.Region = settings.Region;
+            //    options.SecretId = settings.SecretId;
+            //    options.SecretKey = settings.SecretKey;
+            //    options.BucketName = settings.BucketName;
+            //});
+
+            //services.AddAliCloudStorage(options =>
+            //{
+            //    var settings = hostContext.Configuration.GetSection("AliCloudFileStorage").Get<FileStorage.AliCloud.Models.FileStorageSetting>();
+            //    options.Endpoint = settings.Endpoint;
+            //    options.AccessKeyId = settings.AccessKeyId;
+            //    options.AccessKeySecret = settings.AccessKeySecret;
+            //    options.BucketName = settings.BucketName;
+            //});
+
+            #endregion
 
             #region Swagger
             services.AddSwaggerSetup();

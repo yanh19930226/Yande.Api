@@ -59,6 +59,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger.LocalFile", "src\Log
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "src\Common\Common.csproj", "{ECDBCF9B-81FD-47BD-A67F-6337C01DA338}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.DataBase", "src\Logger.DataBase\Logger.DataBase.csproj", "{6951B513-CDEB-4124-B6D2-1BD8001E7F65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -169,6 +171,10 @@ Global
 		{ECDBCF9B-81FD-47BD-A67F-6337C01DA338}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECDBCF9B-81FD-47BD-A67F-6337C01DA338}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECDBCF9B-81FD-47BD-A67F-6337C01DA338}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6951B513-CDEB-4124-B6D2-1BD8001E7F65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6951B513-CDEB-4124-B6D2-1BD8001E7F65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6951B513-CDEB-4124-B6D2-1BD8001E7F65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6951B513-CDEB-4124-B6D2-1BD8001E7F65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -200,6 +206,7 @@ Global
 		{2DD6AB66-F1CA-406F-8DA0-44C72112C5F0} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 		{6A2C72A1-1B66-4B1F-AC7C-4FF8DDCB4664} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 		{ECDBCF9B-81FD-47BD-A67F-6337C01DA338} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
+		{6951B513-CDEB-4124-B6D2-1BD8001E7F65} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A1602B0-CE22-461A-9C0C-312AEFB20E2D}

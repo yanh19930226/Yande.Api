@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using YandeSignApi.Applications.Logs;
 
 namespace YandeSignApi.Controllers
 {
@@ -23,8 +24,10 @@ namespace YandeSignApi.Controllers
         [HttpGet]
         public string Str()
         {
-            _logger.Log(LogLevel.Warning, "测试");
-            _logger.LogInformation("日志组件测试");
+
+            NLogUtil.WriteFileLog(NLog.LogLevel.Error, LogType.Web, "网站启动", "网站启动成功");
+            //_logger.Log(LogLevel.Warning, "测试");
+            //_logger.LogInformation("日志组件测试");
             return "test";
         }
         /// <summary>
