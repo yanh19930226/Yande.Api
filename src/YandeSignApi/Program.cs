@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using NLog.Web;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using YandeSignApi.Applications.Logs;
@@ -42,13 +43,20 @@ namespace YandeSignApi
         /// <returns></returns>
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-            .ConfigureLogging(logging =>
+            .ConfigureLogging((hostingContext, logging) =>
             {
                 #region Nlog配置
+
                 //移除已经注册的其他日志处理程序
                 logging.ClearProviders();
+
                 //设置最小的日志级别
-                logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+                logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Error);
+
+                //NLog设置文件存储路径
+                var appBasePath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), hostingContext.Configuration["LoggerSetting:LogFolder"]);
+                NLog.GlobalDiagnosticsContext.Set("appbasepath", appBasePath);
+
                 #endregion
             })
             .UseNLog()

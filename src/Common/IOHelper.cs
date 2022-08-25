@@ -9,7 +9,6 @@ namespace Common
 {
     public class IOHelper
     {
-
         /// <summary>
         /// 删除指定文件
         /// </summary>
@@ -34,8 +33,6 @@ namespace Common
                 return false;
             }
         }
-
-
 
         /// <summary>
         /// 删除指定文件夹
@@ -62,8 +59,6 @@ namespace Common
                 return false;
             }
         }
-
-
 
         /// <summary>
         /// 下载远程文件保存到本地
@@ -116,8 +111,6 @@ namespace Common
             }
         }
 
-
-
         /// <summary>
         /// 获取指定文件的大小
         /// </summary>
@@ -128,8 +121,6 @@ namespace Common
             var fileInfo = new FileInfo(path);
             return FileLengthToString(fileInfo.Length);
         }
-
-
 
         /// <summary>
         /// 文件Length值转String
@@ -161,8 +152,6 @@ namespace Common
             return m_strSize;
         }
 
-
-
         /// <summary>
         /// 获取文件夹下所有文件
         /// </summary>
@@ -190,7 +179,33 @@ namespace Common
             return list;
         }
 
+        /// <summary>
+        /// 删除文件夹下的空文件夹
+        /// </summary>
+        /// <param name="parentFolder"></param>
+        public static void DeleteEmptyFolders(string parentFolder)
+        {
+            var dir = new DirectoryInfo(parentFolder);
+            var subdirs = dir.GetDirectories("*.*", SearchOption.AllDirectories);
 
+            foreach (var subdir in subdirs)
+            {
+                if (!Directory.Exists(subdir.FullName)) continue;
+
+                var subFiles = subdir.GetFileSystemInfos("*.*", SearchOption.AllDirectories);
+
+                var findFile = false;
+
+                foreach (var sub in subFiles)
+                {
+                    findFile = (sub.Attributes & FileAttributes.Directory) == 0;
+
+                    if (findFile) break;
+                }
+
+                if (!findFile) subdir.Delete(true);
+            }
+        }
 
         /// <summary>
         /// 将指定目录下的文件压缩为Zip文件
@@ -215,8 +230,6 @@ namespace Common
             ZipFile.CreateFromDirectory(folderPath, filePath, CompressionLevel.Optimal, false);
         }
 
-
-
         /// <summary>
         /// 解压Zip文件到指定目录
         /// </summary>
@@ -234,7 +247,5 @@ namespace Common
 
             ZipFile.ExtractToDirectory(filePath, folderPath);
         }
-
-
     }
 }

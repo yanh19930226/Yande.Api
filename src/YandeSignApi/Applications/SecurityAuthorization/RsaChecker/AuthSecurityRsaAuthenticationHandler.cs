@@ -17,12 +17,14 @@ using YandeSignApi.Services;
 
 namespace YandeSignApi.Applications.SecurityAuthorization.RsaChecker
 {
+    /// <summary>
+    /// AuthSecurityRsaAuthenticationHandler
+    /// </summary>
     public class AuthSecurityRsaAuthenticationHandler : AuthenticationHandler<AuthSecurityRsaOptions>
     {
 
         #region Private
         private readonly IRedisOperationRepository _redisManager;
-
         private async Task<AuthenticateResult> AuthenticateResultFailAsync(string message)
         {
             Response.StatusCode = 401;
@@ -31,6 +33,14 @@ namespace YandeSignApi.Applications.SecurityAuthorization.RsaChecker
         }
         #endregion
 
+        /// <summary>
+        /// AuthSecurityRsaAuthenticationHandler
+        /// </summary>
+        /// <param name="redisManager"></param>
+        /// <param name="options"></param>
+        /// <param name="logger"></param>
+        /// <param name="encoder"></param>
+        /// <param name="clock"></param>
         public AuthSecurityRsaAuthenticationHandler(
             IRedisOperationRepository redisManager,
             IOptionsMonitor<AuthSecurityRsaOptions> options,
@@ -41,6 +51,10 @@ namespace YandeSignApi.Applications.SecurityAuthorization.RsaChecker
             _redisManager = redisManager;
         }
 
+        /// <summary>
+        /// HandleAuthenticateAsync
+        /// </summary>
+        /// <returns></returns>
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
         {
             try

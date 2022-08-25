@@ -24,7 +24,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using YandeSignApi.Applications.Commons;
 using YandeSignApi.Applications.Filters;
-using YandeSignApi.Applications.HealthChecks;
 using YandeSignApi.Applications.Middlewares;
 using YandeSignApi.Applications.SecurityAuthorization.RsaChecker;
 using YandeSignApi.Data;
@@ -87,7 +86,9 @@ namespace YandeSignApi
             services.AddRedisSetup();
 
             #region 后台任务
-            services.AddHostedService<LogClearTask>(); 
+
+            services.AddHostedService<LogClearTask>();
+
             #endregion
 
             #region 注册短信服务

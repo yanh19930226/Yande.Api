@@ -9,6 +9,9 @@ using YandeSignApi.Applications.Redis;
 
 namespace YandeSignApi
 {
+    /// <summary>
+    /// SevicesExtension
+    /// </summary>
     public static class SevicesExtension
     {
 
@@ -17,7 +20,6 @@ namespace YandeSignApi
         //    services.AddMvc(opts =>
         //    {
         //        //这里添加ApiThrottleActionFilter拦截器
-
         //    });
         //}
 
@@ -49,6 +51,11 @@ namespace YandeSignApi
             return services;
         }
 
+        /// <summary>
+        /// AddRedisSetup
+        /// </summary>
+        /// <param name="services"></param>
+        /// <exception cref="ArgumentNullException"></exception>
         public static void AddRedisSetup(this IServiceCollection services)
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
@@ -72,6 +79,12 @@ namespace YandeSignApi
             }
         }
 
+        /// <summary>
+        /// AddSwaggerSetup
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public static IServiceCollection AddSwaggerSetup(this IServiceCollection services)
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
@@ -92,6 +105,11 @@ namespace YandeSignApi
             return services;
         }
 
+        /// <summary>
+        /// UseCoreSwagger
+        /// </summary>
+        /// <param name="app"></param>
+        /// <returns></returns>
         public static IApplicationBuilder UseCoreSwagger(this IApplicationBuilder app)
         {
             app.UseOpenApi();
