@@ -26,8 +26,9 @@ namespace YandeSignApi.Controllers
         {
 
             NLogUtil.WriteFileLog(NLog.LogLevel.Error, LogType.Web, "网站启动", "网站启动成功");
-            //_logger.Log(LogLevel.Warning, "测试");
-            //_logger.LogInformation("日志组件测试");
+
+            NLogUtil.WriteFileLog(NLog.LogLevel.Info, LogType.Web, "网站启动", "网站启动成功");
+
             return "test";
         }
         /// <summary>
