@@ -279,13 +279,13 @@ namespace Yande.Api.Controllers
                 throw new Exception("Can't find MongoHostName!!!", ex);
             }
 
-            FileStream fileStream = new FileStream(@"D:\big.docx", FileMode.Open, FileAccess.Read, FileShare.Read);
+            FileStream fileStream = new FileStream(@"D:\test.docx", FileMode.Open, FileAccess.Read, FileShare.Read);
             byte[] bytes = new byte[fileStream.Length];
             fileStream.Read(bytes, 0, bytes.Length);
             fileStream.Close();
             Stream stream = new MemoryStream(bytes);
 
-            fileInfo = AddFile(stream, "big.docx", true);
+            fileInfo = AddFile(stream, "test.docx", false);
 
             #region MyRegion
             try
@@ -318,7 +318,7 @@ namespace Yande.Api.Controllers
 
                     fileInforabbit.UploadDateTime = fileInfo.UploadDateTime;
 
-                    ExcelConvertMessage excelConvertMessage = new ExcelConvertMessage(fileInforabbit);
+                    WordConvertMessage excelConvertMessage = new WordConvertMessage(fileInforabbit);
 
                     mqManager.Publish(excelConvertMessage);
 
