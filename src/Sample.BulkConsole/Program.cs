@@ -43,7 +43,6 @@ namespace Sample.BulkConsole
 
             //            op.ConfigId = "c1";
 
-<<<<<<< HEAD
             //            op.AddDefaultDataSource("ds0", "Server=localhost;uid=sa;pwd=sa123;Database=MyOrderSharding;MultipleActiveResultSets=true;");
             //            op.UseShardingQuery((conStr, builder) =>
             //            {
@@ -56,21 +55,6 @@ namespace Sample.BulkConsole
             //            op.ReplaceTableEnsureManager(sp => new SqlServerTableEnsureManager<MyShardingDbContext>());
 
             //        }).EnsureConfig();
-=======
-
-                    op.ConfigId = "c1";
-                    op.AddDefaultDataSource("ds0", "server=localhost;port=3306;database=shardingTest;userid=root;password=root;AllowLoadLocalInfile=true");
-                    op.UseShardingQuery((conn, b) =>
-                    {
-                        b.UseMySql(conn, new MySqlServerVersion(new Version())).UseLoggerFactory(efLogger);
-                    });
-                    op.UseShardingTransaction((conn, b) =>
-                    {
-                        b.UseMySql(conn, new MySqlServerVersion(new Version())).UseLoggerFactory(efLogger);
-                    });
-                    op.ReplaceTableEnsureManager(sp => new MySqlTableEnsureManager<MyShardingDbContext>());
-
-
                     #region SqlServer
                     //op.ConfigId = "c1";
 
@@ -85,7 +69,6 @@ namespace Sample.BulkConsole
                     //});
                     //op.ReplaceTableEnsureManager(sp => new SqlServerTableEnsureManager<MyShardingDbContext>()); 
                     #endregion
->>>>>>> 1f9ad8cdc0e314da4f52d81ebe82a39eefc51b9c
 
             //var serviceProvider = services.BuildServiceProvider();
             //serviceProvider.GetService<IShardingBootstrapper>().Start();
@@ -146,48 +129,47 @@ namespace Sample.BulkConsole
             //        Console.WriteLine($"流式分页skip:[{skip}],take:[{take}]耗时用时:{startNew1.ElapsedMilliseconds}毫秒");
             //    }
 
-<<<<<<< HEAD
+
             //    Console.WriteLine("ok");
 
             //} 
             #endregion
-=======
+
                 //    Console.WriteLine("ok");
                 //}
-                #endregion
 
 
-                var b = DateTime.Now.Date.AddDays(-3);
-                var queryable = myShardingDbContext.Set<Order>().Select(o => new { Id = o.Id, OrderNo = o.OrderNo, CreateTime = o.CreateTime });//.Where(o => o.CreateTime >= b);
-                var startNew1 = Stopwatch.StartNew();
-                startNew1.Restart();
-                var list2 = queryable.Take(1000).ToList();
-                startNew1.Stop();
-                Console.WriteLine($"获取1000条用时:{startNew1.ElapsedMilliseconds}毫秒");
+                //var b = DateTime.Now.Date.AddDays(-3);
+                //var queryable = myShardingDbContext.Set<Order>().Select(o => new { Id = o.Id, OrderNo = o.OrderNo, CreateTime = o.CreateTime });//.Where(o => o.CreateTime >= b);
+                //var startNew1 = Stopwatch.StartNew();
+                //startNew1.Restart();
+                //var list2 = queryable.Take(1000).ToList();
+                //startNew1.Stop();
+                //Console.WriteLine($"获取1000条用时:{startNew1.ElapsedMilliseconds}毫秒");
 
-                startNew1.Restart();
-                var list = queryable.Take(10).ToList();
-                startNew1.Stop();
-                Console.WriteLine($"获取10条用时:{startNew1.ElapsedMilliseconds}毫秒");
-
-
-                startNew1.Restart();
-                var list1 = queryable.Take(100).ToList();
-                startNew1.Stop();
-                Console.WriteLine($"获取100条用时:{startNew1.ElapsedMilliseconds}毫秒");
+                //startNew1.Restart();
+                //var list = queryable.Take(10).ToList();
+                //startNew1.Stop();
+                //Console.WriteLine($"获取10条用时:{startNew1.ElapsedMilliseconds}毫秒");
 
 
-                startNew1.Restart();
-                var list3 = queryable.Take(10000).ToList();
-                startNew1.Stop();
-                Console.WriteLine($"获取100000条用时:{startNew1.ElapsedMilliseconds}毫秒");
+                //startNew1.Restart();
+                //var list1 = queryable.Take(100).ToList();
+                //startNew1.Stop();
+                //Console.WriteLine($"获取100条用时:{startNew1.ElapsedMilliseconds}毫秒");
+
+
+                //startNew1.Restart();
+                //var list3 = queryable.Take(10000).ToList();
+                //startNew1.Stop();
+                //Console.WriteLine($"获取100000条用时:{startNew1.ElapsedMilliseconds}毫秒");
 
 
 
-                startNew1.Restart();
-                var list4 = queryable.Take(20000).ToList();
-                startNew1.Stop();
-                Console.WriteLine($"获取20000条用时:{startNew1.ElapsedMilliseconds}毫秒");
+                //startNew1.Restart();
+                //var list4 = queryable.Take(20000).ToList();
+                //startNew1.Stop();
+                //Console.WriteLine($"获取20000条用时:{startNew1.ElapsedMilliseconds}毫秒");
 
                 //var b = DateTime.Now.Date.AddDays(-3);
                 //var queryable = myShardingDbContext.Set<Order>().Select(o => new { Id = o.Id, OrderNo = o.OrderNo, CreateTime = o.CreateTime });//.Where(o => o.CreateTime >= b);
@@ -206,62 +188,58 @@ namespace Sample.BulkConsole
                 Console.WriteLine("ok");
 
             }
->>>>>>> 1f9ad8cdc0e314da4f52d81ebe82a39eefc51b9c
+            //#region 入队的code
+            //{
+            //    int Index = 100000;
+            //    while (Index > 0)
+            //    {
+            //        //string msg = Console.ReadLine();
+            //        new MyRedisSubPublishHelper().PublishMessage("nihaofengge", $"你好风哥：Guid值是：{DateTime.Now}{Guid.NewGuid().ToString()}");
+            //        Console.WriteLine("发布成功！");
+            //        Index -= 1;
+            //    }
+            //    Console.ReadKey();
+            //}
 
-            Console.WriteLine("Hello World!");
+            //#endregion
 
-            #region 入队的code
-            {
-                int Index = 100000;
-                while (Index > 0)
-                {
-                    //string msg = Console.ReadLine();
-                    new MyRedisSubPublishHelper().PublishMessage("nihaofengge", $"你好风哥：Guid值是：{DateTime.Now}{Guid.NewGuid().ToString()}");
-                    Console.WriteLine("发布成功！");
-                    Index -= 1;
-                }
-                Console.ReadKey();
-            }
+            //#region 秒杀的code
+            //{
+            //    try
+            //    {
+            //        Console.WriteLine("秒杀开始。。。。。");
+            //        for (int i = 0; i < 200; i++)
+            //        {
+            //            Task.Run(() =>
+            //            {
+            //                MyRedisSubPublishHelper.LockByRedis("mstest");
+            //                string productCount = MyRedisHelper.StringGet("productcount");
+            //                int pcount = int.Parse(productCount);
+            //                if (pcount > 0)
+            //                {
+            //                    long dlong = MyRedisHelper.StringDec("productcount");
+            //                    Console.WriteLine($"秒杀成功，商品库存:{dlong}");
+            //                    pcount -= 1;
+            //                    System.Threading.Thread.Sleep(30);
+            //                }
+            //                else
+            //                {
+            //                    Console.WriteLine($"秒杀失败，商品库存为零了！");
+            //                    throw new Exception("产品秒杀数量为零！");//加载这里会比较保险
+            //                                        }
+            //                MyRedisSubPublishHelper.UnLockByRedis("mstest");
+            //            }).Wait();
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Console.WriteLine($"产品已经秒杀完毕，原因：{ex.Message}");
+            //    }
+            //    Console.ReadKey();
+            //}
 
-            #endregion
+            //#endregion
 
-            #region 秒杀的code
-            {
-                try
-                {
-                    Console.WriteLine("秒杀开始。。。。。");
-                    for (int i = 0; i < 200; i++)
-                    {
-                        Task.Run(() =>
-                        {
-                            MyRedisSubPublishHelper.LockByRedis("mstest");
-                            string productCount = MyRedisHelper.StringGet("productcount");
-                            int pcount = int.Parse(productCount);
-                            if (pcount > 0)
-                            {
-                                long dlong = MyRedisHelper.StringDec("productcount");
-                                Console.WriteLine($"秒杀成功，商品库存:{dlong}");
-                                pcount -= 1;
-                                System.Threading.Thread.Sleep(30);
-                            }
-                            else
-                            {
-                                Console.WriteLine($"秒杀失败，商品库存为零了！");
-                                throw new Exception("产品秒杀数量为零！");//加载这里会比较保险
-                                                    }
-                            MyRedisSubPublishHelper.UnLockByRedis("mstest");
-                        }).Wait();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"产品已经秒杀完毕，原因：{ex.Message}");
-                }
-                Console.ReadKey();
-            }
-
-            #endregion
-
-        }
+        
     }
 }

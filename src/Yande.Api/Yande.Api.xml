@@ -4,6 +4,162 @@
         <name>Yande.Api</name>
     </assembly>
     <members>
+        <!-- Badly formed XML comment ignored for member "M:OfficeToPdf.Convertor.Serialize(System.Object)" -->
+        <member name="M:OfficeToPdf.Convertor.Deserialize``1(System.Byte[])">
+            <summary>
+            反序列化
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OfficeToPdf.Convertor.ObjectToBytes(System.Object)">
+            <summary> 
+            将一个object对象序列化，返回一个byte[]         
+            </summary> 
+            <param name="obj">能序列化的对象</param>         
+            <returns></returns> 
+        </member>
+        <member name="M:OfficeToPdf.Convertor.BytesToObject(System.Byte[])">
+            <summary> 
+            将一个序列化后的byte[]数组还原         
+            </summary>
+            <param name="Bytes"></param>         
+            <returns></returns> 
+        </member>
+        <member name="M:OfficeToPdf.Convertor.ByteArrayToObject(System.Byte[],System.Boolean)">
+            <summary>
+            二进制反序列化：byte=>实体object
+            </summary>
+            <param name="SerializedObj"></param>
+            <param name="ThrowException"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OfficeToPdf.Convertor.ObjectToByteArray(System.Object,System.Boolean)">
+            <summary>
+            二进制序列化：实体=》byte
+            </summary>
+            <param name="Obj"></param>
+            <param name="ThrowException"></param>
+            <returns></returns>
+        </member>
+        <member name="F:OfficeToPdf.MQManager._publishModelDic">
+            <summary>
+            持久化发送和订阅对象
+            </summary>
+        </member>
+        <member name="M:OfficeToPdf.MQManager.Publish(OfficeToPdf.Messages)">
+            <summary>
+            发布消息
+            </summary>
+            <param name="message">消息实体</param>
+        </member>
+        <member name="M:OfficeToPdf.MQManager.SubscribeFanout``1(System.Action{``0})">
+            <summary>
+            广播消息 queue自动生成
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="handler"></param>
+        </member>
+        <member name="M:OfficeToPdf.MQManager.Subscribe``1(System.Action{``0})">
+            <summary>
+            订阅消息
+            </summary>
+            <param name="handler">消息处理</param>
+        </member>
+        <member name="M:OfficeToPdf.MQManager.Subscribe``1(System.String,System.String,System.Boolean,System.Action{``0},System.Boolean)">
+            <summary>
+            接收消息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="queue">队列名称</param>
+            <param name="isProperties"></param>
+            <param name="handler">消费处理</param>
+            <param name="isDeadLetter"></param>
+        </member>
+        <member name="M:OfficeToPdf.MQManager.Dispose">
+            <summary>
+            执行与释放或重置非托管资源关联的应用程序定义的任务。
+            </summary>
+        </member>
+        <member name="M:OfficeToPdf.MQManager.Pull``1(System.Action{``0})">
+            <summary>
+            主动拉消息
+            </summary>
+            <param name="handler"></param>
+        </member>
+        <member name="M:OfficeToPdf.MQManager.GetModel(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            获取Model
+            </summary>
+            <param name="exchange">交换机名称</param>
+            <param name="queue">队列名称</param>
+            <param name="routingKey"></param>
+            <param name="isProperties">是否持久化</param>
+            <returns></returns>
+        </member>
+        <member name="M:OfficeToPdf.MQManager.GetModel(System.String,System.String,System.Boolean)">
+            <summary>
+            获取Model
+            </summary>
+            <param name="queue">队列名称</param>
+            <param name="isProperties"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OfficeToPdf.MQManager.ExchangeDeclare(RabbitMQ.Client.IModel,System.String,System.String,System.Boolean,System.Boolean,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            交换器声明
+            </summary>
+            <param name="iModel"></param>
+            <param name="exchange">交换器</param>
+            <param name="type">交换器类型：
+            1、Direct Exchange – 处理路由键。需要将一个队列绑定到交换机上，要求该消息与一个特定的路由键完全
+            匹配。这是一个完整的匹配。如果一个队列绑定到该交换机上要求路由键 “dog”，则只有被标记为“dog”的
+            消息才被转发，不会转发dog.puppy，也不会转发dog.guard，只会转发dog
+            2、Fanout Exchange – 不处理路由键。你只需要简单的将队列绑定到交换机上。一个发送到交换机的消息都
+            会被转发到与该交换机绑定的所有队列上。很像子网广播，每台子网内的主机都获得了一份复制的消息。Fanout
+            交换机转发消息是最快的。
+            3、Topic Exchange – 将路由键和某模式进行匹配。此时队列需要绑定要一个模式上。符号“#”匹配一个或多
+            个词，符号“*”匹配不多不少一个词。因此“audit.#”能够匹配到“audit.irs.corporate”，但是“audit.*”
+            只会匹配到“audit.irs”。</param>
+            <param name="durable">持久化</param>
+            <param name="autoDelete">自动删除</param>
+            <param name="arguments">参数</param>
+        </member>
+        <member name="M:OfficeToPdf.MQManager.QueueDeclare(RabbitMQ.Client.IModel,System.String,System.Boolean,System.Boolean,System.Boolean,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            队列声明
+            </summary>
+            <param name="channel"></param>
+            <param name="queue">队列</param>
+            <param name="durable">持久化</param>
+            <param name="exclusive">排他队列，如果一个队列被声明为排他队列，该队列仅对首次声明它的连接可见，
+            并在连接断开时自动删除。这里需要注意三点：其一，排他队列是基于连接可见的，同一连接的不同信道是可
+            以同时访问同一个连接创建的排他队列的。其二，“首次”，如果一个连接已经声明了一个排他队列，其他连
+            接是不允许建立同名的排他队列的，这个与普通队列不同。其三，即使该队列是持久化的，一旦连接关闭或者
+            客户端退出，该排他队列都会被自动删除的。这种队列适用于只限于一个客户端发送读取消息的应用场景。</param>
+            <param name="autoDelete">自动删除</param>
+            <param name="arguments">参数</param>
+        </member>
+        <member name="M:OfficeToPdf.MQManager.GetRabbitMqAttribute(OfficeToPdf.Messages)">
+            <summary>
+            获取对象属性
+            </summary>
+            <param name="msgEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OfficeToPdf.MQManager.GetRabbitMqAttribute``1">
+            <summary>
+            获取对象属性
+            </summary>
+            <param name="msgEnt"></param>
+            <returns></returns>
+        </member>
+        <member name="T:OfficeToPdf.MQConfig">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Yande.Api.ConfigurationExtensions">
             <summary>
             配置扩展类
@@ -95,6 +251,12 @@
             <summary>
             UploadController
             </summary>
+        </member>
+        <member name="M:Yande.Api.Controllers.UploadController.Upload">
+            <summary>
+            文件上传
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Yande.Api.Controllers.UploadController.UploadFile">
             <summary>
