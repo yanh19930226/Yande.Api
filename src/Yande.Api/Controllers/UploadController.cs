@@ -279,21 +279,15 @@ namespace Yande.Api.Controllers
                 throw new Exception("Can't find MongoHostName!!!", ex);
             }
 
-<<<<<<< HEAD
             FileStream fileStream = new FileStream(@"E:\test.docx", FileMode.Open, FileAccess.Read, FileShare.Read);
-=======
-            FileStream fileStream = new FileStream(@"D:\test.docx", FileMode.Open, FileAccess.Read, FileShare.Read);
->>>>>>> 7cc34d5df21fad18d34d0f4cce94bf825765fd9b
+
             byte[] bytes = new byte[fileStream.Length];
             fileStream.Read(bytes, 0, bytes.Length);
             fileStream.Close();
             Stream stream = new MemoryStream(bytes);
 
-<<<<<<< HEAD
             fileInfo = AddFile(stream, "test.docx", true);
-=======
-            fileInfo = AddFile(stream, "test.docx", false);
->>>>>>> 7cc34d5df21fad18d34d0f4cce94bf825765fd9b
+
 
             #region MyRegion
             try

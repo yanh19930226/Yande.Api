@@ -57,6 +57,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.BulkConsole", "src\S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "src\Common\Common.csproj", "{ECDBCF9B-81FD-47BD-A67F-6337C01DA338}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQDemo.Basic.Producer", "src\RabbitMQDemo.Basic.Producer\RabbitMQDemo.Basic.Producer.csproj", "{CDA58249-86F1-4F1D-84CF-A59B17AE731A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQDemo.Basic.Consumer", "src\RabbitMQDemo.Basic.Consumer\RabbitMQDemo.Basic.Consumer.csproj", "{050652CE-E866-4DB9-A13D-527283DE821F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -163,6 +167,14 @@ Global
 		{ECDBCF9B-81FD-47BD-A67F-6337C01DA338}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECDBCF9B-81FD-47BD-A67F-6337C01DA338}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECDBCF9B-81FD-47BD-A67F-6337C01DA338}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDA58249-86F1-4F1D-84CF-A59B17AE731A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDA58249-86F1-4F1D-84CF-A59B17AE731A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDA58249-86F1-4F1D-84CF-A59B17AE731A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDA58249-86F1-4F1D-84CF-A59B17AE731A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{050652CE-E866-4DB9-A13D-527283DE821F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{050652CE-E866-4DB9-A13D-527283DE821F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{050652CE-E866-4DB9-A13D-527283DE821F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{050652CE-E866-4DB9-A13D-527283DE821F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -193,6 +205,8 @@ Global
 		{7B05E654-6C0C-4972-8F20-0CCC2BC82D0B} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 		{2DD6AB66-F1CA-406F-8DA0-44C72112C5F0} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 		{ECDBCF9B-81FD-47BD-A67F-6337C01DA338} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
+		{CDA58249-86F1-4F1D-84CF-A59B17AE731A} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
+		{050652CE-E866-4DB9-A13D-527283DE821F} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A1602B0-CE22-461A-9C0C-312AEFB20E2D}
