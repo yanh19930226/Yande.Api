@@ -67,6 +67,10 @@ namespace Yande.Api
             });
             #endregion
 
+            services.AddMiniProfiler(options =>
+     options.RouteBasePath = "/profiler"
+    );
+
             #region 设置跨域
             services.AddCors(options => options.AddPolicy("CorsPolicy",
              builder =>
@@ -104,6 +108,8 @@ namespace Yande.Api
             app.UseOpenApi(); //添加swagger生成api文档（默认路由文档 /swagger/v1/swagger.json）
             app.UseSwaggerUi3();//添加Swagger UI到请求管道中(默认路由: /swagger). 
             #endregion
+
+            app.UseMiniProfiler();
 
             app.UseRouting();
 

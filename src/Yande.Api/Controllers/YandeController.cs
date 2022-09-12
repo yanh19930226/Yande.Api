@@ -4,10 +4,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Spire.Barcode;
+using StackExchange.Profiling;
 using System;
 using System.Drawing;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using Yande.Core.AppSettings;
 using Yande.Core.Filter;
@@ -30,8 +33,41 @@ namespace Yande.Api.Controllers
             _env = env;
             //_redisManager = redisManager;
         }
+        /// <summary>
+        /// MiniProfilerTest
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult MiniProfilerTest()
+        {
+            using (MiniProfiler.Current.Step("整体测试"))
+            {
+                using (MiniProfiler.Current.Step("第一个方法"))
+                {
+                    using (MiniProfiler.Current.CustomTiming("SQL", "SELECT * FROM Table"))
+                    {
 
-        
+                        Thread.Sleep(500);
+                    }
+                }
+                using (MiniProfiler.Current.Step("第二个方法"))
+                {
+                    using (MiniProfiler.Current.CustomTiming("子方法1", "GET "))
+                    {
+                        Thread.Sleep(700);
+                    }
+
+
+                    using (MiniProfiler.Current.CustomTiming("子方法2", "GET "))
+                    {
+                        Thread.Sleep(800);
+                    }
+                }
+            }
+
+            return Ok();
+        }
+
 
         [HttpPost]
         [HelloFilter]
@@ -71,6 +107,14 @@ namespace Yande.Api.Controllers
             return Ok();
         }
 
+
+        public class User
+        {
+            public int id { get; set; }
+            public string name { get; set; }
+            public int age { get; set; }
+        }
+
         #region 基于ASP.NET Core api 的服务器事件发送
         /// <summary>
         /// 基于ASP.NET Core api 的服务器事件发送
@@ -84,14 +128,18 @@ namespace Yande.Api.Controllers
             var response = Response;
             //响应头部添加text/event-stream，这是HTTP/2协议的一部分。
             response.Headers.Add("Content-Type", "text/event-stream");
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 10; i++)
             {
+                User user = new User();
+                user.id = i;
+                user.name = "yanh";
+                user.age = i;
                 // event:ping event是事件字段名，冒号后面是事件名称，不要忘了\n换行符。
                 await HttpContext.Response.WriteAsync($"event:ping\n");
 
                 // data: 是数据字段名称，冒号后面是数据字段内容。注意数据内容仅仅支持UTF-8，不支持二进制格式。
                 // data后面的数据当然可以传递JSON String的。
-                await HttpContext.Response.WriteAsync($"data:Controller {i} at {DateTime.Now}\r\r");
+                await HttpContext.Response.WriteAsync($"data:{JsonConvert.SerializeObject(user)}\r\r");
 
                 // 写入数据到响应后不要忘记 FlushAsync()，因为该api方法是异步的，所以要全程异步，调用同步方法会报错。
                 await HttpContext.Response.Body.FlushAsync();
