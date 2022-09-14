@@ -149,7 +149,7 @@ namespace Yande.Api.Controllers
             }
 
             //数据发送完毕后关闭连接。
-            Response.Body.Close();
+            //Response.Body.Close();
         }
         #endregion
 

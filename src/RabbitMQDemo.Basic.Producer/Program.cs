@@ -76,6 +76,71 @@ namespace RabbitMQDemo.Basic.Producer
 
             #region Exchange发布订阅模式
 
+            //var connFactory = new ConnectionFactory
+            //{
+            //    HostName = "139.198.178.61",
+            //    Port = 5672,
+            //    UserName = "guest",
+            //    Password = "guest"
+            //};
+            //using (var conn = connFactory.CreateConnection())
+            //{
+            //    using (var channel = conn.CreateModel())
+            //    {
+            //        var exchangeName = "publishsubscribe_exchange";
+            //        channel.ExchangeDeclare(exchange: exchangeName, type: "fanout");
+            //        while (true)
+            //        {
+            //            Console.WriteLine("消息内容(exit退出):");
+            //            var message = Console.ReadLine();
+            //            if (message.Trim().ToLower() == "exit")
+            //            {
+            //                break;
+            //            }
+
+            //            var body = Encoding.UTF8.GetBytes(message);
+            //            channel.BasicPublish(exchange: exchangeName, routingKey: "", basicProperties: null, body: body);
+            //            Console.WriteLine("消息内容发送完毕:" + message);
+            //        }
+            //    }
+            //}
+
+            #endregion
+
+            #region Exchange路由模式
+            //var connFactory = new ConnectionFactory
+            //{
+            //    HostName = "139.198.178.61",
+            //    Port = 5672,
+            //    UserName = "guest",
+            //    Password = "guest"
+            //};
+            //using (var conn = connFactory.CreateConnection())
+            //{
+            //    using (var channel = conn.CreateModel())
+            //    {
+            //        var exchangeName = "routing_exchange";
+            //        channel.ExchangeDeclare(exchange: exchangeName, type: "direct");
+            //        while (true)
+            //        {
+            //            Console.WriteLine("消息RoutingKey(warning or info):");
+            //            var routingKey = Console.ReadLine();
+            //            Console.WriteLine("消息内容(exit退出):");
+            //            var message = Console.ReadLine();
+            //            if (message.Trim().ToLower() == "exit")
+            //            {
+            //                break;
+            //            }
+
+            //            var body = Encoding.UTF8.GetBytes(message);
+            //            channel.BasicPublish(exchange: exchangeName, routingKey: routingKey, basicProperties: null, body: body);
+            //            Console.WriteLine("消息内容发送完毕:" + message);
+            //        }
+            //    }
+            //}
+            #endregion
+
+            #region Exchange通配符模式
             var connFactory = new ConnectionFactory
             {
                 HostName = "139.198.178.61",
@@ -87,10 +152,13 @@ namespace RabbitMQDemo.Basic.Producer
             {
                 using (var channel = conn.CreateModel())
                 {
-                    var exchangeName = "publishsubscribe_exchange";
-                    channel.ExchangeDeclare(exchange: exchangeName, type: "fanout");
+                    var exchangeName = "topics_exchange";
+                    channel.ExchangeDeclare(exchange: exchangeName, type: "topic");
                     while (true)
                     {
+                        Console.WriteLine("消息RoutingKey:");
+                        var routingKey = Console.ReadLine();
+
                         Console.WriteLine("消息内容(exit退出):");
                         var message = Console.ReadLine();
                         if (message.Trim().ToLower() == "exit")
@@ -99,12 +167,11 @@ namespace RabbitMQDemo.Basic.Producer
                         }
 
                         var body = Encoding.UTF8.GetBytes(message);
-                        channel.BasicPublish(exchange: exchangeName, routingKey: "", basicProperties: null, body: body);
+                        channel.BasicPublish(exchange: exchangeName, routingKey: routingKey, basicProperties: null, body: body);
                         Console.WriteLine("消息内容发送完毕:" + message);
                     }
                 }
             }
-
             #endregion
 
         }
