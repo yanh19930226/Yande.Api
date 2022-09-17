@@ -2,6 +2,7 @@ using AspNetCoreRateLimit;
 using FileStorage.AliCloud;
 using FileStorage.TencentCloud;
 using HealthChecks.UI.Client;
+using InitQ;
 using Logger.LocalFile.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -25,7 +26,9 @@ using System.Threading.Tasks;
 using YandeSignApi.Applications.Commons;
 using YandeSignApi.Applications.Filters;
 using YandeSignApi.Applications.Middlewares;
+using YandeSignApi.Applications.RedisMq;
 using YandeSignApi.Applications.SecurityAuthorization.RsaChecker;
+using YandeSignApi.Controllers;
 using YandeSignApi.Data;
 using YandeSignApi.Models.ShardingCore;
 
@@ -85,9 +88,24 @@ namespace YandeSignApi
 
             services.AddRedisSetup();
 
+
+            services.AddInitQ(m =>
+            {
+                m.SuspendTime = 1000;
+                m.IntervalTime = 1000;
+                m.ConnectionString = "114.55.177.197,connectTimeout=1000,connectRetry=1,syncTimeout=10000,DefaultDatabase=8";
+                m.ListSubscribe = new List<Type>()
+                { 
+                     typeof(TestSubscribe),
+                     typeof(TestDelaySubscribe)
+                };
+                m.ShowLog = false;
+            });
+
+
             #region 后台任务
 
-            services.AddHostedService<LogClearTask>();
+            //services.AddHostedService<LogClearTask>();
 
             #endregion
 

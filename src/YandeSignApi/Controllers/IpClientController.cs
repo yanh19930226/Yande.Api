@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using YandeSignApi.Applications.Logs;
+using YandeSignApi.Applications.Redis;
+using YandeSignApi.Applications.RedisMq;
 
 namespace YandeSignApi.Controllers
 {
@@ -11,6 +13,13 @@ namespace YandeSignApi.Controllers
     [ApiController]
     public class IpClientController : Controller
     {
+
+        private readonly IRedisOperationRepository _redisOperationRepository;
+        public IpClientController(IRedisOperationRepository redisOperationRepository)
+        {
+            _redisOperationRepository=redisOperationRepository;
+        }
+
 
         private readonly ILogger<IpClientController> _logger;
         public IpClientController(ILogger<IpClientController> logger)
@@ -49,5 +58,7 @@ namespace YandeSignApi.Controllers
         {
             return "test3";
         }
+        
+
     }
 }
