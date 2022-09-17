@@ -8,13 +8,17 @@ using Newtonsoft.Json;
 using Spire.Barcode;
 using StackExchange.Profiling;
 using System;
+using System.Collections;
 using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using Yande.Api.SlideCaptcha;
 using Yande.Core.AppSettings;
 using Yande.Core.Filter;
+using Yande.Core.Redis;
 using Yande.Core.Service;
+using YandeSignApi.Applications.Redis;
 
 namespace Yande.Api.Controllers
 {
@@ -25,13 +29,18 @@ namespace Yande.Api.Controllers
         private readonly ITestAutofac _testAutofac;
         public IWebHostEnvironment _env;
         private readonly ILogger<YandeController> _logger;
-        //private readonly IRedisManager _redisManager;
-        public YandeController(ITestAutofac testAutofac, ILogger<YandeController> logger, IWebHostEnvironment env/*, IRedisManager redisManager*/)
+        private readonly IRedisOperationRepository _redisOperationRepository;
+        public YandeController(
+            ITestAutofac testAutofac,
+            ILogger<YandeController> logger,
+            IRedisOperationRepository redisOperationRepository,
+            IWebHostEnvironment env
+            )
         {
             _testAutofac = testAutofac;
             _logger = logger;
             _env = env;
-            //_redisManager = redisManager;
+            _redisOperationRepository = redisOperationRepository;
         }
         /// <summary>
         /// MiniProfilerTest
@@ -106,6 +115,60 @@ namespace Yande.Api.Controllers
 
             return Ok();
         }
+
+        /// <summary>
+        /// 获取活动验证码
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult GetCaptcha()
+        {
+            Captcha64Model model = Captcha.GenerateBase64();
+            _redisOperationRepository.Set("sliderX", model.X,TimeSpan.FromMinutes(1));
+            Hashtable ht = new Hashtable();
+            ht.Add("background", model.Background);
+            ht.Add("slider", model.Slide);
+            ht.Add("sliderXXXXX", model.X);
+            return Json(ht);
+        }
+
+        /// <summary>
+        /// 检查验证
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult CheckCaptcha(int x = 0)
+        {
+            Hashtable hs = new Hashtable();
+            string Mess = "";
+            int Code = 0;
+            var session = _redisOperationRepository.Get("sliderX");
+            if (session == null)
+            {
+                Mess = "请刷新验证码";
+                Code = 500;
+                goto block;
+            }
+            string sliderXStr = session.Result;
+            int sliderX = Convert.ToInt32(sliderXStr);
+            int difX = sliderX - x;
+            if (difX >= 0 - Config.blod && difX <= Config.blod)
+            {
+                Mess = "success";
+                Code = 0;
+            }
+            else
+            {
+                Mess = "错误";
+                Code = 500;
+            }
+        block:
+            hs.Add("Mess", Mess);
+            hs.Add("Code", Code);
+            return Json(hs);
+        }
+
 
 
         public class User

@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>滑块验证</title>
+    <style>
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .sc-captcha {
+            width: 300px;
+            margin: 100px auto;
+        }
+
+        .sc_net_panel {
+            padding: 10px;
+        }
+
+            .sc_net_panel > div {
+                position: relative;
+            }
+
+        .bg_slider {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .bg_refresh {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: #808080;
+            color: #fff;
+            border-radius: 3px;
+            width: 16px;
+            line-height: 16px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .sc_net_slider_icon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 37px;
+            text-align: center;
+            border-radius: 5px;
+            border: #808080 1px solid;
+            width: 37px;
+            line-height: 37px;
+            cursor: pointer;
+        }
+
+            .sc_net_slider_icon:hover {
+                color: #fff;
+                background: #1991fa;
+            }
+
+        .sc_net_slider_text {
+            position: absolute;
+            left: 0;
+            top: 0;
+            text-align: center;
+            width: 280px;
+            color: #45494c;
+            border: #808080 1px solid;
+            border-radius: 5px;
+            line-height: 35px;
+            height: 37px;
+            cursor: default;
+        }
+
+        .sc_net_slider_area {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 37px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="sc-captcha">
+            <div class="sc_net_panel">
+                <div class="sc_net_bg">
+                    <div class="sc_net_bgimg">
+                    </div>
+                    <div class="bg_refresh" onclick="loadCaptcha()" title="刷新">↻</div>
+                </div>
+            </div>
+            <div class="sc_net_panel1">
+                <div class="sc_net_panel  ">
+                    <div class="sc_net_slider">
+                        <div class="sc_net_slider_text">向右拖动滑块填充拼图</div>
+                        <div class="sc_net_slider_area"></div>
+                        <div id="table1" class="sc_net_slider_icon">➞</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+            var initial_x; //初始坐标
+            var end_x; //结束坐标
+            var slider = getByClassName0("sc_net_slider_icon"); //获取滑块
+            var bg_slider;
+            slider.addEventListener('mousedown', handleDragStart);
+            slider.addEventListener('touchstart', handleDragStart);
+            document.addEventListener('mousemove', handleDragMove);
+            document.addEventListener('touchmove', handleDragMove);
+            document.addEventListener('mouseup', handleDragEnd);
+            document.addEventListener('touchend', handleDragEnd);
+            document.addEventListener('mousedown', function () {
+                return false;
+            });
+            document.addEventListener('touchstart', function () {
+                return false;
+            });
+            loadCaptcha();
+            //获取图片数据
+            function loadCaptcha() {
+                $.ajax({
+                    url: "http://localhost:8880/api/Yande/GetCaptcha",
+                    type: "get",
+                    dataType: "JSON",
+                    crossDomain: true,
+                    success: function (json) {
+                        $("#table1").css("position", "absolute");//滑块恢复初始位置
+                        $("#table1").css("left", 0);//滑块恢复初始位置
+                        isMouseDown = false;//滑块禁止移动
+                        var bg = createCanvas(280, 155); //定义画布大小
+                        bg.className = 'bg_img'; //定义画布名称
+                        bg_slider = createCanvas(62, 155); //定义滑块大小
+                        bg_slider.className = 'bg_slider'; //定义滑块名称
+                        CanvasSetImage(bg, json.background); //创建画布
+                        CanvasSetImage(bg_slider, json.slider); //创建滑块
+                        /*向界面添加节点*/
+                        var doc = document.getElementsByClassName("sc_net_bgimg")[0];
+                        doc.innerHTML = "";
+                        doc.appendChild(bg);
+                        doc.appendChild(bg_slider);
+                        /*end*/
+                    }
+                })
+            }
+            //设置画布，滑块的大小
+            function createCanvas(width, height) {
+                var canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                return canvas;
+            };
+            //创建画布，滑块
+            function CanvasSetImage(_canvas, base64) {
+
+                //获取2d画布对象
+                var ctx = _canvas.getContext("2d");
+                //创建图片标签
+                var _img = document.createElement("img");
+                //设置图片地址
+                _img.src = base64;
+                _img.onload = function () {
+                    ctx.drawImage(_img, 0, 0);
+                }
+            }
+            //根据类名获取元素
+            function getByClassName0(className) {
+                return document.getElementsByClassName(className)[0];
+            };
+            //originX  originY初始坐标
+            //clientX  clientY相对于界面的坐标
+            //screenX screenY相对于屏幕的坐标
+            //isMouseDown=true/false 滑块是否能移动
+            var originX, originY, trail = [],
+                isMouseDown = false;
+            var isOk = false;
+            //滑块启动
+            function handleDragStart(e) {
+                if (isOk) return;
+                originX = e.screenX || e.touches[0].clientX;
+                originY = e.screenY || e.touches[0].clientY;
+                isMouseDown = true;
+                initial_x = $(".bg_slider").offset().left; //获取初始坐标
+
+            };
+            //滑块拖动
+            function handleDragMove(e) {
+
+                if (!isMouseDown) return false;
+                var eventX = e.clientX || e.touches[0].clientX;
+                var eventY = e.clientY || e.touches[0].clientY;
+                var moveX = eventX - originX;
+                var moveY = eventY - originY;
+                if (moveX >= 0 && moveX <= 243) {
+                    slider.style.left = moveX + "px";
+                    bg_slider.style.left = moveX / 243 * 218 + "px";
+                }
+            };
+            //滑块结束
+            function handleDragEnd(e) {
+                if (!isMouseDown) return false;
+                isMouseDown = false;
+                var eventX = e.clientX || e.changedTouches[0].clientX;
+                if (eventX == originX) return false;
+                end_x = $(".bg_slider").offset().left; //获取最终坐标
+                var result = Math.round(end_x - initial_x);
+                $.get("http://localhost:8880/api/Yande/CheckCaptcha?x=" + result, function (res) {
+                    if (res.Mess == "错误") {
+                        alert("出错了，再试一遍吧！");
+                        handleDragStart(e);
+                        loadCaptcha();
+                    } else {
+                        alert("恭喜你，已打败80%的用户！");
+                    }
+                });
+            };
+    </script>
+</body>
+</html> 

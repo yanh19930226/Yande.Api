@@ -554,45 +554,45 @@ namespace RabbitMQDemo.Basic.Producer
             };
             using (var conn = connFactory.CreateConnection())
             {
-                //using (var channel = conn.CreateModel())
-                //{
-                //    var queueName = "priorityqueue";
-                //    var arguments = new Dictionary<string, object>
-                //    {
-                //        { "x-max-priority", 10 }
-                //    };
-                //    channel.QueueDeclare(queue: queueName, durable: false, exclusive: false, autoDelete: false, arguments: arguments);
+                using (var channel = conn.CreateModel())
+                {
+                    var queueName = "priorityqueue";
+                    var arguments = new Dictionary<string, object>
+                    {
+                        { "x-max-priority", 10 }
+                    };
+                    channel.QueueDeclare(queue: queueName, durable: false, exclusive: false, autoDelete: false, arguments: arguments);
 
-                //    for (int i = 0; i < 10; i++)
-                //    {
-                //        var message = "第" + (i + 1) + "条消息";
-                //        byte priority = 0;
+                    for (int i = 0; i < 10; i++)
+                    {
+                        var message = "第" + (i + 1) + "条消息";
+                        byte priority = 0;
 
-                //        if (i < 3)
-                //        {
-                //            message += "-info";
-                //            priority = 1;
-                //        }
+                        if (i < 3)
+                        {
+                            message += "-info";
+                            priority = 1;
+                        }
 
-                //        else if (i < 6 && i >= 3)
-                //        {
-                //            message += "-warn";
-                //            priority = 2;
-                //        }
-                //        else
-                //        {
-                //            message += "-error";
-                //            priority = 3;
-                //        }
-                //        var body = Encoding.UTF8.GetBytes(message);
-                //        var basicProperties = channel.CreateBasicProperties();
-                //        basicProperties.Priority = priority;
-                //        channel.BasicPublish(exchange: "", routingKey: queueName, basicProperties: basicProperties, body: body);
-                //        Console.WriteLine("消息内容发送完毕:" + message);
-                //    }
+                        else if (i < 6 && i >= 3)
+                        {
+                            message += "-warn";
+                            priority = 2;
+                        }
+                        else
+                        {
+                            message += "-error";
+                            priority = 3;
+                        }
+                        var body = Encoding.UTF8.GetBytes(message);
+                        var basicProperties = channel.CreateBasicProperties();
+                        basicProperties.Priority = priority;
+                        channel.BasicPublish(exchange: "", routingKey: queueName, basicProperties: basicProperties, body: body);
+                        Console.WriteLine("消息内容发送完毕:" + message);
+                    }
 
-                //    Console.ReadKey();
-                //}
+                    Console.ReadKey();
+                }
             }
             #endregion
 

@@ -390,9 +390,9 @@ namespace RabbitMQDemo.Basic.Consumer
                 {
                     var queueName = "priorityqueue";
                     var arguments = new Dictionary<string, object>
-                        {
-                            { "x-max-priority", 10 }
-                        };
+                     {
+                         { "x-max-priority", 10 }
+                     };
                     channel.QueueDeclare(queue: queueName, durable: false, exclusive: false, autoDelete: false, arguments: arguments);
                     var consumer = new EventingBasicConsumer(channel);
 
