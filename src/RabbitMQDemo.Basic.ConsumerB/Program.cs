@@ -116,39 +116,39 @@ namespace RabbitMQDemo.Basic.ConsumerB
             #endregion
 
             #region Exchange通配符模式
-            var connFactory = new ConnectionFactory
-            {
-                HostName = "139.198.178.61",
-                Port = 5672,
-                UserName = "guest",
-                Password = "guest"
-            };
-            using (var conn = connFactory.CreateConnection())
-            {
-                using (var channel = conn.CreateModel())
-                {
-                    var exchangeName = "topics_exchange";
-                    channel.ExchangeDeclare(exchange: exchangeName, type: "topic");
-                    var queueName = exchangeName + "_worker_1";
-                    channel.QueueDeclare(queue: queueName, durable: false, exclusive: false, autoDelete: false, arguments: null);
-                    var routingKey2 = "#.created.";
-                    channel.QueueBind(queue: queueName, exchange: exchangeName, routingKey: routingKey2);
+            //var connFactory = new ConnectionFactory
+            //{
+            //    HostName = "139.198.178.61",
+            //    Port = 5672,
+            //    UserName = "guest",
+            //    Password = "guest"
+            //};
+            //using (var conn = connFactory.CreateConnection())
+            //{
+            //    using (var channel = conn.CreateModel())
+            //    {
+            //        var exchangeName = "topics_exchange";
+            //        channel.ExchangeDeclare(exchange: exchangeName, type: "topic");
+            //        var queueName = exchangeName + "_worker_1";
+            //        channel.QueueDeclare(queue: queueName, durable: false, exclusive: false, autoDelete: false, arguments: null);
+            //        var routingKey2 = "#.created.";
+            //        channel.QueueBind(queue: queueName, exchange: exchangeName, routingKey: routingKey2);
 
-                    channel.BasicQos(0, 10, false);
+            //        channel.BasicQos(0, 10, false);
 
-                    var consumer = new EventingBasicConsumer(channel);
-                    consumer.Received += (model, ea) =>
-                    {
-                        Thread.Sleep(1000);
-                        var message = ea.Body;
-                        Console.WriteLine("接收到信息为:" + Encoding.UTF8.GetString(message.ToArray()) + DateTime.Now.ToString("hh:mm:ss"));
-                        ((EventingBasicConsumer)model).Model.BasicAck(ea.DeliveryTag, false);
-                    };
+            //        var consumer = new EventingBasicConsumer(channel);
+            //        consumer.Received += (model, ea) =>
+            //        {
+            //            Thread.Sleep(1000);
+            //            var message = ea.Body;
+            //            Console.WriteLine("接收到信息为:" + Encoding.UTF8.GetString(message.ToArray()) + DateTime.Now.ToString("hh:mm:ss"));
+            //            ((EventingBasicConsumer)model).Model.BasicAck(ea.DeliveryTag, false);
+            //        };
 
-                    channel.BasicConsume(queue: queueName, autoAck: false, consumer: consumer);
-                    Console.ReadKey();
-                }
-            }
+            //        channel.BasicConsume(queue: queueName, autoAck: false, consumer: consumer);
+            //        Console.ReadKey();
+            //    }
+            //}
             #endregion
 
         }

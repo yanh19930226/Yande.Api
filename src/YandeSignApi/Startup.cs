@@ -193,12 +193,10 @@ namespace YandeSignApi
             services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
             #endregion
 
-
             ILoggerFactory efLogger = LoggerFactory.Create(builder =>
             {
                 builder.AddFilter((category, level) => category == DbLoggerCategory.Database.Command.Name && level == LogLevel.Information).AddConsole();
             });
-
             services.AddShardingDbContext<DefaultDbContext>()
                     .AddEntityConfig(o =>
                     {
