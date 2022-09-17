@@ -34,6 +34,7 @@ namespace YandeSignApi.Controllers
 			_options = optionsAccessor.Value;
 			_clientPolicyStore = clientPolicyStore;
 		}
+
 		/// <summary>
 		/// Get
 		/// </summary>
@@ -43,6 +44,7 @@ namespace YandeSignApi.Controllers
 		{
 			return await _clientPolicyStore.GetAsync($"{_options.ClientPolicyPrefix}_cl-key-1");
 		}
+
 		/// <summary>
 		/// Post
 		/// </summary>
@@ -60,45 +62,5 @@ namespace YandeSignApi.Controllers
 			});
 			await _clientPolicyStore.SetAsync(id, clPolicy);
 		}
-		/// <summary>
-		/// RedisMq发布订阅
-		/// </summary>
-		/// <returns></returns>
-		[HttpPost]
-		public async Task RedisMq()
-		{
-			await _redisOperationRepository.ListRightPushAsync(RedisMessageQueueKey.TestSubscribeQueue, "test");
-		}
-
-		/// <summary>
-		/// RedisMq延迟
-		/// </summary>
-		/// <returns></returns>
-		[HttpPost]
-		public async Task RedisMqDelay()
-		{
-			var dtNow = DateTime.Now;
-
-			await _redisOperationRepository.SortedSetAddAsync(RedisMessageQueueKey.TestSubscribeDelayQueue, $"{dtNow.ToString("yyyy-MM-dd HH:mm:ss")}", dtNow.AddSeconds(10));
-		}
-
-
-		[HttpGet]
-		[Subscribe(RedisMessageQueueKey.TestSubscribeQueue)]
-		public async Task SetBusinessSettlerEvent(string msg)
-		{
-			var response = Response;
-
-			HttpContext.Response.Headers.Add("Content-Type", "text/event-stream");
-			await HttpContext.Response.WriteAsync($"id: {Guid.NewGuid().ToString()}\n");
-			await HttpContext.Response.WriteAsync($"event:SetBusinessSettlerEvent\n");
-			await HttpContext.Response.WriteAsync($"retry: 3\n");
-			await HttpContext.Response.WriteAsync($"data: {111}\r\r");
-
-			await HttpContext.Response.Body.FlushAsync();
-
-			Response.Body.Close();
-		}
-
 	}
 }

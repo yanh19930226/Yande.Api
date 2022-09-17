@@ -14,5 +14,10 @@
         /// TestSubscribeDelayQueue
         /// </summary>
         public const string TestSubscribeDelayQueue = "TestSubscribeDelayQueue";
+
+        /// <summary>
+        /// TestChannelSubscribeQueue
+        /// </summary>
+        public const string TestChannelSubscribeQueue = "TestChannelSubscribeQueue";
     }
 }

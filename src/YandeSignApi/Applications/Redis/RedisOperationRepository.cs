@@ -235,5 +235,210 @@ namespace YandeSignApi.Applications.Redis
             var score = (cacheTime.ToUniversalTime().Ticks - 621355968000000000) / 10000000;
             var bl = await _database.SortedSetAddAsync(redisKey, redisValue, score);
         }
+
+        /// <summary>
+        /// PublishAsync
+        /// </summary>
+        /// <param name="channel"></param>
+        /// <param name="redisValue"></param>
+        /// <returns></returns>
+        public async Task PublishAsync(string channel, string redisValue)
+        {
+
+            await _database.PublishAsync(channel, redisValue);
+
+        }
+
+        /// <summary>
+        /// SubscribeAsync
+        /// </summary>
+        /// <param name="channel"></param>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        public async Task SubscribeAsync(string channel, Action<RedisChannel,RedisValue> action)
+        {
+            ISubscriber sub = _redis.GetSubscriber();
+
+            await sub.SubscribeAsync(channel, action);
+        }
+
+        #region Hash操作
+        /// <summary>
+        /// HSET
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public async Task<bool> HSET(string hkey, string key, string value)
+        {
+            return await _database.HashSetAsync(hkey, key, value);
+        }
+
+        /// <summary>
+        /// HSETNX 不存在才设置
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public async Task<bool> HSETNX(string hkey, string key, string value)
+        {
+            return await _database.HashSetAsync(hkey, key, value, When.NotExists);
+        }
+
+        /// <summary>
+        /// HGET 获取hash中的一个key
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public async Task<RedisValue> HGET(string hkey, string key)
+        {
+            return await _database.HashGetAsync(hkey, key);
+        }
+
+        /// <summary>
+        /// HIncr
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <param name="key"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public async Task<long> HIncr(string hkey, string key, int count)
+        {
+            return await _database.HashIncrementAsync(hkey, key, count);
+        }
+
+        /// <summary>
+        /// HDIncr
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <param name="key"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public async Task<long> HDIncr(string hkey, string key, int count)
+        {
+            return await _database.HashDecrementAsync(hkey, key, count);
+        }
+
+        /// <summary>
+        /// hlen 返回hash存在的key个数
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <returns></returns>
+        public async Task<long> HLen(string hkey)
+        {
+            return await _database.HashLengthAsync(hkey);
+        }
+
+        /// <summary>
+        /// hdel 删除一个hash里面的key
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public async Task<bool> Hdel(string hkey, string key)
+        {
+            return await _database.HashDeleteAsync(hkey, key);
+        }
+
+        /// <summary>
+        /// hstrlen hash中key的数据长度
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public async Task<long> HashStrLen(string hkey, string key)
+        {
+            return await _database.HashStringLengthAsync(hkey, key);
+        }
+
+        /// <summary>
+        /// hexists 判断一个key是否在hash中
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public async Task<bool> HashKeyExist(string hkey, string key)
+        {
+            return await _database.HashExistsAsync(hkey, key);
+        }
+
+        /// <summary>
+        /// hmset 批量设置多个数据
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public async Task HMSET(string hkey, HashEntry[] value)
+        {
+            await _database.HashSetAsync(hkey, value);
+        }
+
+        /// <summary>
+        /// hmget 批量获取多个数据
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <param name="hashField"></param>
+        /// <returns></returns>
+        public async Task<RedisValue[]> HMGET(string hkey, RedisValue[] hashField)
+        {
+            return await _database.HashGetAsync(hkey, hashField);
+        }
+
+        /// <summary>
+        /// hkeys 获取所有的key
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <returns></returns>
+        public async Task<RedisValue[]> HKeys(string hkey)
+        {
+            return await _database.HashKeysAsync(hkey);
+        }
+
+        /// <summary>
+        /// hvals 获取所有的value
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <returns></returns>
+        public async Task<RedisValue[]> HVals(string hkey)
+        {
+            return await _database.HashValuesAsync(hkey);
+        }
+
+        /// <summary>
+        /// hall 获取所有的键值对
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="hkey"></param>
+        /// <returns></returns>
+        public async Task<Dictionary<string, T>> HashGetAll<T>(string hkey)
+        {
+            HashEntry[] hashEntries = await _database.HashGetAllAsync(hkey);
+
+            return hashEntries.ToDictionary(
+                            x => x.Name.ToString(),
+                            x => JsonConvert.DeserializeObject<T>(x.Value),
+                            StringComparer.Ordinal);
+        }
+
+        /// <summary>
+        /// hall 获取所有的键值对
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <returns></returns>
+        public async Task<Dictionary<string, string>> HashAll(string hkey)
+        {
+            HashEntry[] hashEntries = await _database.HashGetAllAsync(hkey);
+
+            return hashEntries.ToDictionary(
+                            x => x.Name.ToString(),
+                            x => x.Value.ToString(),
+                            StringComparer.Ordinal);
+
+        }
+        #endregion
+
     }
 }

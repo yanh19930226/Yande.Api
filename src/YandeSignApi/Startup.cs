@@ -86,22 +86,25 @@ namespace YandeSignApi
             //    setupSettings.SetEvaluationTimeInSeconds(10);
             //}).AddSqlServerStorage(Configuration["HealthStorageConnectionString"]);//数据库持久化
 
+            #region Redis
+            //redis注入
             services.AddRedisSetup();
-
-
+            //redis消息队列
             services.AddInitQ(m =>
             {
                 m.SuspendTime = 1000;
                 m.IntervalTime = 1000;
                 m.ConnectionString = "114.55.177.197,connectTimeout=1000,connectRetry=1,syncTimeout=10000,DefaultDatabase=8";
                 m.ListSubscribe = new List<Type>()
-                { 
+                {
                      typeof(TestSubscribe),
                      typeof(TestDelaySubscribe)
                 };
                 m.ShowLog = false;
             });
-
+            services.AddHostedService<ChannelSubscribeA>();
+            services.AddHostedService<ChannelSubscribeB>();
+            #endregion
 
             #region 后台任务
 

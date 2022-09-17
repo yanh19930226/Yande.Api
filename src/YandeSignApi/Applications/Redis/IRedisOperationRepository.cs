@@ -126,6 +126,7 @@ namespace YandeSignApi.Applications.Redis
         /// <param name="redisKey"></param>
         /// <returns></returns>
         Task ListClearAsync(string redisKey);
+
         /// <summary>
         /// 延迟消息
         /// </summary>
@@ -135,5 +136,144 @@ namespace YandeSignApi.Applications.Redis
         /// <returns></returns>
         Task SortedSetAddAsync(string redisKey, string redisValue, DateTime cacheTime);
 
+        /// <summary>
+        /// PublishAsync
+        /// </summary>
+        /// <param name="channel"></param>
+        /// <param name="redisValue"></param>
+        /// <returns></returns>
+        Task PublishAsync(string channel, string redisValue);
+
+        /// <summary>
+        /// SubscribeAsync
+        /// </summary>
+        /// <param name="channel"></param>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        Task SubscribeAsync(string channel, Action<RedisChannel, RedisValue> action);
+
+        #region Hash操作
+        /// <summary>
+        /// HSET
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        Task<bool> HSET(string hkey, string key, string value);
+
+        /// <summary>
+        /// HSETNX 不存在才设置
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        Task<bool> HSETNX(string hkey, string key, string value);
+
+        /// <summary>
+        /// HGET 获取hash中的一个key
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        Task<RedisValue> HGET(string hkey, string key);
+
+        /// <summary>
+        /// HIncr
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <param name="key"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        Task<long> HIncr(string hkey, string key, int count);
+
+
+        /// <summary>
+        /// HIncr
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <param name="key"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        Task<long> HDIncr(string hkey, string key, int count);
+
+
+        /// <summary>
+        /// hlen 返回hash存在的key个数
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <returns></returns>
+        Task<long> HLen(string hkey);
+
+        /// <summary>
+        /// hdel 删除一个hash里面的key
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        Task<bool> Hdel(string hkey, string key);
+
+        /// <summary>
+        /// hstrlen hash中key的数据长度
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        Task<long> HashStrLen(string hkey, string key);
+
+        /// <summary>
+        /// hexists 判断一个key是否在hash中
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        Task<bool> HashKeyExist(string hkey, string key);
+
+        /// <summary>
+        /// hmset 批量设置多个数据
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        Task HMSET(string hkey, HashEntry[] value);
+
+        /// <summary>
+        /// hmget 批量获取多个数据
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <param name="hashField"></param>
+        /// <returns></returns>
+        Task<RedisValue[]> HMGET(string hkey, RedisValue[] hashField);
+
+        /// <summary>
+        /// hkeys 获取所有的key
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <returns></returns>
+        Task<RedisValue[]> HKeys(string hkey);
+
+        /// <summary>
+        /// hvals 获取所有的value
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <returns></returns>
+        Task<RedisValue[]> HVals(string hkey);
+
+        /// <summary>
+        /// hall 获取所有的键值对
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="hkey"></param>
+        /// <returns></returns>
+        Task<Dictionary<string, T>> HashGetAll<T>(string hkey);
+
+        /// <summary>
+        /// hall 获取所有的键值对
+        /// </summary>
+        /// <param name="hkey"></param>
+        /// <returns></returns>
+        Task<Dictionary<string, string>> HashAll(string hkey);
+        #endregion
     }
 }
