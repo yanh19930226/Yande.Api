@@ -97,8 +97,9 @@ namespace YandeSignApi
                 m.ConnectionString = "114.55.177.197,connectTimeout=1000,connectRetry=1,syncTimeout=10000,DefaultDatabase=8";
                 m.ListSubscribe = new List<Type>()
                 {
-                     typeof(TestSubscribe),
-                     typeof(TestDelaySubscribe)
+                    typeof(RedisTestController)
+                     //typeof(TestSubscribe),
+                     //typeof(TestDelaySubscribe)
                 };
                 m.ShowLog = false;
             });
