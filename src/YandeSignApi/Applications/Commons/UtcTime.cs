@@ -4,7 +4,7 @@ namespace YandeSignApi.Applications.Commons
 {
     public class UtcTime
     {
-        private static readonly long UtcStartTicks = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).Ticks;
+        
 
         private UtcTime()
         {

@@ -264,11 +264,30 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Yande.Api.Controllers.YandeController.MiniProfilerTest">
+            <summary>
+            MiniProfilerTest
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Yande.Api.Controllers.YandeController.SwaggerHelper(System.String)">
             <summary>
             SwaggerHelper
             </summary>
             <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.Controllers.YandeController.GetCaptcha">
+            <summary>
+            获取活动验证码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.Controllers.YandeController.CheckCaptcha(System.Int32)">
+            <summary>
+            检查验证
+            </summary>
+            <param name="x"></param>
             <returns></returns>
         </member>
         <member name="M:Yande.Api.Controllers.YandeController.GetValue">
@@ -365,6 +384,115 @@
             <param name="services"></param>
             <param name="Configuration"></param>
             <returns></returns>
+        </member>
+        <member name="M:Yande.Api.SlideCaptcha.Captcha.Generate">
+            <summary>
+            生成验证码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.SlideCaptcha.Captcha.GetGraphics(System.Drawing.Image)">
+            <summary>
+            获取图片Graphics
+            </summary>
+            <param name="image"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.SlideCaptcha.Captcha.GetSliderPath(System.Int32,System.Int32)">
+            <summary>
+            获取滑块path
+            </summary>
+        </member>
+        <member name="M:Yande.Api.SlideCaptcha.Captcha.CaptureSlider(System.Drawing.Image,System.Drawing.Drawing2D.GraphicsPath,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            获取滑块区域
+            </summary>
+            <param name="image"></param>
+            <param name="path"></param>
+            <param name="x"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.SlideCaptcha.Captcha.CaptureImage(System.Drawing.Image,System.Int32,System.Int32)">
+            <summary>
+            裁剪图片
+            </summary>
+            <param name="fromImage"></param>
+            <param name="offsetX"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.SlideCaptcha.Captcha.RandomNext(System.Int32,System.Int32)">
+            <summary>
+            生成随机数
+            </summary>
+            <param name="min"></param>
+            <param name="max"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.SlideCaptcha.Captcha.AntiColor(System.Drawing.Color)">
+            <summary>
+            取反色
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.SlideCaptcha.Captcha.BgImage">
+            <summary>
+            获取背景图
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.SlideCaptcha.Captcha.Base64ToImage(System.String)">
+            <summary>
+            base64转图片
+            </summary>
+            <param name="base64string"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yande.Api.SlideCaptcha.Captcha.ImageToBase64(System.Drawing.Image,System.Drawing.Imaging.ImageFormat)">
+            <summary>
+            图片转base64
+            </summary>
+            <param name="image"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Yande.Api.SlideCaptcha.Config.l">
+            <summary>
+            矩形宽
+            </summary>
+        </member>
+        <member name="F:Yande.Api.SlideCaptcha.Config.r">
+            <summary>
+            圆形半径
+            </summary>
+        </member>
+        <member name="F:Yande.Api.SlideCaptcha.Config.d">
+            <summary>
+            圆形直径
+            </summary>
+        </member>
+        <member name="F:Yande.Api.SlideCaptcha.Config.a">
+            <summary>
+            计算圆形与矩形交接三角形边
+            </summary>
+        </member>
+        <member name="F:Yande.Api.SlideCaptcha.Config.blod">
+            <summary>
+            滑块边框
+            </summary>
+        </member>
+        <member name="F:Yande.Api.SlideCaptcha.Config.watermarkText">
+            <summary>
+            水印
+            </summary>
+        </member>
+        <member name="F:Yande.Api.SlideCaptcha.Config.showWatermark">
+            <summary>
+            是否显示水印
+            </summary>
         </member>
         <member name="M:Yande.Api.SwaggerHelper.SbRequestData(Newtonsoft.Json.Linq.JToken,System.String,System.String,Yande.Api.ParamTypeEnum)">
             <summary>
@@ -491,6 +619,492 @@
             <summary>
             Return underlying type if type is Nullable otherwise return the type
             </summary>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.ListRangeAsync(System.String)">
+            <summary>
+            根据key获取RedisValue
+            </summary>
+            <param name="redisKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.ListLeftPushAsync(System.String,System.String)">
+            <summary>
+            在列表头部插入值。如果键不存在，先创建再插入值
+            </summary>
+            <param name="redisKey"></param>
+            <param name="redisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.ListRightPushAsync(System.String,System.String)">
+            <summary>
+            在列表尾部插入值。如果键不存在，先创建再插入值
+            </summary>
+            <param name="redisKey"></param>
+            <param name="redisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.ListRightPushAsync(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            在列表尾部插入数组集合。如果键不存在，先创建再插入值
+            </summary>
+            <param name="redisKey"></param>
+            <param name="redisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.ListLeftPopAsync``1(System.String)">
+            <summary>
+            移除并返回存储在该键列表的第一个元素  反序列化
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="redisKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.ListRightPopAsync``1(System.String)">
+            <summary>
+            移除并返回存储在该键列表的最后一个元素   反序列化
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="redisKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.ListLeftPopAsync(System.String)">
+            <summary>
+            移除并返回存储在该键列表的第一个元素
+            </summary>
+            <param name="redisKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.ListRightPopAsync(System.String)">
+            <summary>
+            移除并返回存储在该键列表的最后一个元素
+            </summary>
+            <param name="redisKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.ListLengthAsync(System.String)">
+            <summary>
+            列表长度
+            </summary>
+            <param name="redisKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.ListRangeAsync(System.String,System.Int32)">
+            <summary>
+            返回在该列表上键所对应的元素
+            </summary>
+            <param name="redisKey"></param>
+            <param name="db"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.ListRangeAsync(System.String,System.Int32,System.Int32)">
+            <summary>
+            根据索引获取指定位置数据
+            </summary>
+            <param name="redisKey"></param>
+            <param name="start"></param>
+            <param name="stop"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.ListDelRangeAsync(System.String,System.String,System.Int64)">
+            <summary>
+            删除List中的元素 并返回删除的个数
+            </summary>
+            <param name="redisKey"></param>
+            <param name="redisValue"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.ListClearAsync(System.String)">
+            <summary>
+            清空List
+            </summary>
+            <param name="redisKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.SortedSetAddAsync(System.String,System.String,System.DateTime)">
+            <summary>
+            延迟消息
+            </summary>
+            <param name="redisKey">键</param>
+            <param name="redisValue">消息</param>
+            <param name="cacheTime">延迟时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.PublishAsync(System.String,System.String)">
+            <summary>
+            PublishAsync
+            </summary>
+            <param name="channel"></param>
+            <param name="redisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.SubscribeAsync(System.String,System.Action{StackExchange.Redis.RedisChannel,StackExchange.Redis.RedisValue})">
+            <summary>
+            SubscribeAsync
+            </summary>
+            <param name="channel"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.HSET(System.String,System.String,System.String)">
+            <summary>
+            HSET
+            </summary>
+            <param name="hkey"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.HSETNX(System.String,System.String,System.String)">
+            <summary>
+            HSETNX 不存在才设置
+            </summary>
+            <param name="hkey"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.HGET(System.String,System.String)">
+            <summary>
+            HGET 获取hash中的一个key
+            </summary>
+            <param name="hkey"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.HIncr(System.String,System.String,System.Int32)">
+            <summary>
+            HIncr
+            </summary>
+            <param name="hkey"></param>
+            <param name="key"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.HDIncr(System.String,System.String,System.Int32)">
+            <summary>
+            HIncr
+            </summary>
+            <param name="hkey"></param>
+            <param name="key"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.HLen(System.String)">
+            <summary>
+            hlen 返回hash存在的key个数
+            </summary>
+            <param name="hkey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.Hdel(System.String,System.String)">
+            <summary>
+            hdel 删除一个hash里面的key
+            </summary>
+            <param name="hkey"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.HashStrLen(System.String,System.String)">
+            <summary>
+            hstrlen hash中key的数据长度
+            </summary>
+            <param name="hkey"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.HashKeyExist(System.String,System.String)">
+            <summary>
+            hexists 判断一个key是否在hash中
+            </summary>
+            <param name="hkey"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.HMSET(System.String,StackExchange.Redis.HashEntry[])">
+            <summary>
+            hmset 批量设置多个数据
+            </summary>
+            <param name="hkey"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.HMGET(System.String,StackExchange.Redis.RedisValue[])">
+            <summary>
+            hmget 批量获取多个数据
+            </summary>
+            <param name="hkey"></param>
+            <param name="hashField"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.HKeys(System.String)">
+            <summary>
+            hkeys 获取所有的key
+            </summary>
+            <param name="hkey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.HVals(System.String)">
+            <summary>
+            hvals 获取所有的value
+            </summary>
+            <param name="hkey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.HashGetAll``1(System.String)">
+            <summary>
+            hall 获取所有的键值对
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="hkey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.IRedisOperationRepository.HashAll(System.String)">
+            <summary>
+            hall 获取所有的键值对
+            </summary>
+            <param name="hkey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.ListRangeAsync(System.String)">
+            <summary>
+            根据key获取RedisValue
+            </summary>
+            <param name="redisKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.ListLeftPushAsync(System.String,System.String)">
+            <summary>
+            在列表头部插入值。如果键不存在，先创建再插入值
+            </summary>
+            <param name="redisKey"></param>
+            <param name="redisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.ListRightPushAsync(System.String,System.String)">
+            <summary>
+            在列表尾部插入值。如果键不存在，先创建再插入值
+            </summary>
+            <param name="redisKey"></param>
+            <param name="redisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.ListRightPushAsync(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            在列表尾部插入数组集合。如果键不存在，先创建再插入值
+            </summary>
+            <param name="redisKey"></param>
+            <param name="redisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.ListLeftPopAsync``1(System.String)">
+            <summary>
+            移除并返回存储在该键列表的第一个元素  反序列化
+            </summary>
+            <param name="redisKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.ListRightPopAsync``1(System.String)">
+            <summary>
+            移除并返回存储在该键列表的最后一个元素   反序列化
+            只能是对象集合
+            </summary>
+            <param name="redisKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.ListLeftPopAsync(System.String)">
+            <summary>
+            移除并返回存储在该键列表的第一个元素   
+            </summary>
+            <param name="redisKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.ListRightPopAsync(System.String)">
+            <summary>
+            移除并返回存储在该键列表的最后一个元素   
+            </summary>
+            <param name="redisKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.ListLengthAsync(System.String)">
+            <summary>
+            列表长度
+            </summary>
+            <param name="redisKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.ListRangeAsync(System.String,System.Int32)">
+            <summary>
+            返回在该列表上键所对应的元素
+            </summary>
+            <param name="redisKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.ListRangeAsync(System.String,System.Int32,System.Int32)">
+            <summary>
+            根据索引获取指定位置数据
+            </summary>
+            <param name="redisKey"></param>
+            <param name="start"></param>
+            <param name="stop"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.ListDelRangeAsync(System.String,System.String,System.Int64)">
+            <summary>
+            删除List中的元素 并返回删除的个数
+            </summary>
+            <param name="redisKey">key</param>
+            <param name="redisValue">元素</param>
+            <param name="type">大于零 : 从表头开始向表尾搜索，小于零 : 从表尾开始向表头搜索，等于零：移除表中所有与 VALUE 相等的值</param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.ListClearAsync(System.String)">
+            <summary>
+            清空List
+            </summary>
+            <param name="redisKey"></param>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.SortedSetAddAsync(System.String,System.String,System.DateTime)">
+            <summary>
+            SortedSetAddAsync
+            </summary>
+            <param name="redisKey"></param>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.PublishAsync(System.String,System.String)">
+            <summary>
+            PublishAsync
+            </summary>
+            <param name="channel"></param>
+            <param name="redisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.SubscribeAsync(System.String,System.Action{StackExchange.Redis.RedisChannel,StackExchange.Redis.RedisValue})">
+            <summary>
+            SubscribeAsync
+            </summary>
+            <param name="channel"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.HSET(System.String,System.String,System.String)">
+            <summary>
+            HSET
+            </summary>
+            <param name="hkey"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.HSETNX(System.String,System.String,System.String)">
+            <summary>
+            HSETNX 不存在才设置
+            </summary>
+            <param name="hkey"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.HGET(System.String,System.String)">
+            <summary>
+            HGET 获取hash中的一个key
+            </summary>
+            <param name="hkey"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.HIncr(System.String,System.String,System.Int32)">
+            <summary>
+            HIncr
+            </summary>
+            <param name="hkey"></param>
+            <param name="key"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.HDIncr(System.String,System.String,System.Int32)">
+            <summary>
+            HDIncr
+            </summary>
+            <param name="hkey"></param>
+            <param name="key"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.HLen(System.String)">
+            <summary>
+            hlen 返回hash存在的key个数
+            </summary>
+            <param name="hkey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.Hdel(System.String,System.String)">
+            <summary>
+            hdel 删除一个hash里面的key
+            </summary>
+            <param name="hkey"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.HashStrLen(System.String,System.String)">
+            <summary>
+            hstrlen hash中key的数据长度
+            </summary>
+            <param name="hkey"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.HashKeyExist(System.String,System.String)">
+            <summary>
+            hexists 判断一个key是否在hash中
+            </summary>
+            <param name="hkey"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.HMSET(System.String,StackExchange.Redis.HashEntry[])">
+            <summary>
+            hmset 批量设置多个数据
+            </summary>
+            <param name="hkey"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.HMGET(System.String,StackExchange.Redis.RedisValue[])">
+            <summary>
+            hmget 批量获取多个数据
+            </summary>
+            <param name="hkey"></param>
+            <param name="hashField"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.HKeys(System.String)">
+            <summary>
+            hkeys 获取所有的key
+            </summary>
+            <param name="hkey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.HVals(System.String)">
+            <summary>
+            hvals 获取所有的value
+            </summary>
+            <param name="hkey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.HashGetAll``1(System.String)">
+            <summary>
+            hall 获取所有的键值对
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="hkey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YandeSignApi.Applications.Redis.RedisOperationRepository.HashAll(System.String)">
+            <summary>
+            hall 获取所有的键值对
+            </summary>
+            <param name="hkey"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

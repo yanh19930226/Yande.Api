@@ -1,4 +1,5 @@
-﻿using InitQ.Attributes;
+﻿using InitQ.Abstractions;
+using InitQ.Attributes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RedisPublishAndSubHelper;
@@ -15,7 +16,7 @@ namespace YandeSignApi.Controllers
     /// </summary>
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class RedisTestController : Controller
+    public class RedisTestController : Controller,IRedisSubscribe
     {
         private readonly IRedisOperationRepository _redisOperationRepository;
         /// <summary>
