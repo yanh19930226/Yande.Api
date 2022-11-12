@@ -8,6 +8,9 @@ Aep_device_control_Demo.Demo();
 Aep_command_modbus_Demo.Demo();
 
 
+Aep_device_model_Demo.Demo();
+
+
 //.....
 
 
