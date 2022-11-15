@@ -1,4 +1,4 @@
-﻿namespace Adnc.Shared.WebApi.Authentication.Hybrid;
+﻿namespace In66.Authentication.Hybrid;
 
 public static class HybridDefaults
 {

@@ -1,6 +1,6 @@
 ﻿namespace In66.Authentication
 {
-    public sealed class UserContext
+    public sealed class AuthenticationInfo
     {
         /// <summary>
         /// Id

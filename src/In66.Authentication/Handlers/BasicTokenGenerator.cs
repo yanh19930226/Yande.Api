@@ -3,14 +3,14 @@ namespace In66.Authentication.Handlers
 {
     public class BasicTokenGenerator : ITokenGenerator
     {
-        private readonly UserContext? _userContext;
+        private readonly AuthenticationInfo? _userContext;
         private readonly ILogger<BasicTokenGenerator> _logger;
 
         public BasicTokenGenerator(
             IHttpContextAccessor httpContextAccessor,
             ILogger<BasicTokenGenerator> logger)
         {
-            _userContext = httpContextAccessor.HttpContext.RequestServices.GetService<UserContext>();
+            _userContext = httpContextAccessor.HttpContext.RequestServices.GetService<AuthenticationInfo>();
             _logger = logger;
         }
 

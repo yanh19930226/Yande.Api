@@ -18,5 +18,7 @@ global using In66.Helper.System.Extensions.Collection;
 global using Microsoft.Extensions.DependencyInjection.Extensions;
 global using In66.Authentication.Bearer;
 global using Microsoft.AspNetCore.Authorization;
+global using System.Net.Http.Headers;
+
 
 

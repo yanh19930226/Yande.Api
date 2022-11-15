@@ -1,0 +1,31 @@
+﻿global using System.Text;
+global using System.Text.Json;
+global using In66.Caching.Core.Internal;
+global using System.Text.RegularExpressions;
+global using In66.Helper.System.Json;
+global using System.Runtime.Serialization.Formatters.Binary;
+global using ProtoBuf;
+global using In66.Caching.Configurations;
+global using In66.Caching.Core.Serialization;
+global using Microsoft.Extensions.Options;
+global using StackExchange.Redis;
+global using System.Collections.Concurrent;
+global using System.Diagnostics;
+global using In66.Caching.Core.Diagnostics;
+global using Microsoft.Extensions.Logging;
+global using System.Reflection;
+global using System.Collections;
+global using In66.Caching.Core.Interceptor;
+global using In66.Caching.Interceptor.Castle;
+global using In66.Caching.StackExchange;
+global using In66.Helper.Microsoft.DependencyInjection;
+global using In66.Helper.System.Extensions.Types;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using Castle.DynamicProxy;
+global using Polly;
+global using In66.Caching.Core.Stats;
+global using In66.Caching.Core;
+global using System.Net;
+
+

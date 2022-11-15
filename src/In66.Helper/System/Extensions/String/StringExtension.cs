@@ -1,8 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Text.RegularExpressions;
-
-namespace In66.Helper.System.Extensions.String
+﻿namespace In66.Helper.System.Extensions.String
 {
     public static class StringExtension
     {

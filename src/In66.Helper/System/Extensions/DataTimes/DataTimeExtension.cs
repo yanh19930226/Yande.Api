@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace In66.Helper.System.Extensions.DataTimes
+﻿namespace In66.Helper.System.Extensions.DataTimes
 {
     public static class DataTimeExtension
     {

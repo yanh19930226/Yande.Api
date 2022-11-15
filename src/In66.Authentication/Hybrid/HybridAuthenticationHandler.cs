@@ -6,7 +6,11 @@
 public sealed class HybridAuthenticationHandler : AuthenticationHandler<HybridSchemeOptions>
 {
     private ILogger<HybridAuthenticationHandler> _logeer;
-    public HybridAuthenticationHandler(IOptionsMonitor<HybridSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock) : base(options, logger, encoder, clock)
+    public HybridAuthenticationHandler(
+        IOptionsMonitor<HybridSchemeOptions> options, 
+        ILoggerFactory logger, 
+        UrlEncoder encoder, 
+        ISystemClock clock) : base(options, logger, encoder, clock)
     {
         _logeer = logger.CreateLogger<HybridAuthenticationHandler>();
     }

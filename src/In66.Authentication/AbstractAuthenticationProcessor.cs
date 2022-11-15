@@ -1,4 +1,6 @@
-﻿namespace In66.Authentication
+﻿using In66.Authentication.Rsa;
+
+namespace In66.Authentication
 {
     public abstract class AbstractAuthenticationProcessor
     {
@@ -32,6 +34,18 @@
             return claims;
         }
 
-        protected abstract Task<(string ValidationVersion, int Status)> GetValidatedInfoAsync(long userId);
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public abstract Task<(string ValidationVersion, int Status)> GetValidatedInfoAsync(long userId);
+
+        /// <summary>
+        /// 获取App信息
+        /// </summary>
+        /// <param name="appId"></param>
+        /// <returns></returns>
+        public abstract Task<AppInfo> GetAppInfoAsync(string appId);
     }
 }

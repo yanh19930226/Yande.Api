@@ -35,6 +35,7 @@ public class BearerAuthenticationHandler : AuthenticationHandler<BearerSchemeOpt
 
             var claims = await _authenticationProcessor.ValidateAsync(token);
 
+            //认证成功
             if (claims.IsNotNullOrEmpty())
             {
                 var identity = new ClaimsIdentity(claims, BearerDefaults.AuthenticationScheme);
@@ -44,7 +45,21 @@ public class BearerAuthenticationHandler : AuthenticationHandler<BearerSchemeOpt
                 {
                     Principal = claimsPrincipal
                 };
+
                 await Options.Events.OnTokenValidated.Invoke(validatedContext);
+                return await Task.FromResult(authResult);
+            }
+            else 
+            {
+                authResult = AuthenticateResult.Fail("认证失败");
+
+                var failedContext = new BearerTokenValidFailedContext(Context, Scheme, Options)
+                {
+                    
+                };
+
+                await Options.Events.OnTokenFailed.Invoke(failedContext);
+
                 return await Task.FromResult(authResult);
             }
 
