@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\In66.Caching\In66.Caching.csproj" />
     <ProjectReference Include="..\In66.Helper\In66.Helper.csproj" />
   </ItemGroup>
 

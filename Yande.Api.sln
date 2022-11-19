@@ -73,9 +73,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "In66.Authentication", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "In66.Helper", "src\In66.Helper\In66.Helper.csproj", "{FAC2AFB9-98F7-4E68-997D-D524DD54DFE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "In66.Middleware", "src\In66.Middleware\In66.Middleware.csproj", "{31CF93B3-3EF4-4827-BD19-0AF7A1544E88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "In66.Middleware", "src\In66.Middleware\In66.Middleware.csproj", "{31CF93B3-3EF4-4827-BD19-0AF7A1544E88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "In66.Caching", "src\In66.Caching\In66.Caching.csproj", "{68996829-8A04-4221-A30A-77CB9EB4D879}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "In66.Caching", "src\In66.Caching\In66.Caching.csproj", "{68996829-8A04-4221-A30A-77CB9EB4D879}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RateLimit", "src\RateLimit\RateLimit.csproj", "{05AB51FA-9026-4D0A-970A-C9BB20DE0A1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -223,6 +225,10 @@ Global
 		{68996829-8A04-4221-A30A-77CB9EB4D879}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68996829-8A04-4221-A30A-77CB9EB4D879}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68996829-8A04-4221-A30A-77CB9EB4D879}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05AB51FA-9026-4D0A-970A-C9BB20DE0A1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05AB51FA-9026-4D0A-970A-C9BB20DE0A1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05AB51FA-9026-4D0A-970A-C9BB20DE0A1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05AB51FA-9026-4D0A-970A-C9BB20DE0A1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -263,6 +269,7 @@ Global
 		{FAC2AFB9-98F7-4E68-997D-D524DD54DFE8} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 		{31CF93B3-3EF4-4827-BD19-0AF7A1544E88} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 		{68996829-8A04-4221-A30A-77CB9EB4D879} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
+		{05AB51FA-9026-4D0A-970A-C9BB20DE0A1C} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A1602B0-CE22-461A-9C0C-312AEFB20E2D}

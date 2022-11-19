@@ -3,6 +3,7 @@ using FileStorage.AliCloud;
 using FileStorage.TencentCloud;
 using HealthChecks.UI.Client;
 using InitQ;
+using LogDashboard;
 using Logger.LocalFile.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -62,6 +63,10 @@ namespace YandeSignApi
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
+
+
+            services.AddLogDashboard();
+
             //services.AddHealthChecks()
             //.AddCheck<DatabaseHealthCheck>("sql");
             //services.AddHealthChecksUI();
@@ -252,6 +257,7 @@ namespace YandeSignApi
             #region Swagger
             app.UseCoreSwagger();
             #endregion
+            app.UseLogDashboard();
 
             app.UseRouting();
 

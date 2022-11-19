@@ -34,9 +34,7 @@ namespace YandeSignApi.Controllers
         public string Str()
         {
 
-            NLogUtil.WriteFileLog(NLog.LogLevel.Error, LogType.Web, "网站启动", "网站启动成功");
-
-            NLogUtil.WriteFileLog(NLog.LogLevel.Info, LogType.Web, "网站启动", "网站启动成功");
+            _logger.LogError( "网站启动成功");
 
             return "test";
         }
