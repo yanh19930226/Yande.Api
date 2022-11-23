@@ -40,6 +40,12 @@ namespace RateLimit
             await _redisCache.Remove($"{_options.ClientPolicyPrefix}_{id}");
         }
 
+        public async Task SetAsync(string id, ClientRateLimitPolicy entry, TimeSpan? expirationTime = null, CancellationToken cancellationToken = default)
+        {
+            var exprie = expirationTime.HasValue ? Convert.ToInt32(expirationTime.Value.TotalSeconds) : -1;
+            await _redisCache.Set($"{_options.ClientPolicyPrefix}", JsonConvert.SerializeObject(_policies), TimeSpan.FromMinutes(1));
+        }
+
         //public async Task SeedAsync()
         //{
         //    // on startup, save the IP rules defined in appsettings
@@ -48,12 +54,6 @@ namespace RateLimit
         //        await _redisCache.SetStringAsync($"{_options.ClientPolicyPrefix}", JsonConvert.SerializeObject(_policies), 0).ConfigureAwait(false);
         //    }
         //}
-
-        public async Task SetAsync(string id, ClientRateLimitPolicy entry, TimeSpan? expirationTime = null, CancellationToken cancellationToken = default)
-        {
-            var exprie = expirationTime.HasValue ? Convert.ToInt32(expirationTime.Value.TotalSeconds) : -1;
-            await _redisCache.Set($"{_options.ClientPolicyPrefix}", JsonConvert.SerializeObject(_policies), TimeSpan.FromMinutes(1));
-        }
 
         public Task SeedAsync()
         {

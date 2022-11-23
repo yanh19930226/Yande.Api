@@ -4,7 +4,6 @@ namespace RateLimit
 {
     public static class SevicesExtension
     {
-
         /// <summary>
         /// AddRedisSetup
         /// </summary>

@@ -33,12 +33,18 @@ namespace RateLimit
                 return JsonConvert.DeserializeObject<IpRateLimitPolicies>(stored);
             }
 
-            return default;
+            return await Task.FromResult(new IpRateLimitPolicies());
         }
 
         public async Task RemoveAsync(string id, CancellationToken cancellationToken = default)
         {
             await _redisCache.Remove($"{_options.IpPolicyPrefix}_{id}");
+        }
+
+        public async Task SetAsync(string id, IpRateLimitPolicies entry, TimeSpan? expirationTime = null, CancellationToken cancellationToken = default)
+        {
+            var exprie = expirationTime.HasValue ? Convert.ToInt32(expirationTime.Value.TotalSeconds) : -1;
+            await _redisCache.Set($"{_options.IpPolicyPrefix}_{id}", JsonConvert.SerializeObject(_policies),TimeSpan.FromMinutes(5));
         }
 
         //public async Task SeedAsync()
@@ -48,12 +54,6 @@ namespace RateLimit
         //        await _redisCache.Set($"{_options.IpPolicyPrefix}", JsonConvert.SerializeObject(_policies)).ConfigureAwait(false);
         //    }
         //}
-
-        public async Task SetAsync(string id, IpRateLimitPolicies entry, TimeSpan? expirationTime = null, CancellationToken cancellationToken = default)
-        {
-            var exprie = expirationTime.HasValue ? Convert.ToInt32(expirationTime.Value.TotalSeconds) : -1;
-            await _redisCache.Set($"{_options.IpPolicyPrefix}_{id}", JsonConvert.SerializeObject(_policies),TimeSpan.FromMinutes(5));
-        }
 
         public Task SeedAsync()
         {

@@ -7,8 +7,10 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Spire.Barcode;
 using StackExchange.Profiling;
+using StackExchange.Redis.Extensions.Core.Abstractions;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Threading;
@@ -26,21 +28,24 @@ namespace Yande.Api.Controllers
     [ApiController]
     public class YandeController : Controller
     {
+        private readonly IRedisDatabase _redisDatabase;
         private readonly ITestAutofac _testAutofac;
         public IWebHostEnvironment _env;
         private readonly ILogger<YandeController> _logger;
-        private readonly IRedisOperationRepository _redisOperationRepository;
+        //private readonly IRedisOperationRepository _redisOperationRepository;
         public YandeController(
             ITestAutofac testAutofac,
+            IRedisDatabase redisDatabase,
             ILogger<YandeController> logger,
-            IRedisOperationRepository redisOperationRepository,
+            //IRedisOperationRepository redisOperationRepository,
             IWebHostEnvironment env
             )
         {
+            _redisDatabase= redisDatabase;
             _testAutofac = testAutofac;
             _logger = logger;
             _env = env;
-            _redisOperationRepository = redisOperationRepository;
+            //_redisOperationRepository = redisOperationRepository;
         }
         /// <summary>
         /// MiniProfilerTest
@@ -76,6 +81,55 @@ namespace Yande.Api.Controllers
 
             return Ok();
         }
+
+
+        [HttpGet]
+        public IActionResult Setcalss()
+        {
+
+            TestClass testClass= new TestClass();
+            testClass.ClassNo = 1;
+            testClass.ClassDesc = "ClassDesc";
+            testClass.Students = new List<Student>()
+            {
+                new Student(){ name="yyy",age=11},
+                new Student(){ name="yyy",age=11},
+                new Student(){ name="55",age=55}
+            };
+
+            _redisDatabase.AddAsync("myCacheKey", testClass)
+            .GetAwaiter()
+            .GetResult();
+
+            var res = _redisDatabase.GetAsync<TestClass>("myCacheKey")
+            .GetAwaiter()
+            .GetResult();
+
+            return Ok();
+        }
+
+
+
+
+        public class TestClass 
+        { 
+        
+           public int ClassNo { get; set; }
+
+            public string ClassDesc { get; set; }
+
+            public List<Student> Students { get; set; }
+
+        }
+
+        public class Student
+        {
+            public string name { get; set; }
+
+            public int age { get; set; }
+
+        }
+
 
 
         [HttpPost]
@@ -116,58 +170,58 @@ namespace Yande.Api.Controllers
             return Ok();
         }
 
-        /// <summary>
-        /// 获取活动验证码
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public IActionResult GetCaptcha()
-        {
-            Captcha64Model model = Captcha.GenerateBase64();
-            _redisOperationRepository.Set("sliderX", model.X,TimeSpan.FromMinutes(1));
-            Hashtable ht = new Hashtable();
-            ht.Add("background", model.Background);
-            ht.Add("slider", model.Slide);
-            ht.Add("sliderXXXXX", model.X);
-            return Json(ht);
-        }
+        ///// <summary>
+        ///// 获取活动验证码
+        ///// </summary>
+        ///// <returns></returns>
+        //[HttpGet]
+        //public IActionResult GetCaptcha()
+        //{
+        //    Captcha64Model model = Captcha.GenerateBase64();
+        //    _redisOperationRepository.Set("sliderX", model.X,TimeSpan.FromMinutes(1));
+        //    Hashtable ht = new Hashtable();
+        //    ht.Add("background", model.Background);
+        //    ht.Add("slider", model.Slide);
+        //    ht.Add("sliderXXXXX", model.X);
+        //    return Json(ht);
+        //}
 
-        /// <summary>
-        /// 检查验证
-        /// </summary>
-        /// <param name="x"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public IActionResult CheckCaptcha(int x = 0)
-        {
-            Hashtable hs = new Hashtable();
-            string Mess = "";
-            int Code = 0;
-            var session = _redisOperationRepository.Get("sliderX");
-            if (session == null)
-            {
-                Mess = "请刷新验证码";
-                Code = 500;
-                goto block;
-            }
-            string sliderXStr = session.Result;
-            int sliderX = Convert.ToInt32(sliderXStr);
-            int difX = sliderX - x;
-            if (difX >= 0 - Config.blod && difX <= Config.blod)
-            {
-                Mess = "success";
-                Code = 0;
-            }
-            else
-            {
-                Mess = "错误";
-                Code = 500;
-            }
-        block:
-            hs.Add("Mess", Mess);
-            hs.Add("Code", Code);
-            return Json(hs);
-        }
+        ///// <summary>
+        ///// 检查验证
+        ///// </summary>
+        ///// <param name="x"></param>
+        ///// <returns></returns>
+        //[HttpGet]
+        //public IActionResult CheckCaptcha(int x = 0)
+        //{
+        //    Hashtable hs = new Hashtable();
+        //    string Mess = "";
+        //    int Code = 0;
+        //    var session = _redisOperationRepository.Get("sliderX");
+        //    if (session == null)
+        //    {
+        //        Mess = "请刷新验证码";
+        //        Code = 500;
+        //        goto block;
+        //    }
+        //    string sliderXStr = session.Result;
+        //    int sliderX = Convert.ToInt32(sliderXStr);
+        //    int difX = sliderX - x;
+        //    if (difX >= 0 - Config.blod && difX <= Config.blod)
+        //    {
+        //        Mess = "success";
+        //        Code = 0;
+        //    }
+        //    else
+        //    {
+        //        Mess = "错误";
+        //        Code = 500;
+        //    }
+        //block:
+        //    hs.Add("Mess", Mess);
+        //    hs.Add("Code", Code);
+        //    return Json(hs);
+        //}
 
 
 

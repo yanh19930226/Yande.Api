@@ -9,6 +9,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Nacos.AspNetCore.V2;
 using StackExchange.Redis;
+using StackExchange.Redis.Extensions.Core.Configuration;
+using StackExchange.Redis.Extensions.Newtonsoft;
+using StackExchange.Redis.Extensions.System.Text.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,20 +42,34 @@ namespace Yande.Api
 
             services.AddSingleton(new AppHelper(Configuration));
 
-            // 配置启动Redis服务，虽然可能影响项目启动速度，但是不能在运行的时候报错，所以是合理的
-            services.AddSingleton<ConnectionMultiplexer>(sp =>
+            var connf = new RedisConfiguration
             {
-                //获取连接字符串
-                string redisConfiguration = "114.55.177.197,connectTimeout=1000,connectRetry=1,syncTimeout=10000,DefaultDatabase=8";
+                AbortOnConnectFail = true,
+                KeyPrefix = "MyPrefix__",
+                Hosts = new[] { new RedisHost { Host = "114.55.177.197", Port = 6379 } },
+                AllowAdmin = true,
+                ConnectTimeout = 5000,
+                Database = 0,
+                PoolSize = 2,
+                Name = "Secndary Instance"
+            };
 
-                var configuration = ConfigurationOptions.Parse(redisConfiguration, true);
+            services.AddStackExchangeRedisExtensions<SystemTextJsonSerializer>(connf);
 
-                configuration.ResolveDns = true;
+            // 配置启动Redis服务，虽然可能影响项目启动速度，但是不能在运行的时候报错，所以是合理的
+            //services.AddSingleton<ConnectionMultiplexer>(sp =>
+            //{
+            //    //获取连接字符串
+            //    string redisConfiguration = "114.55.177.197,connectTimeout=1000,connectRetry=1,syncTimeout=10000,DefaultDatabase=8";
 
-                return ConnectionMultiplexer.Connect(configuration);
-            });
+            //    var configuration = ConfigurationOptions.Parse(redisConfiguration, true);
 
-            services.AddTransient<IRedisOperationRepository, RedisOperationRepository>();
+            //    configuration.ResolveDns = true;
+
+            //    return ConnectionMultiplexer.Connect(configuration);
+            //});
+
+            //services.AddTransient<IRedisOperationRepository, RedisOperationRepository>();
 
             services.AddControllers();
 

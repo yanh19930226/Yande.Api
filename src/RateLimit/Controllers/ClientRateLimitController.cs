@@ -21,17 +21,17 @@ namespace RateLimit.Controllers
         }
 
         [HttpGet]
-        public async Task ExistsAsync()
+        public async Task ExistsAsync(string key)
         {
-            var id = $"{_options.ClientPolicyPrefix}_cl-key-1";
+            var id = $"{_options.ClientPolicyPrefix}_{key}";
 
             await _clientPolicyStore.ExistsAsync(id);
         }
 
         [HttpGet]
-        public async Task<ClientRateLimitPolicy> GetAsync()
+        public async Task<ClientRateLimitPolicy> GetAsync(string key)
         {
-            return await _clientPolicyStore.GetAsync($"{_options.ClientPolicyPrefix}_cl-key-1");
+            return await _clientPolicyStore.GetAsync($"{_options.ClientPolicyPrefix}_{key}");
         }
 
         [HttpPost]
@@ -50,9 +50,9 @@ namespace RateLimit.Controllers
         }
 
         [HttpDelete]
-        public async Task DeleteAsync()
+        public async Task DeleteAsync(string key)
         {
-            var id = $"{_options.ClientPolicyPrefix}_cl-key-1";
+            var id = $"{_options.ClientPolicyPrefix}_{key}";
 
             await _clientPolicyStore.RemoveAsync(id);
         }

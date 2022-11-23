@@ -277,19 +277,6 @@
             <param name="path"></param>
             <returns></returns>
         </member>
-        <member name="M:Yande.Api.Controllers.YandeController.GetCaptcha">
-            <summary>
-            获取活动验证码
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Yande.Api.Controllers.YandeController.CheckCaptcha(System.Int32)">
-            <summary>
-            检查验证
-            </summary>
-            <param name="x"></param>
-            <returns></returns>
-        </member>
         <member name="M:Yande.Api.Controllers.YandeController.GetValue">
             <summary>
             基于ASP.NET Core api 的服务器事件发送
