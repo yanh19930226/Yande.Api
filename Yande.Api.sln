@@ -79,9 +79,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "In66.Caching", "src\In66.Ca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RateLimit", "src\RateLimit\RateLimit.csproj", "{05AB51FA-9026-4D0A-970A-C9BB20DE0A1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.Configuration.Redis", "src\Extensions.Configuration.Redis\Extensions.Configuration.Redis.csproj", "{166C5D3A-EFFD-45D6-B430-8FA3E9B760CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Extensions.Configuration.Redis", "src\Extensions.Configuration.Redis\Extensions.Configuration.Redis.csproj", "{166C5D3A-EFFD-45D6-B430-8FA3E9B760CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtensionsConfigurationRedisTest", "src\ExtensionsConfigurationRedisTest\ExtensionsConfigurationRedisTest.csproj", "{A6C6D12B-AE75-452B-8037-B2BE5A3EA744}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtensionsConfigurationRedisTest", "src\ExtensionsConfigurationRedisTest\ExtensionsConfigurationRedisTest.csproj", "{A6C6D12B-AE75-452B-8037-B2BE5A3EA744}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "src\ConsoleApp\ConsoleApp.csproj", "{D4E0AB0F-A575-41C8-AE3C-4730C72DFADE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -241,6 +243,10 @@ Global
 		{A6C6D12B-AE75-452B-8037-B2BE5A3EA744}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6C6D12B-AE75-452B-8037-B2BE5A3EA744}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6C6D12B-AE75-452B-8037-B2BE5A3EA744}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4E0AB0F-A575-41C8-AE3C-4730C72DFADE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4E0AB0F-A575-41C8-AE3C-4730C72DFADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4E0AB0F-A575-41C8-AE3C-4730C72DFADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4E0AB0F-A575-41C8-AE3C-4730C72DFADE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -284,6 +290,7 @@ Global
 		{05AB51FA-9026-4D0A-970A-C9BB20DE0A1C} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 		{166C5D3A-EFFD-45D6-B430-8FA3E9B760CC} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 		{A6C6D12B-AE75-452B-8037-B2BE5A3EA744} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
+		{D4E0AB0F-A575-41C8-AE3C-4730C72DFADE} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A1602B0-CE22-461A-9C0C-312AEFB20E2D}
