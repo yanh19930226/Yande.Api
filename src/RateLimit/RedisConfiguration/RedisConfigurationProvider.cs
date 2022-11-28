@@ -42,6 +42,7 @@ namespace RateLimit.RedisConfiguration
 
             while (true)
             {
+                Console.WriteLine("监听!!!");
                 try
                 {
                     await Task.Delay(TimeSpan.FromSeconds(_source.ReloadTime));
@@ -57,9 +58,13 @@ namespace RateLimit.RedisConfiguration
 
         public async Task<IDictionary<string, string>> QueryDataAsync()
         {
-            var tokens = JToken.Parse(await _db.StringGetAsync(_source.ConfigKey));
+            var redisVal = await _db.StringGetAsync(_source.ConfigKey);
 
-            var res= tokens
+            if (redisVal.HasValue)
+            {
+                var tokens = JToken.Parse(redisVal);
+
+                var res = tokens
                     .Select(k => KeyValuePair.Create
                     (
                         k.Value<string>("Key"),
@@ -69,7 +74,13 @@ namespace RateLimit.RedisConfiguration
                     .SelectMany(Flatten)
                     .ToDictionary(v => ConfigurationPath.Combine(v.Key.Split('/')), v => v.Value, StringComparer.OrdinalIgnoreCase);
 
-            return res;
+                return res;
+            }
+            else { 
+            
+              return new Dictionary<string, string>();
+            
+            }
         }
 
         #region 帮助方法

@@ -47,6 +47,7 @@ namespace Yande.Api.Controllers
             _env = env;
             //_redisOperationRepository = redisOperationRepository;
         }
+
         /// <summary>
         /// MiniProfilerTest
         /// </summary>
@@ -82,7 +83,6 @@ namespace Yande.Api.Controllers
             return Ok();
         }
 
-
         [HttpGet]
         public IActionResult Setcalss()
         {
@@ -108,9 +108,6 @@ namespace Yande.Api.Controllers
             return Ok();
         }
 
-
-
-
         public class TestClass 
         { 
         
@@ -121,7 +118,6 @@ namespace Yande.Api.Controllers
             public List<Student> Students { get; set; }
 
         }
-
         public class Student
         {
             public string name { get; set; }
@@ -129,8 +125,6 @@ namespace Yande.Api.Controllers
             public int age { get; set; }
 
         }
-
-
 
         [HttpPost]
         [HelloFilter]
@@ -222,9 +216,6 @@ namespace Yande.Api.Controllers
         //    hs.Add("Code", Code);
         //    return Json(hs);
         //}
-
-
-
         public class User
         {
             public int id { get; set; }

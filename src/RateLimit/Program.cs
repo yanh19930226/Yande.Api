@@ -1,63 +1,76 @@
 using AspNetCoreRateLimit;
-using Autofac.Extensions.DependencyInjection;
+using Extensions.Configuration.Redis;
+using Microsoft.Extensions.Options;
 using RateLimit;
-using RateLimit.RedisConfiguration;
+using StackExchange.Redis.Extensions.Core.Configuration;
+using StackExchange.Redis.Extensions.System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var env = builder.Environment;
-var conf = builder.Configuration;
-// Add services to the container.
-
-//添加Redis配置源
-conf.AddRedisConfiguration("114.55.177.197,connectTimeout=1000,connectRetry=1,syncTimeout=10000,DefaultDatabase=8", "IpRateLimitOptions", 15);
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRedisSetup();
 builder.Services.AddMemoryCache();
 
-//AddInMemoryRateLimiting
+#region 添加自定义配置源Redis
+
+IConfigurationBuilder configurationBuilder;
+
+var cancellationTokenSource = new CancellationTokenSource();
+        configurationBuilder = builder.Configuration.AddRedis("RedisConfig",
+        cancellationTokenSource.Token, options =>
+        {
+            options.Server = "114.55.177.197,connectTimeout=1000,connectRetry=1,syncTimeout=10000,abortConnect=false,DefaultDatabase=8";
+            options.OnReload = () =>
+            {
+                Console.WriteLine("============== Updated ============");
+            };
+        });
+
+/// <summary>
+/// 创建配置
+/// </summary>
+IConfiguration Configuration = configurationBuilder.Build();
+#endregion
+
+#region Redis中添加配置
+var connf = new RedisConfiguration
+{
+    AbortOnConnectFail = true,
+    KeyPrefix = "",
+    Hosts = new[] { new RedisHost { Host = "114.55.177.197", Port = 6379 } },
+    AllowAdmin = true,
+    ConnectTimeout = 5000,
+    Database = 8,
+    PoolSize = 2,
+    Name = "Secndary Instance"
+};
+builder.Services.AddStackExchangeRedisExtensions<SystemTextJsonSerializer>(connf);
+#endregion
+
+#region 限流配置通用配置
+
 builder.Services.AddInMemoryRateLimiting();
-// 从appsettings.json中加载ip限流配置通用规则
-//builder.Services.Configure<IpRateLimitOptions>(opt => {
 
-//    //opt.IpPolicyPrefix = "";
-//    //opt.IpWhitelist = "";
-//    //opt.RealIpHeader = "";
-//    //opt.EndpointWhitelist = "";
+builder.Services.Configure<IpRateLimitOptions>(Configuration.GetSection("IpRateLimiting"));
 
-//    opt.EnableEndpointRateLimiting = true;
-//    opt.StackBlockedRequests = true;
-//    opt.QuotaExceededResponse = new QuotaExceededResponse()
-//    {
-//        StatusCode = 429,
-//        Content = "{{\"code\":429,\"msg\":\"Visit too frequently, please try again later\",\"data\":null}}",
-//        ContentType= "application/json;utf-8"
-//    };
-//    opt.HttpStatusCode = 429;
-//});
-
-
-//builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
-
-
-builder.Services.Configure<IpRateLimitOptions>(conf.GetSection("IpRateLimiting"));
-// 从appsettings.json中加载客户端限流配置通用规则
-builder.Services.Configure<ClientRateLimitOptions>(conf.GetSection("IpRateLimiting"));
 // 配置（解析器、计数器密钥生成器）
 builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 //解析clientid和ip的使用有用，如果默认没有启用，则此处启用
-//services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+//services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); 
+#endregion
 
+#region 特殊ip和客户端规则加载
 /// <summary>
 /// 特殊ip和客户端规则加载
 /// </summary>
 //builder.Services.AddSingleton<IRateLimitCounterStore, RedisRateLimitCounterStore>();
 builder.Services.AddSingleton<IIpPolicyStore, RedisIpPolicyStore>();
-builder.Services.AddSingleton<IClientPolicyStore, RedisClientPolicyStore>();
+//builder.Services.AddSingleton<IClientPolicyStore, RedisClientPolicyStore>(); 
+#endregion
 
 var app = builder.Build();
 

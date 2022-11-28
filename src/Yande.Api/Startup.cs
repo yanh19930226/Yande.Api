@@ -45,11 +45,11 @@ namespace Yande.Api
             var connf = new RedisConfiguration
             {
                 AbortOnConnectFail = true,
-                KeyPrefix = "MyPrefix__",
+                KeyPrefix = "",
                 Hosts = new[] { new RedisHost { Host = "114.55.177.197", Port = 6379 } },
                 AllowAdmin = true,
                 ConnectTimeout = 5000,
-                Database = 0,
+                Database = 8,
                 PoolSize = 2,
                 Name = "Secndary Instance"
             };

@@ -32,16 +32,19 @@ namespace Extensions.Configuration.Redis
         private async Task DoLoad(bool reloading)
         {
             var configQueryResult = await _redisConfigurationClient.GetConfig();
+
             if (!configQueryResult.Exists && !_source.Optional)
             {
-                if (!reloading)
-                {
-                    throw new Exception($"在Redis中没有找到对应的key {_source.Key} ");
-                }
-                else
-                {
-                    return;
-                }
+                //if (!reloading)
+                //{
+                //    throw new Exception($"在Redis中没有找到对应的key {_source.Key} ");
+                //}
+                //else
+                //{
+                //    return;
+                //}
+
+                return;
             }
 
             LoadIntoMemory(configQueryResult);

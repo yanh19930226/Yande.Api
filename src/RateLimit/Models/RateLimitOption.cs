@@ -2,29 +2,60 @@
 {
     public class RateLimitOption
     {
-        /// <summary>
-        /// Api的前缀
-        /// </summary>
-        public string IpPolicyPrefix { get; set; }
-        /// <summary>
-        /// 请求Ip头
-        /// </summary>
-        public string RealIpHeader { get; set; } = "X-Real-IP";
-        /// <summary>
-        /// ip白名单
-        /// </summary>
-        public List<string> IpWhitelist { get; set; }
-        /// <summary>
-        /// api可忽略限制的接口列表
-        /// </summary>
+        public string IpPolicyPrefix { get; set; } = "ippp";
+
+        public List<RateLimitRule> GeneralRules { get; set; }
+
         public List<string> EndpointWhitelist { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
+
+        public string ClientIdHeader { get; set; } = "X-ClientId";
+
+        public List<string> ClientWhitelist { get; set; }
+
+        public string RealIpHeader { get; set; } = "X-Real-IP";
+
+        public List<string> IpWhitelist { get; set; }
+
+        public int HttpStatusCode { get; set; } = 429;
+
+        public string QuotaExceededMessage { get; set; }
+
+        public QuotaExceededResponse QuotaExceededResponse { get; set; }
+
+        public string RateLimitCounterPrefix { get; set; } = "crlc";
+
+
         public bool StackBlockedRequests { get; set; }
-        /// <summary>
-        /// 是否应用于全局
-        /// </summary>
+
         public bool EnableEndpointRateLimiting { get; set; }
+
+        public bool DisableRateLimitHeaders { get; set; }
+
+        public bool EnableRegexRuleMatching { get; set; }
+    }
+
+    public class RateLimitRule
+    {
+        public string Endpoint { get; set; }
+
+        public string Period { get; set; }
+
+        public TimeSpan? PeriodTimespan { get; set; }
+
+        public double Limit { get; set; }
+
+        public QuotaExceededResponse QuotaExceededResponse { get; set; }
+
+        public bool MonitorMode { get; set; }
+    }
+
+    public class QuotaExceededResponse
+    {
+        public string ContentType { get; set; }
+       
+
+        public string Content { get; set; }
+
+        public int? StatusCode { get; set; } = 429;
     }
 }

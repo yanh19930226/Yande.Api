@@ -83,7 +83,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Extensions.Configuration.Re
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtensionsConfigurationRedisTest", "src\ExtensionsConfigurationRedisTest\ExtensionsConfigurationRedisTest.csproj", "{A6C6D12B-AE75-452B-8037-B2BE5A3EA744}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "src\ConsoleApp\ConsoleApp.csproj", "{D4E0AB0F-A575-41C8-AE3C-4730C72DFADE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "src\ConsoleApp\ConsoleApp.csproj", "{D4E0AB0F-A575-41C8-AE3C-4730C72DFADE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalR", "src\SignalR\SignalR.csproj", "{144B8EC4-5063-4232-B6D4-E4EDE66BF6A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApi", "src\TestApi\TestApi.csproj", "{FB273052-CFC7-4101-8F5A-B149FABC42C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.Configuration.RedisConfig", "src\Extensions.Configuration.RedisConfig\Extensions.Configuration.RedisConfig.csproj", "{5528E585-ACE6-4E71-BD61-690A76353B27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -247,6 +253,18 @@ Global
 		{D4E0AB0F-A575-41C8-AE3C-4730C72DFADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4E0AB0F-A575-41C8-AE3C-4730C72DFADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4E0AB0F-A575-41C8-AE3C-4730C72DFADE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{144B8EC4-5063-4232-B6D4-E4EDE66BF6A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{144B8EC4-5063-4232-B6D4-E4EDE66BF6A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{144B8EC4-5063-4232-B6D4-E4EDE66BF6A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{144B8EC4-5063-4232-B6D4-E4EDE66BF6A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB273052-CFC7-4101-8F5A-B149FABC42C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB273052-CFC7-4101-8F5A-B149FABC42C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB273052-CFC7-4101-8F5A-B149FABC42C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB273052-CFC7-4101-8F5A-B149FABC42C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5528E585-ACE6-4E71-BD61-690A76353B27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5528E585-ACE6-4E71-BD61-690A76353B27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5528E585-ACE6-4E71-BD61-690A76353B27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5528E585-ACE6-4E71-BD61-690A76353B27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -291,6 +309,9 @@ Global
 		{166C5D3A-EFFD-45D6-B430-8FA3E9B760CC} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 		{A6C6D12B-AE75-452B-8037-B2BE5A3EA744} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 		{D4E0AB0F-A575-41C8-AE3C-4730C72DFADE} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
+		{144B8EC4-5063-4232-B6D4-E4EDE66BF6A9} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
+		{FB273052-CFC7-4101-8F5A-B149FABC42C1} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
+		{5528E585-ACE6-4E71-BD61-690A76353B27} = {B9CE8818-A349-4678-BD94-20FABDC3AA3C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A1602B0-CE22-461A-9C0C-312AEFB20E2D}

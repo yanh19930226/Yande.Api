@@ -9,8 +9,6 @@ namespace Extensions.Configuration.Redis
         private readonly object _lastVersionLock = new object();
         private int _lastVersion = 1;
         private RedisConfigurationSource _source;
-        private string _configValueVersionPostfix = "_Version";
-
         private ConfigurationReloadToken _reloadToken = new ConfigurationReloadToken();
 
         public RedisConfigurationClient(RedisConfigurationSource source)
@@ -58,16 +56,14 @@ namespace Extensions.Configuration.Redis
         {
             ConfigQueryResult queryResult;
             queryResult = await GetConfigValue();
-            //return queryResult != null && UpdateLastVersion(queryResult);
-            return queryResult != null;
-
+            return queryResult != null && UpdateLastVersion(queryResult);
         }
 
         private async Task<ConfigQueryResult> GetConfigValue() => await Task.Run(() =>
         {
             ConnectionMultiplexer connection = ConnectionMultiplexer.Connect(_source.Server);
 
-            IDatabase db = connection.GetDatabase(8);
+            IDatabase db = connection.GetDatabase();
 
             var result = new ConfigQueryResult();
 
@@ -76,10 +72,10 @@ namespace Extensions.Configuration.Redis
                 result.Exists = false;
                 return result;
             }
-
             result.Exists = true;
             result.Value = db.StringGet(_source.Key).ToString();
-            result.Version = Convert.ToInt32(db.StringGet($"{_source.Key}{_configValueVersionPostfix}"));
+            result.Version = result.Value.GetHashCode();
+
             return result;
         });
 
@@ -87,9 +83,10 @@ namespace Extensions.Configuration.Redis
         {
             lock (_lastVersionLock)
             {
-                if (queryResult.Version > _lastVersion)
+                if (queryResult.Version != _lastVersion)
                 {
                     _lastVersion = queryResult.Version;
+
                     return true;
                 }
             }
