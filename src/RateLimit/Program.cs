@@ -34,9 +34,11 @@ var cancellationTokenSource = new CancellationTokenSource();
 /// 创建配置
 /// </summary>
 IConfiguration Configuration = configurationBuilder.Build();
+
 #endregion
 
 #region Redis中添加配置
+
 var connf = new RedisConfiguration
 {
     AbortOnConnectFail = true,
@@ -49,16 +51,18 @@ var connf = new RedisConfiguration
     Name = "Secndary Instance"
 };
 builder.Services.AddStackExchangeRedisExtensions<SystemTextJsonSerializer>(connf);
+
 #endregion
 
 #region 限流配置通用配置
 
 builder.Services.AddInMemoryRateLimiting();
 
+//配置（解析器、计数器密钥生成器）
+builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+
 builder.Services.Configure<IpRateLimitOptions>(Configuration.GetSection("IpRateLimiting"));
 
-// 配置（解析器、计数器密钥生成器）
-builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 //解析clientid和ip的使用有用，如果默认没有启用，则此处启用
 //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); 
 #endregion
@@ -67,9 +71,11 @@ builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>()
 /// <summary>
 /// 特殊ip和客户端规则加载
 /// </summary>
-//builder.Services.AddSingleton<IRateLimitCounterStore, RedisRateLimitCounterStore>();
 builder.Services.AddSingleton<IIpPolicyStore, RedisIpPolicyStore>();
-//builder.Services.AddSingleton<IClientPolicyStore, RedisClientPolicyStore>(); 
+
+//builder.Services.AddSingleton<IRateLimitCounterStore, RedisRateLimitCounterStore>();
+//builder.Services.AddSingleton<IClientPolicyStore, RedisClientPolicyStore>();
+//builder.Services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
 #endregion
 
 var app = builder.Build();

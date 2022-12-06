@@ -9,22 +9,18 @@ using Spire.Barcode;
 using StackExchange.Profiling;
 using StackExchange.Redis.Extensions.Core.Abstractions;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using Yande.Api.SlideCaptcha;
 using Yande.Core.AppSettings;
 using Yande.Core.Filter;
-using Yande.Core.Redis;
 using Yande.Core.Service;
-using YandeSignApi.Applications.Redis;
 
 namespace Yande.Api.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class YandeController : Controller
     {
@@ -310,6 +306,25 @@ namespace Yande.Api.Controllers
             Console.Read();
 
             return Ok();
+        }
+
+        public class TestRto
+        {
+            public string Id { get; set; }
+
+            public string Name { get; set; }
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult Test(long id)
+        {
+
+            var Headers = Request.Headers;
+
+            TestRto testRto = new TestRto();
+            testRto.Id = "10000";
+            testRto.Name = "yanh";
+            return Ok(testRto);
         }
     }
 }

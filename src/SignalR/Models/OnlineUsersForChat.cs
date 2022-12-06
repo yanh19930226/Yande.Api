@@ -1,7 +1,7 @@
 ﻿namespace ConsoleApp.Models
 {
     /// <summary>
-    /// 在线用户（聊天室）
+    /// 在线用户
     /// </summary>
     public class OnlineUsersForChat
     {
@@ -10,18 +10,34 @@
         /// </summary>
         public string ConnectionId { get; set; }
         /// <summary>
+        /// 来源
+        /// </summary>
+        public int Source { get; set; }
+        /// <summary>
         /// 用户id
         /// </summary>
-        public long? UserGuid { get; set; }
+        public int? UserId { get; set; }
+        /// <summary>
+        /// 用户姓名
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// 登入时间
+        /// </summary>
         public DateTime LoginTime { get; set; }
-
-        public OnlineUsersForChat(string clientid, string name, long? userguid)
+        /// <summary>
+        /// OnlineUsersForChat
+        /// </summary>
+        /// <param name="clientid"></param>
+        /// <param name="name"></param>
+        /// <param name="userguid"></param>
+        public OnlineUsersForChat(string clientid, string name, int? userid, int source)
         {
+            Source = source;
             ConnectionId = clientid;
+            UserId = userid;
             Name = name;
             LoginTime = DateTime.Now;
-            UserGuid = userguid;
         }
     }
 }
