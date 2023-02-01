@@ -12,19 +12,6 @@ namespace ExtensionsConfigurationRedisTest
         {
             var cancellationTokenSource = new CancellationTokenSource();
 
-            //var builder = new ConfigurationBuilder()
-            //    .AddRedis("MyPrefix__myCacheKey",
-            //        cancellationTokenSource.Token, options =>
-            //        {
-            //            options.Server = "114.55.177.197,connectTimeout=1000,connectRetry=1,syncTimeout=10000,abortConnect=false,DefaultDatabase=8";
-            //            options.OnReload = () =>
-            //            {
-            //                Console.WriteLine("============== Updated ============");
-            //                ReadConfig();
-            //            };
-            //        });
-
-
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile($"appsettings.json", optional: true);

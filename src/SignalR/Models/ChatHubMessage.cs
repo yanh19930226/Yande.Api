@@ -49,6 +49,30 @@
     public class HubUser
     {
         /// <summary>
+        /// 来源
+        /// </summary>
+        public int Source { get; set; }
+        /// <summary>
+        /// IsCustomerService
+        /// </summary>
+        public bool IsCustomerService { get; set; } = false;
+        /// <summary>
+        /// IsKeep
+        /// </summary>
+        public bool IsKeep { get; set; }
+        /// <summary>
+        /// IsConnect
+        /// </summary>
+        public int IsConnect { get; set; }
+        /// <summary>
+        /// ServiceStatus
+        /// </summary>
+        public int ServiceStatus { get; set; }
+        /// <summary>
+        /// ServiceStatus
+        /// </summary>
+        public int ServiceStatusId { get; set; }
+        /// <summary>
         /// 客户端连接Id
         /// </summary>
         public string ConnectionId { get; set; }
@@ -61,13 +85,13 @@
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// Status
-        /// </summary>
-        public int Status { get; set; }
-        /// <summary>
         /// 登入时间
         /// </summary>
         public string LoginTime { get; set; }
+        /// <summary>
+        /// 服务的产品
+        /// </summary>
+        public List<int> ServicePrintSource { get; set; } = new List<int>();
     }
 
     /// <summary>

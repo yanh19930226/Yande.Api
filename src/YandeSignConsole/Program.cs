@@ -88,10 +88,42 @@ XO6sXOvN+Z9aexXFqvzhZYodSKtYfAodSVn3ASxGghd7CjWnYQfPNrkaAO4Tx6iq
 
         static void Main(string[] args)
         {
-            using (var httpClient = new HttpClient())
+            //using (var httpClient = new HttpClient())
+            //{
+            //    Test2(httpClient);
+            //}
+
+            //var startTime = "23:30";
+
+            //var endTime = "13:30";
+
+            ////转换成TimeSpan格式
+            //TimeSpan workStartDT = DateTime.Parse(startTime).TimeOfDay;
+            //TimeSpan workEndDT = DateTime.Parse(endTime).TimeOfDay;
+            //////可以进行 加减时间
+            ////TimeSpan nowStartDT = DateTime.Now.TimeOfDay + TimeSpan.FromMinutes(45);
+            ////TimeSpan nowEndDT = DateTime.Now.TimeOfDay - TimeSpan.FromMinutes(30);
+
+            //TimeSpan nowStartDT = DateTime.Now.TimeOfDay;
+
+
+            int starthour = 23;
+            int endhour = 13;
+            int nowhour = DateTime.Now.Hour;
+
+            if (endhour < starthour)
             {
-                Test2(httpClient);
+                endhour += 24;
+                nowhour += 24;
             }
+
+            if (starthour <= nowhour && nowhour <= endhour)
+            {
+                Console.WriteLine("Hello World!22222");
+            }
+
+
+
             Console.WriteLine("Hello World!");
         }
         
